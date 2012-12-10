@@ -1,4 +1,6 @@
-pred konzultaci odevzdat pdf navrh trid z http://ui.pefka.mendelu.cz/cs/technika/visual_paradigm do odevzdavarny (/opt/visualparadigm)
+pred konzultaci odevzdat pdf navrh trid z
+http://ui.pefka.mendelu.cz/cs/technika/visual_paradigm
+do odevzdavarny (/opt/visualparadigm)
 obhajoba leden
 
 tahovou strategickou hru typu hry Civilizace
@@ -20,7 +22,8 @@ Hrac zacina s 1 peonem.
 Peon umi stavet budovy, tezit drevo i zlato, chodit a stat.
 Budovy stoji X dreva a Y zlata.
 
-Budovy a jednotky jsou inspirovane Warcraftem 2, system boje spise Civilizaci 1. Cil hry pochazi z nejake stolni hry.
+Budovy a jednotky jsou inspirovane Warcraftem 2, system pohybu a boje spise Civilizaci 1.
+Cil hry pochazi z nejake stolni hry.
 
 Cilem hry je ziskat N bodu, hrac dostava body za znicene cizi budovy a za postavene svoje budovy. Bezcenne budovy (treba upgrade town hall) jsou za hodne bodu.
 
@@ -34,3 +37,39 @@ Budovy:
 	farm - zvysuje max pocet jednotek
 	barracks - stavi utocne jednotky
 	watch/guard/cannon tower - obranna vez
+
+Policka:
+	gold mine - obsahuje N zlata, po vytezeni zustane na mape
+	forest - obsahuje N dreva, po vytezeni zmizi
+	rock - nepruchozi, neznicitelny
+	budova - nepruchozi, znicitelna
+	jednotka - nepruchozi, znicitelna
+	(prazdno)
+
+Na kazdem policku mapy muze byt tradicne jen 1 vec mimo:
+	Peon stoji na policku na kterem tezi
+	Peon stoji na budove ktreou prave postavil
+	Nove postavena jednotka stoji na budove ktera ji vytvorila
+
+
+Game
+
+Player
+
+MapItem
+	Unit
+		Peon
+		Grunt
+		Axethrower
+	Building
+		TownHall
+			Stronghold
+			Fortress
+		Farm
+		Barracks
+		WatchTower
+			GuardTower
+			CannonTower
+	Rock
+	Forest
+	GoldMine
