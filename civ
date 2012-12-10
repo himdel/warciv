@@ -1,4 +1,3 @@
-povinna konzultace nekdy mezi 10 a 20.12. - jit nekdy na cviceni predtim to zjistit
 pred konzultaci odevzdat pdf navrh trid z http://ui.pefka.mendelu.cz/cs/technika/visual_paradigm do odevzdavarny (/opt/visualparadigm)
 obhajoba leden
 
@@ -15,35 +14,23 @@ tahovou strategickou hru typu hry Civilizace
 - projektovy soubor Code::Blocks nebo XCode
 
 
-Clovek zacina s 1 jednotkou a 1 budovou - Blb a Hospoda
-Blb ma vsechny skilly na levelu 1
-Hospoda ma level 1 - ma na sklade 10 jidel
-Kazdy level by melo byt narocnejsi dosahnout nez predchozi.
+WarCiv
 
-Skilly
-	farmic	vytezi N jidla za kolo
-	nosic	unese N vahy
-	stavec	postavi N stitu za kolo
-	chodic	ujde N policek za kolo
-	tezic	vytezi N surovin za kolo
-	koumac	vynalezne N zarovek za kolo
+Hrac zacina s 1 peonem.
+Peon umi stavet budovy, tezit drevo i zlato, chodit a stat.
+Budovy stoji X dreva a Y zlata.
 
-Skilly se postupne zlepsujou pouzivanim a nebo v skole (budova), zaroven jde pouzivat jen 1 skill (mimo nosic+chodic)
-Kazda jednotka po 20 kolech bez jidla umre ale od 10 kol se ji linearne docasne snizuji levely
-Budovy maji taky levely ktere se muzou stavenim zvetsit. Behem staveni jsou nedostupne.
+Budovy a jednotky jsou inspirovane Warcraftem 2, system boje spise Civilizaci 1. Cil hry pochazi z nejake stolni hry.
 
-Budovy
-	hospoda	sklad jidla	kapacita=10*N
-	skola	zrychlene zvetsovani lvlu jednotek
-	silnice	levna, nasobi rychlost posunu
-	...
+Cilem hry je ziskat N bodu, hrac dostava body za znicene cizi budovy a za postavene svoje budovy. Bezcenne budovy (treba upgrade town hall) jsou za hodne bodu.
 
-Jidlo roste hojne, prubezne pomalu pribyva
-Ostatni suroviny jsou konecne pokud na to neni budova
+Jednotky:
+	peon - bezbranny stavec
+	grunt - jenotka na boj z blizka
+	axethrower - jednotka na boj z dalky
 
-
-.. nebo warcraft ;D
-s drahou farmou
-
-
-zita navrh na body, bezcenne budovy (radnice) davaji moc bodu, uzitecne malo bodu
+Budovy:
+	town hall / stronghold / fortress - stavi stavece, prijima suroviny
+	farm - zvysuje max pocet jednotek
+	barracks - stavi utocne jednotky
+	watch/guard/cannon tower - obranna vez
