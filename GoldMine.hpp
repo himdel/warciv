@@ -8,7 +8,7 @@ public:
 	GoldMine() : MapItem("GoldMine") {}
 	int avail();
 	int gather(int amount);
-	std::string getPopis();
+	std::string getPopis();	// Gold(99)
 };
 
 #endif	// __GOLDMINE_HPP__
