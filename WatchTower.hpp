@@ -7,6 +7,8 @@ public:
 	virtual bool upgrade();
 
 	bool preturnAction();
+
+	static Building *create() { return new WatchTower(); }
 };
 
 #endif	// __WATCHTOWER_HPP__

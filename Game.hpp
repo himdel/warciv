@@ -4,7 +4,6 @@
 #include "Game.hpp"
 #include "Player.hpp"
 
-// TODO
 enum BuildingType {
 };
 enum UnitType {

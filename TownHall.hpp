@@ -6,6 +6,8 @@ public:
 	TownHall() : MapItem("TownHall") {}
 	bool create(UnitType u);
 	virtual bool upgrade();
+
+	static Building *create() { return new TownHall(); }
 };
 
 #endif	// __TOWNHALL_HPP__
