@@ -5,7 +5,9 @@
 
 class WatchTower : public Building {
 public:
-	WatchTower() : MapItem("WatchTower") {}
+	WatchTower() : Building("WatchTower") {}
+	WatchTower(std::string popis) : Building(popis) {}
+
 	virtual bool upgrade();
 
 	bool preturnAction();

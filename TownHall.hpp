@@ -5,7 +5,9 @@
 
 class TownHall : public Building {
 public:
-	TownHall() : MapItem("TownHall") {}
+	TownHall() : Building("TownHall") {}
+	TownHall(std::string popis) : Building(popis) {}
+
 	bool create(UnitType u);
 	virtual bool upgrade();
 

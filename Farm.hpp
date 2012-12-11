@@ -5,7 +5,7 @@
 
 class Farm : public Building {
 public:
-	Farm() : MapItem("Farm") {}
+	Farm() : Building("Farm") {}
 
 	static Building *create() { return new Farm(); }
 };

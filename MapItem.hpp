@@ -2,6 +2,7 @@
 #define __MAPITEM_HPP__
 
 #include <ostream>
+#include "Map.hpp"
 
 class MapItem {
 protected:

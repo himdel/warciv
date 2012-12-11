@@ -5,7 +5,7 @@
 
 class Stronghold : public TownHall {
 public:
-	Stronghold() : MapItem("Stronghold") {}
+	Stronghold() : TownHall("Stronghold") {}
 	virtual bool upgrade();
 
 	static Building *create();

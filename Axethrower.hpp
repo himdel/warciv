@@ -5,7 +5,7 @@
 
 class Axethrower : public Unit {
 public:
-	Axethrower() : MapItem("Axethrower") {}
+	Axethrower() : Unit("Axethrower") {}
 	bool attack(int x, int y);
 
 	static Unit *create() { return new Axethrower(); }

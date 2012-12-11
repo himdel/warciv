@@ -5,7 +5,7 @@
 
 class Peon : public Unit {
 public:
-	Peon() : MapItem("Peon") {}
+	Peon() : Unit("Peon") {}
 	bool gather(int x, int y);
 	bool build(int x, int y, BuildingType b);
 

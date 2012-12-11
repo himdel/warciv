@@ -5,7 +5,7 @@
 
 class CannonTower : public WatchTower {
 public:
-	CannonTower() : MapItem("CannonTower") {}
+	CannonTower() : WatchTower("CannonTower") {}
 	virtual bool upgrade();
 
 	static Building *create();

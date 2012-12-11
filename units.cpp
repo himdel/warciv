@@ -4,7 +4,7 @@
 #include "Axethrower.hpp"
 
 UnitData units[] = {
-	{ ut_Peon, Peon::create, "Peon", TownHall },
-	{ ut_Grunt, Grunt::create, "Grunt", Barracks },
-	{ ut_Axethrower, Axethrower::create, "Axethrower", Barracks },
+	{ ut_Peon, Peon::create, "Peon", bt_TownHall },
+	{ ut_Grunt, Grunt::create, "Grunt", bt_Barracks },
+	{ ut_Axethrower, Axethrower::create, "Axethrower", bt_Barracks },
 };

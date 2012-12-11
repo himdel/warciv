@@ -5,7 +5,7 @@
 
 class Barracks : public Building {
 public:
-	Barracks() : MapItem("Barracks") {}
+	Barracks() : Building("Barracks") {}
 	bool create(UnitType u);
 
 	static Building *create() { return new Barracks(); }

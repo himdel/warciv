@@ -2,13 +2,13 @@
 #define __UNIT_HPP__
 
 #include <stdbool.h>
+#include "enums.hpp"
 #include "MapItem.hpp"
-#include "Game.hpp"
-#include "buildings.hpp"
 
 class Unit : public MapItem {
 public:
-	//Unit(std::string popis) : MapItem(popis) {}
+	Unit(std::string popis) : MapItem(popis) {}
+
 	bool move(int x, int y);
 	virtual bool gather(int x, int y);
 	virtual bool build(int x, int y, BuildingType b);

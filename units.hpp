@@ -1,22 +1,16 @@
-#ifndef __BUILDINGS_HPP__
-#define __BUILDINGS_HPP__
+#ifndef __UNITS_HPP__
+#define __UNITS_HPP__
 
-#include "buildings.hpp"
+#include "enums.hpp"
 #include "Unit.hpp"
-
-enum UnitType {
-	ut_Peon,
-	ut_Grunt,
-	ut_Axethrower,
-};
 
 struct UnitData {
 	UnitType type;
 	Unit *(*make)();
-	string name;
+	std::string name;
 	BuildingType where;
 };
 
 extern UnitData units[];
 
-#endif	// __BUILDINGS_HPP__
+#endif	// __UNITS_HPP__

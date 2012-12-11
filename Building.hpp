@@ -2,12 +2,13 @@
 #define __BUILDING_HPP__
 
 #include <stdbool.h>
-#include "units.hpp"
+#include "enums.hpp"
 #include "MapItem.hpp"
 
 class Building : public MapItem {
 public:
-	Building() : MapItem("??Building??") {}
+	Building(std::string popis) : MapItem(popis) {}
+
 	virtual bool upgrade();
 	virtual bool create(UnitType u);
 
