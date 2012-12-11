@@ -3,6 +3,7 @@
 
 class CannonTower : public WatchTower {
 public:
+	CannonTower() : MapItem("CannonTower") {}
 	virtual bool upgrade();
 };
 

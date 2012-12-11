@@ -3,6 +3,7 @@
 
 class Grunt : public Unit {
 public:
+	Grunt() : MapItem("Grunt") {}
 	bool attack(int x, int y);
 };
 

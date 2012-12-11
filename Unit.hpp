@@ -7,6 +7,7 @@
 
 class Unit : public MapItem {
 public:
+	Unit() : MapItem("??Unit??") {}
 	bool move(int x, int y);
 	virtual bool gather(int x, int y);
 	virtual bool build(int x, int y, BuildingType b);

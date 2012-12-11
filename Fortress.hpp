@@ -3,6 +3,7 @@
 
 class Fortress : public TownHall {
 public:
+	Fortress() : MapItem("Fortress") {}
 	virtual bool upgrade();
 };
 

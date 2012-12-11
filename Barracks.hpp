@@ -3,6 +3,7 @@
 
 class Barracks : public Building {
 public:
+	Barracks() : MapItem("Barracks") {}
 	bool create(UnitType u);
 };
 

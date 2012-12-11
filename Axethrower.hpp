@@ -3,6 +3,7 @@
 
 class Axethrower : public Unit {
 public:
+	Axethrower() : MapItem("Axethrower") {}
 	bool attack(int x, int y);
 };
 

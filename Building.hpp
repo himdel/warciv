@@ -6,6 +6,7 @@
 
 class Building : public MapItem {
 public:
+	Building() : MapItem("??Building??") {}
 	virtual bool upgrade();
 	virtual bool create(UnitType u);
 };

@@ -5,6 +5,7 @@ class Forest : public MapItem {
 private:
 	int wood;
 public:
+	Forest() : MapItem("Forest") {}
 	int avail();
 	int gather(int amount);
 	std::string getPopis();

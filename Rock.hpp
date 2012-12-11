@@ -3,6 +3,7 @@
 
 class Rock : public MapItem {
 public:
+	Rock() : MapItem("Rock") {}
 };
 
 #endif	// __ROCK_HPP__

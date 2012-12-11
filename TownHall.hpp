@@ -3,6 +3,7 @@
 
 class TownHall : public Building {
 public:
+	TownHall() : MapItem("TownHall") {}
 	bool create(UnitType u);
 	virtual bool upgrade();
 };

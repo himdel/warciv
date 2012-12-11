@@ -5,6 +5,7 @@ class GoldMine : public MapItem {
 private:
 	int gold;
 public:
+	GoldMine() : MapItem("GoldMine") {}
 	int avail();
 	int gather(int amount);
 	std::string getPopis();

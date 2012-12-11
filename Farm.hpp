@@ -3,6 +3,7 @@
 
 class Farm : public Building {
 public:
+	Farm() : MapItem("Farm") {}
 };
 
 #endif	// __FARM_HPP__
