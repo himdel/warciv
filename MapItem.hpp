@@ -1,6 +1,8 @@
 #ifndef __MAPITEM_HPP__
 #define __MAPITEM_HPP__
 
+#include <ostream>
+
 class MapItem {
 protected:
 	Map *map;
@@ -15,5 +17,7 @@ public:
 	virtual string getPopis();
 	virtual ~MapItem(){}
 };
+
+ostream& operator<<(ostream &o, MapItem *m);
 
 #endif	// __MAPITEM_HPP__
