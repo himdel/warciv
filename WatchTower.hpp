@@ -5,6 +5,8 @@ class WatchTower : public Building {
 public:
 	WatchTower() : MapItem("WatchTower") {}
 	virtual bool upgrade();
+
+	bool preturnAction();
 };
 
 #endif	// __WATCHTOWER_HPP__

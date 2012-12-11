@@ -18,14 +18,19 @@ tahovou strategickou hru typu hry Civilizace
 
 WarCiv
 
+Budovy a jednotky jsou inspirovane Warcraftem 2, system pohybu a boje spise Civilizaci 1.
+Cil hry pochazi z nejake stolni hry.
+
 Hrac zacina s 1 peonem.
 Peon umi stavet budovy, tezit drevo i zlato, chodit a stat.
 Budovy stoji X dreva a Y zlata.
 
-Budovy a jednotky jsou inspirovane Warcraftem 2, system pohybu a boje spise Civilizaci 1.
-Cil hry pochazi z nejake stolni hry.
-
 Cilem hry je ziskat N bodu, hrac dostava body za znicene cizi budovy a za postavene svoje budovy. Bezcenne budovy (treba upgrade town hall) jsou za hodne bodu.
+
+Jednotky si pamatuji ukoly - bez tezit na 1,1 znamena ze jednotka pujde na 1,1, vytezi, pujde na zakladnu a bude opakovat dokud je na 1,1 co tezit. Da se ji ale explicitne rict ze ma prestat a delat neco jineho.
+
+Veze utoci samy, vzdy na zacatku tahu.
+
 
 Jednotky:
 	peon - bezbranny stavec

@@ -14,6 +14,7 @@ private:
 	list<Building *> buildings;
 	int gold;
 	int wood;
+	int score;
 
 public:
 	Player(string name);

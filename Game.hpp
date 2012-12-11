@@ -12,7 +12,7 @@ enum UnitType {
 
 class Game {
 private:
-	Map *map;
+	Map<MapItem> *map;
 	Player *players[2];
 
 public:

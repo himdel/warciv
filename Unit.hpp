@@ -13,6 +13,9 @@ public:
 	virtual bool build(int x, int y, BuildingType b);
 	virtual bool attack(int x, int y);
 	bool stop();
+
+	virtual bool actionPending();
+	virtual bool performAction();
 };
 
 #endif	// __UNIT_HPP__

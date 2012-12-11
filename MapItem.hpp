@@ -5,13 +5,13 @@
 
 class MapItem {
 protected:
-	Map *map;
+	Map<MapItem> *map;
 	int x, y;
 	std::string popis;
 
 public:
 	MapItem(std::string popis);
-	void place(Map *map, int x, int y);
+	void place(Map<MapItem> *map, int x, int y);
 	void remove();
 
 	virtual string getPopis();

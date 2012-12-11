@@ -9,6 +9,8 @@ public:
 	Building() : MapItem("??Building??") {}
 	virtual bool upgrade();
 	virtual bool create(UnitType u);
+
+	virtual bool preturnAction() {}
 };
 
 #endif	// __BUILDING_HPP__
