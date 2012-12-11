@@ -15,8 +15,8 @@ public:
 	T *get(int x, int y);
 	void put(int x, int y, T* elem);
 
-	int getWidth() { return this->width }
-	int getHeight() { return this->height }
+	int getWidth() { return this->width; }
+	int getHeight() { return this->height; }
 
 	void show();
 

@@ -4,10 +4,11 @@
 #include <stdbool.h>
 #include "MapItem.hpp"
 #include "Game.hpp"
+#include "buildings.hpp"
 
 class Unit : public MapItem {
 public:
-	Unit() : MapItem("??Unit??") {}
+	//Unit(std::string popis) : MapItem(popis) {}
 	bool move(int x, int y);
 	virtual bool gather(int x, int y);
 	virtual bool build(int x, int y, BuildingType b);

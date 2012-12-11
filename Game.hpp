@@ -1,13 +1,9 @@
 #ifndef __GAME_HPP__
 #define __GAME_HPP__
 
-#include "Game.hpp"
+#include "Map.hpp"
+#include "MapItem.hpp"
 #include "Player.hpp"
-
-enum BuildingType {
-};
-enum UnitType {
-};
 
 class Game {
 private:

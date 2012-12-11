@@ -1,6 +1,8 @@
 #ifndef __AXETHROWER_HPP__
 #define __AXETHROWER_HPP__
 
+#include "Unit.hpp"
+
 class Axethrower : public Unit {
 public:
 	Axethrower() : MapItem("Axethrower") {}

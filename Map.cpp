@@ -32,7 +32,7 @@ Map<T>::put(int x, int y, T* elem) {
 		return;
 	}
 
-	this->data[x][y] = pole;
+	this->data[x][y] = elem;
 }
 
 template <typename T>

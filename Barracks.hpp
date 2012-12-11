@@ -1,6 +1,8 @@
 #ifndef __BARRACKS_HPP__
 #define __BARRACKS_HPP__
 
+#include "Building.hpp"
+
 class Barracks : public Building {
 public:
 	Barracks() : MapItem("Barracks") {}

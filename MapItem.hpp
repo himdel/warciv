@@ -14,10 +14,10 @@ public:
 	void place(Map<MapItem> *map, int x, int y);
 	void remove();
 
-	virtual string getPopis();
+	virtual std::string getPopis();
 	virtual ~MapItem(){}
 };
 
-ostream& operator<<(ostream &o, MapItem *m);
+std::ostream& operator<<(std::ostream &o, MapItem *m);
 
 #endif	// __MAPITEM_HPP__

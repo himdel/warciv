@@ -18,7 +18,7 @@ private:
 
 public:
 	Player(string name);
-	int score();
+	int getScore();
 };
 
 #endif	// __PLAYER_HPP__

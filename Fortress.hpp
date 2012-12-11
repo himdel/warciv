@@ -1,6 +1,8 @@
 #ifndef __FORTRESS_HPP__
 #define __FORTRESS_HPP__
 
+#include "TownHall.hpp"
+
 class Fortress : public TownHall {
 public:
 	Fortress() : MapItem("Fortress") {}

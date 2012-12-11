@@ -1,6 +1,8 @@
 #ifndef __WATCHTOWER_HPP__
 #define __WATCHTOWER_HPP__
 
+#include "Building.hpp"
+
 class WatchTower : public Building {
 public:
 	WatchTower() : MapItem("WatchTower") {}

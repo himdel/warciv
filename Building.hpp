@@ -2,6 +2,7 @@
 #define __BUILDING_HPP__
 
 #include <stdbool.h>
+#include "units.hpp"
 #include "MapItem.hpp"
 
 class Building : public MapItem {
