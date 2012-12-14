@@ -9,9 +9,16 @@ class Game {
 private:
 	Map<MapItem> *map;
 	Player *players[2];
+	UI *ui;
 
 public:
-	Game (int w, int h, std::string p1, std::string p2);
+	Game(int w, int h, std::string p1, std::string p2);
+
+	void play();
+	Player *winner();
+	string score();
+
+	~Game();
 };
 
 #endif	// __GAME_HPP__
