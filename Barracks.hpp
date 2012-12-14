@@ -5,7 +5,7 @@
 
 class Barracks : public Building {
 public:
-	Barracks() : Building("Barracks") {}
+	Barracks(Player *owner) : Building("Barracks", owner) {}
 	bool create(UnitType u);
 
 	static Building *create() { return new Barracks(); }

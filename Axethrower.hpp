@@ -5,7 +5,7 @@
 
 class Axethrower : public Unit {
 public:
-	Axethrower() : Unit("Axethrower") {}
+	Axethrower(Player *owner) : Unit("Axethrower", owner) {}
 	bool attack(int x, int y);
 
 	static Unit *create() { return new Axethrower(); }

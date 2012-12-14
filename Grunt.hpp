@@ -5,7 +5,7 @@
 
 class Grunt : public Unit {
 public:
-	Grunt() : Unit("Grunt") {}
+	Grunt(Player *owner) : Unit("Grunt", owner) {}
 	bool attack(int x, int y);
 
 	static Unit *create() { return new Grunt(); }

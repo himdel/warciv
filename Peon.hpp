@@ -5,7 +5,7 @@
 
 class Peon : public Unit {
 public:
-	Peon() : Unit("Peon") {}
+	Peon(Player *owner) : Unit("Peon", owner) {}
 	bool gather(int x, int y);
 	bool build(int x, int y, BuildingType b);
 

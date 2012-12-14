@@ -5,7 +5,7 @@
 
 class CannonTower : public WatchTower {
 public:
-	CannonTower() : WatchTower("CannonTower") {}
+	CannonTower(Player *owner) : WatchTower("CannonTower", owner) {}
 	virtual bool upgrade();
 
 	static Building *create();

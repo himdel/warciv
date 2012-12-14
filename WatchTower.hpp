@@ -5,8 +5,8 @@
 
 class WatchTower : public Building {
 public:
-	WatchTower() : Building("WatchTower") {}
-	WatchTower(std::string popis) : Building(popis) {}
+	WatchTower(Player *owner) : Building("WatchTower", owner) {}
+	WatchTower(std::string popis, Player *owner) : Building(popis, owner) {}
 
 	virtual bool upgrade();
 
