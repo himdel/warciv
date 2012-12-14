@@ -8,14 +8,16 @@
 class Building : public MapItem {
 protected:
 	Player *owner;
+	int hitpoints;
 
 public:
 	Building(std::string popis, Player *p) : MapItem(popis), owner(p) {}
 
 	virtual bool upgrade();
 	virtual bool create(UnitType u);
-
 	virtual bool preturnAction() {}
+
+	void damage(int hitpoints);
 
 	virtual std::string getPopis();
 };
