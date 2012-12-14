@@ -20,6 +20,10 @@ public:
 	Player(string name);
 	int getScore();
 	string getName();
+	list<Unit *> getUnits(UnitType ut);
+	list<Building *> getBuildings(BuildingType bt);
+	int getGold();
+	int getWood();
 };
 
 #endif	// __PLAYER_HPP__

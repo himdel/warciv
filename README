@@ -76,5 +76,6 @@ MapItem
 			GuardTower
 			CannonTower
 	Rock
-	Forest
-	GoldMine
+	Resource
+		Forest
+		GoldMine

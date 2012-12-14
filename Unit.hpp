@@ -6,8 +6,11 @@
 #include "MapItem.hpp"
 
 class Unit : public MapItem {
+protected:
+	Player *owner;
+
 public:
-	Unit(std::string popis) : MapItem(popis) {}
+	Unit(std::string popis, Player *p) : MapItem(popis), owner(p) {}
 
 	bool move(int x, int y);
 	virtual bool gather(int x, int y);
@@ -17,6 +20,8 @@ public:
 
 	virtual bool actionPending();
 	virtual bool performAction();
+
+	virtual std::string getPopis();
 };
 
 #endif	// __UNIT_HPP__

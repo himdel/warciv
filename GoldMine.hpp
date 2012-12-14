@@ -1,14 +1,12 @@
 #ifndef __GOLDMINE_HPP__
 #define __GOLDMINE_HPP__
 
-class GoldMine : public MapItem {
-private:
-	int gold;
+#include "Resource.hpp"
+
+class GoldMine : public Resource {
 public:
-	GoldMine() : MapItem("GoldMine") {}
-	int avail();
+	GoldMine() : Resource("GoldMine") {}
 	int gather(int amount);
-	std::string getPopis();	// Gold(99)
 };
 
 #endif	// __GOLDMINE_HPP__

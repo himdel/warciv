@@ -2,6 +2,7 @@
 #define __ENUMS_HPP__
 
 enum BuildingType {
+	bt_Any = 0,
 	bt_TownHall,
 	bt_Stronghold,
 	bt_Fortress,
@@ -13,6 +14,7 @@ enum BuildingType {
 };
 
 enum UnitType {
+	ut_Any = 0,
 	ut_Peon,
 	ut_Grunt,
 	ut_Axethrower,
