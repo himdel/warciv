@@ -8,7 +8,7 @@ public:
 	Axethrower(Player *owner) : Unit("Axethrower", owner) {}
 	bool attack(int x, int y);
 
-	static Unit *create() { return new Axethrower(); }
+	static Unit *create(Player *owner) { return new Axethrower(owner); }
 };
 
 #endif	// __AXETHROWER_HPP__

@@ -9,7 +9,7 @@ public:
 	bool gather(int x, int y);
 	bool build(int x, int y, BuildingType b);
 
-	static Unit *create() { return new Peon(); }
+	static Unit *create(Player *owner) { return new Peon(owner); }
 };
 
 #endif	// __PEON_HPP__

@@ -8,7 +8,7 @@ public:
 	Fortress(Player *owner) : TownHall("Fortress", owner) {}
 	virtual bool upgrade();
 
-	static Building *create();
+	static Building *create(Player *owner);
 };
 
 #endif	// __FORTRESS_HPP__

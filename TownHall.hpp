@@ -11,7 +11,7 @@ public:
 	bool create(UnitType u);
 	virtual bool upgrade();
 
-	static Building *create() { return new TownHall(); }
+	static Building *create(Player *owner) { return new TownHall(owner); }
 };
 
 #endif	// __TOWNHALL_HPP__

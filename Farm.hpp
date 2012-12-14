@@ -7,7 +7,7 @@ class Farm : public Building {
 public:
 	Farm(Player *owner) : Building("Farm", owner) {}
 
-	static Building *create() { return new Farm(); }
+	static Building *create(Player *owner) { return new Farm(owner); }
 };
 
 #endif	// __FARM_HPP__

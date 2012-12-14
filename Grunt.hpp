@@ -8,7 +8,7 @@ public:
 	Grunt(Player *owner) : Unit("Grunt", owner) {}
 	bool attack(int x, int y);
 
-	static Unit *create() { return new Grunt(); }
+	static Unit *create(Player *owner) { return new Grunt(owner); }
 };
 
 #endif	// __GRUNT_HPP__

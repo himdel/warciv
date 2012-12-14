@@ -12,7 +12,7 @@ public:
 
 	bool preturnAction();
 
-	static Building *create() { return new WatchTower(); }
+	static Building *create(Player *owner) { return new WatchTower(owner); }
 };
 
 #endif	// __WATCHTOWER_HPP__
