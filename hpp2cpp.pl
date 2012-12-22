@@ -22,6 +22,7 @@ while (<>) {
 	if (/(~?\w+)\s*(\(.*\));$/) {
 		my ($type, $fname, $args) = ($`, $1, $2);
 		$type =~ s/\s*$//;
+		$type =~ s/\s*\bvirtual\b\s*//;
 		say $fh "";
 		say $fh $type if $type;
 		say $fh $class."::".$fname.$args." {";
