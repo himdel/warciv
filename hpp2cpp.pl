@@ -20,10 +20,11 @@ while (<>) {
 
 	$class = $1 if /^class (\w+)\b/;
 	if (/(~?\w+)\s*(\(.*\));$/) {
-		my $type = $` =~ s/\s*$//r;
+		my ($type, $fname, $args) = ($`, $1, $2);
+		$type =~ s/\s*$//;
 		say $fh "";
 		say $fh $type if $type;
-		say $fh $class."::".$1.$2." {";
+		say $fh $class."::".$fname.$args." {";
 		say $fh "}";
 	}
 }
