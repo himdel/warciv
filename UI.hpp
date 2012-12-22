@@ -10,7 +10,7 @@ private:
 	Map<MapItem> *map;
 public:
 	UI(Map<MapItem> *m) : map(m) {}
-	void playerTurn(Player *p);
+	void playerTurn(int turn, Player *p);
 };
 
 #endif	// __UI_HPP__

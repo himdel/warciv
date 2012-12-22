@@ -12,9 +12,11 @@ private:
 	Map<MapItem> *map;
 	vector<Player *> players;
 	UI *ui;
+	int win_score;
+	int turn;
 
 public:
-	Game(int w, int h, std::string p1, std::string p2);
+	Game(int w, int h, std::string p1, std::string p2, int win_score);
 
 	void play();
 	Player *winner();
