@@ -1,14 +1,14 @@
 #include "Resource.hpp"
 
 
-int 
+int
 Resource::avail () {
 }
 
-int 
+int
 Resource::gather (int amount) {
 }
 
-std::string 
+std::string
 Resource::getPopis () {
 }

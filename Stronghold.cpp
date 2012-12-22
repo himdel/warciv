@@ -1,7 +1,7 @@
 #include "Stronghold.hpp"
 
 
-virtual bool 
+virtual bool
 Stronghold::upgrade () {
 }
 

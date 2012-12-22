@@ -1,6 +1,6 @@
 #include "Grunt.hpp"
 
 
-bool 
+bool
 Grunt::attack (int x, int y) {
 }

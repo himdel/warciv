@@ -1,6 +1,6 @@
 #include "Barracks.hpp"
 
 
-bool 
+bool
 Barracks::create (UnitType u) {
 }

@@ -1,7 +1,7 @@
 #include "Fortress.hpp"
 
 
-virtual bool 
+virtual bool
 Fortress::upgrade () {
 }
 

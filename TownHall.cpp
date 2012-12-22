@@ -1,10 +1,10 @@
 #include "TownHall.hpp"
 
 
-bool 
+bool
 TownHall::create (UnitType u) {
 }
 
-virtual bool 
+virtual bool
 TownHall::upgrade () {
 }

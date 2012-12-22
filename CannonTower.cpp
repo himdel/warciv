@@ -1,7 +1,7 @@
 #include "CannonTower.hpp"
 
 
-virtual bool 
+virtual bool
 CannonTower::upgrade () {
 }
 

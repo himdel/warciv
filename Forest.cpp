@@ -1,6 +1,6 @@
 #include "Forest.hpp"
 
 
-int 
+int
 Forest::gather (int amount) {
 }

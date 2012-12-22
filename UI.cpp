@@ -1,6 +1,6 @@
 #include "UI.hpp"
 
 
-void 
+void
 UI::playerTurn (Player *p) {
 }

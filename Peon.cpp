@@ -1,10 +1,10 @@
 #include "Peon.hpp"
 
 
-bool 
+bool
 Peon::gather (int x, int y) {
 }
 
-bool 
+bool
 Peon::build (int x, int y, BuildingType b) {
 }

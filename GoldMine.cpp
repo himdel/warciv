@@ -1,6 +1,6 @@
 #include "GoldMine.hpp"
 
 
-int 
+int
 GoldMine::gather (int amount) {
 }

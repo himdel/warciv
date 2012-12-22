@@ -1,18 +1,18 @@
 #include "Building.hpp"
 
 
-virtual bool 
+virtual bool
 Building::upgrade () {
 }
 
-virtual bool 
+virtual bool
 Building::create (UnitType u) {
 }
 
-void 
+void
 Building::damage (int hitpoints) {
 }
 
-virtual std::string 
+virtual std::string
 Building::getPopis () {
 }

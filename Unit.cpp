@@ -1,38 +1,38 @@
 #include "Unit.hpp"
 
 
-bool 
+bool
 Unit::move (int x, int y) {
 }
 
-virtual bool 
+virtual bool
 Unit::gather (int x, int y) {
 }
 
-virtual bool 
+virtual bool
 Unit::build (int x, int y, BuildingType b) {
 }
 
-virtual bool 
+virtual bool
 Unit::attack (int x, int y) {
 }
 
-bool 
+bool
 Unit::stop () {
 }
 
-void 
+void
 Unit::die () {
 }
 
-virtual bool 
+virtual bool
 Unit::actionPending () {
 }
 
-virtual bool 
+virtual bool
 Unit::performAction () {
 }
 
-virtual std::string 
+virtual std::string
 Unit::getPopis () {
 }

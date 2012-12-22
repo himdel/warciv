@@ -1,7 +1,7 @@
 #include "GuardTower.hpp"
 
 
-virtual bool 
+virtual bool
 GuardTower::upgrade () {
 }
 

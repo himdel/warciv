@@ -1,10 +1,10 @@
 #include "WatchTower.hpp"
 
 
-virtual bool 
+virtual bool
 WatchTower::upgrade () {
 }
 
-bool 
+bool
 WatchTower::preturnAction () {
 }

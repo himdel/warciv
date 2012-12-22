@@ -1,6 +1,6 @@
 #include "Axethrower.hpp"
 
 
-bool 
+bool
 Axethrower::attack (int x, int y) {
 }

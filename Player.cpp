@@ -4,42 +4,42 @@
 Player::Player (string name) {
 }
 
-int 
+int
 Player::getScore () {
 }
 
-string 
+string
 Player::getName () {
 }
 
-list<Unit *> 
+list<Unit *>
 Player::getUnits (UnitType ut) {
 }
 
-void 
+void
 Player::addUnit (Unit *u) {
 }
 
-void 
+void
 Player::delUnit (Unit *u) {
 }
 
-list<Building *> 
+list<Building *>
 Player::getBuildings (BuildingType bt) {
 }
 
-void 
+void
 Player::addBuilding (Building *b) {
 }
 
-void 
+void
 Player::delBuilding (Building *b) {
 }
 
-int 
+int
 Player::getGold () {
 }
 
-int 
+int
 Player::getWood () {
 }

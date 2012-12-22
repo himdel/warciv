@@ -4,14 +4,14 @@
 MapItem::MapItem (std::string popis) {
 }
 
-void 
+void
 MapItem::place (Map<MapItem> *map, int x, int y) {
 }
 
-void 
+void
 MapItem::remove () {
 }
 
-virtual std::string 
+virtual std::string
 MapItem::getPopis () {
 }
