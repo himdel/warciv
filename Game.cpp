@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <sstream>
 #include "Game.hpp"
 
@@ -20,19 +19,19 @@ void
 Game::play() {
 	while (this->winner() == NULL) {
 		this->turn++;
-		for (vector<Player *>::iterator it = this->players.begin(); it != this->players.end(); it++)
-			this->ui->playerTurn(turn, *it);
+		for (Player *p : this->players)
+			this->ui->playerTurn(turn, p);
 	}
 }
 
 Player *
 Game::winner() {
 	Player *best = NULL;
-	for (vector<Player *>::iterator it = this->players.begin(); it != this->players.end(); it++) {
-		if (!best && ((*it)->getScore() >= this->win_score))
-			best = *it;
-		if (best && ((*it)->getScore() >= best->getScore()))
-			best = *it;
+	for (Player *p : this->players) {
+		if (!best && (p->getScore() >= this->win_score))
+			best = p;
+		if (best && (p->getScore() >= best->getScore()))
+			best = p;
 	}
 	return best;
 }
@@ -40,9 +39,8 @@ Game::winner() {
 string
 Game::score() {
 	ostringstream out;
-	for (vector<Player *>::iterator it = this->players.begin(); it != this->players.end(); it++) {
-		out << (*it)->getName() << "\t\t" << (*it)->getScore() << endl;
-	}
+	for (Player *p : this->players)
+		out << p->getName() << "\t\t" << p->getScore() << endl;
 	return out.str();
 }
 
@@ -53,6 +51,7 @@ static void _delete_player(Player *p) {
 
 Game::~Game() {
 	delete this->ui;
-	for_each (this->players.begin(), this->players.end(), _delete_player);
+	for (Player *p : this->players)
+		delete p;
 	delete this->map;
 }
