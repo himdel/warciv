@@ -1,14 +1,16 @@
 #ifndef __GAME_HPP__
 #define __GAME_HPP__
 
+#include <vector>
 #include "Map.hpp"
 #include "MapItem.hpp"
 #include "Player.hpp"
+#include "UI.hpp"
 
 class Game {
 private:
 	Map<MapItem> *map;
-	Player *players[2];
+	vector<Player *> players;
 	UI *ui;
 
 public:

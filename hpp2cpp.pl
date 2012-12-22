@@ -23,7 +23,7 @@ while (<>) {
 		my $type = $` =~ s/\s*$//r;
 		say $fh "";
 		say $fh $type if $type;
-		say $fh $class."::".$1." ".$2." {";
+		say $fh $class."::".$1.$2." {";
 		say $fh "}";
 	}
 }

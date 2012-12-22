@@ -6,7 +6,7 @@
 
 struct UnitData {
 	UnitType type;
-	Unit *(*make)();
+	Unit *(*make)(Player *);
 	std::string name;
 	BuildingType where;
 };

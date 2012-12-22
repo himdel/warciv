@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "enums.hpp"
 #include "MapItem.hpp"
+#include "Player.hpp"
 
 class Building : public MapItem {
 protected:

@@ -1,8 +1,8 @@
 #include "Game.hpp"
 
 
-Game::Game (int w, int h, std::string p1, std::string p2) {
-	this->map = new Map<MapItem>(w, h)
+Game::Game(int w, int h, std::string p1, std::string p2) {
+	this->map = new Map<MapItem>(w, h);
 	this->players = {
 		new Player(p1),
 		new Player(p2),
@@ -11,16 +11,16 @@ Game::Game (int w, int h, std::string p1, std::string p2) {
 }
 
 void
-Game::play () {
+Game::play() {
 }
 
 Player *
-Game::winner () {
+Game::winner() {
 }
 
 string
-Game::score () {
+Game::score() {
 }
 
-Game::~Game () {
+Game::~Game() {
 }

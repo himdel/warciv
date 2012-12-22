@@ -6,7 +6,7 @@
 
 struct BuildingData {
 	BuildingType type;
-	Building *(*make)();
+	Building *(*make)(Player *owner);
 	std::string name;
 	int base;	// base building, buildable by peons
 };

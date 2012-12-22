@@ -2,6 +2,9 @@
 #define __PLAYER_HPP__
 
 #include <list>
+class Player;
+class Unit;
+class Building;
 #include "Unit.hpp"
 #include "Building.hpp"
 
