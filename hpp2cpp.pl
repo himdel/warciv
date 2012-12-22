@@ -2,9 +2,14 @@
 use v5.14;
 
 my $name = $ARGV[0] // "foobar.h";
+my $fh = *STDOUT;
+if ($ARGV[0]) {
+	my $cname = $name =~ s/\.(h+)/".".("c" x length($1))/er;
+	open $fh, ">", $cname unless -f $cname;
+}
 
-say "#include \"$name\"";
-say "";
+say $fh "#include \"$name\"";
+say $fh "";
 
 my $class;
 while (<>) {
@@ -15,9 +20,9 @@ while (<>) {
 
 	$class = $1 if /^class (\w+)\b/;
 	if (/(~?\w+)\s*(\(.*\));$/) {
-		say "";
-		say $` if $`;
-		say $class."::".$1." ".$2." {";
-		say "}";
+		say $fh "";
+		say $fh $` if $`;
+		say $fh $class."::".$1." ".$2." {";
+		say $fh "}";
 	}
 }
