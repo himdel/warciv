@@ -1,4 +1,6 @@
+#include <cstdlib>
 #include <sstream>
+#include <time.h>
 #include "Game.hpp"
 
 using namespace std;
@@ -13,6 +15,7 @@ Game::Game(int w, int h, string p1, string p2, int win_score) {
 	this->ui = new UI(this->map);
 	this->win_score = win_score;
 	this->turn = 0;
+	srand(time(NULL));
 }
 
 void
