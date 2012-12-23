@@ -9,9 +9,10 @@
 class Unit : public MapItem {
 protected:
 	Player *owner;
+	int hp;
 
 public:
-	Unit(std::string popis, Player *p) : MapItem(popis), owner(p) {}
+	Unit(std::string popis, Player *p) : MapItem(popis), owner(p), hp(100) {}
 
 	bool move(int x, int y);
 	virtual bool gather(int x, int y);
