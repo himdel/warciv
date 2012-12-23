@@ -40,6 +40,8 @@ Unit::build(int x, int y, BuildingType b) {
 bool
 Unit::attack(int x, int y) {
 	// TODO attackujeme souseda
+	// TODO just get within this->attack_distance
+	// ..rest done by subclass
 }
 
 void
