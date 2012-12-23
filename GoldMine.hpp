@@ -6,7 +6,7 @@
 class GoldMine : public Resource {
 public:
 	GoldMine() : Resource("GoldMine") {}
-	int gather(int amount);
+	int gather(int amount, Player *p);
 };
 
 #endif	// __GOLDMINE_HPP__

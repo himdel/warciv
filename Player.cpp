@@ -57,3 +57,13 @@ int
 Player::getWood() {
 	return this->wood;
 }
+
+void
+Player::addGold(int quantity) {
+	this->gold += quantity;
+}
+
+void
+Player::addWood(int quantity) {
+	this->wood += quantity;
+}

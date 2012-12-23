@@ -8,7 +8,7 @@ Resource::avail() {
 }
 
 int
-Resource::gather(int amount) {
+Resource::gather(int amount, Player *p) {
 	int ret = std::min(this->quantity, amount);
 	this->quantity -= ret;
 	return ret;

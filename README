@@ -80,5 +80,5 @@ MapItem*
 			CannonTower
 	Rock*
 	Resource*
-		Forest
-		GoldMine
+		Forest*
+		GoldMine*

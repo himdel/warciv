@@ -3,6 +3,8 @@
 
 #include <cstdlib>
 #include "MapItem.hpp"
+#include "Player.hpp"
+
 
 class Resource : public MapItem {
 private:
@@ -12,7 +14,7 @@ public:
 		this->quantity = rand() % 5000;
 	}
 	int avail();
-	int gather(int amount);
+	virtual int gather(int amount, Player *p = NULL);
 	std::string getPopis();	// popis(quantity)
 };
 
