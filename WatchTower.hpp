@@ -10,7 +10,7 @@ public:
 
 	virtual bool upgrade();
 
-	bool preturnAction();
+	void preturnAction();
 
 	static Building *create(Player *owner) { return new WatchTower(owner); }
 };

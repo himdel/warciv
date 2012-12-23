@@ -56,6 +56,8 @@ Na kazdem policku mapy muze byt tradicne jen 1 vec mimo:
 	Peon stoji na budove ktreou prave postavil
 	Nove postavena jednotka stoji na budove ktera ji vytvorila
 
+(pouziva C++11, potrebuje clang 3.1 a vyssi nebo gcc 4.7 (4.6 mozna?))
+
 
 Game
 

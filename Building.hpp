@@ -16,7 +16,7 @@ public:
 
 	virtual bool upgrade();
 	virtual bool create(UnitType u);
-	virtual bool preturnAction() {}
+	virtual void preturnAction() {}
 
 	void damage(int hitpoints);
 
