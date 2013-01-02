@@ -69,12 +69,12 @@ MapItem*
 		Peon
 		Grunt
 		Axethrower
-	Building
+	Building*
 		TownHall
 			Stronghold
 			Fortress
-		Farm
-		Barracks
+		Farm*
+		Barracks*
 		WatchTower
 			GuardTower
 			CannonTower

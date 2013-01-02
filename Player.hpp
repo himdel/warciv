@@ -36,6 +36,7 @@ public:
 	int getWood();
 	void addGold(int quantity);
 	void addWood(int quantity);
+	bool cost(int gold, int wood);
 };
 
 #endif	// __PLAYER_HPP__

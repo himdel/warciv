@@ -44,9 +44,10 @@ Unit::attack(int x, int y) {
 	// ..rest done by subclass
 }
 
-void
+bool
 Unit::stop() {
 	// TODO purge queue
+	return true;
 }
 
 void

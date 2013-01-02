@@ -8,7 +8,9 @@ struct BuildingData {
 	BuildingType type;
 	Building *(*make)(Player *owner);
 	std::string name;
-	int base;	// base building, buildable by peons
+	BuldingType base;	// base building, or bt_Any if buildable by peons
+	int gold;
+	int wood;
 };
 
 extern BuildingData buildings[];

@@ -67,3 +67,13 @@ void
 Player::addWood(int quantity) {
 	this->wood += quantity;
 }
+
+bool
+Player::cost(int gold, int wood) {
+	if ((this->gold < gold) || (this->wood < wood))
+		return false;
+
+	this->gold -= gold;
+	this->wood -= wood;
+	return true;
+}

@@ -9,6 +9,8 @@ struct UnitData {
 	Unit *(*make)(Player *);
 	std::string name;
 	BuildingType where;
+	int gold;
+	int wood;
 };
 
 extern UnitData units[];
