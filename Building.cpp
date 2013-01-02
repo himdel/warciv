@@ -1,4 +1,7 @@
+#include <sstream>
 #include "Building.hpp"
+#include "buildings.hpp"
+#include "units.hpp"
 using namespace std;
 
 
@@ -68,6 +71,6 @@ Building::damage(int hitpoints) {
 string
 Building::getPopis() {
 	ostringstream os;
-	os << base::getPopis() << "(" << this->hitpoints << ")";
+	os << MapItem::getPopis() << "(" << this->hitpoints << ")";
 	return os.str();
 }

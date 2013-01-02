@@ -7,7 +7,7 @@ class Stronghold : public TownHall {
 public:
 	Stronghold(Player *owner) : TownHall("Stronghold", owner) { this->type = bt_Stronghold; }
 
-	static Building *create(Player *owner);
+	static Building *create(Player *owner) { return new Stronghold(owner); }
 };
 
 #endif	// __STRONGHOLD_HPP__

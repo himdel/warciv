@@ -1,5 +1,6 @@
 #include <sstream>
 #include "Unit.hpp"
+#include "Resource.hpp"
 
 
 //TODO no queueing actions yet
@@ -17,7 +18,7 @@ Unit::gather(int x, int y) {
 		return r;
 
 	// on the spot
-	Resource *spot = dynamic_cast<Resource *> this->map->get(x, y);
+	Resource *spot = dynamic_cast<Resource *>( this->map->get(x, y) );
 	if (!spot)
 		return false;
 
