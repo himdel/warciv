@@ -10,17 +10,19 @@ class Building : public MapItem {
 protected:
 	Player *owner;
 	int hitpoints;
+	BuildingType type;
 
 public:
-	Building(std::string popis, Player *p) : MapItem(popis), owner(p) {}
+	Building(std::string popis, Player *p) : MapItem(popis), owner(p) { this->type = bt_Any; }
 
-	virtual bool upgrade();
 	virtual bool create(UnitType u);
 	virtual void preturnAction() {}
 
 	void damage(int hitpoints);
 
 	virtual std::string getPopis();
+
+	virtual bool upgrade();
 };
 
 #endif	// __BUILDING_HPP__

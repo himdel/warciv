@@ -18,3 +18,5 @@ BuildingData buildings[] = {
 	{ bt_GuardTower, GuardTower::create, "GuardTower", bt_WatchTower, 550, 150 },
 	{ bt_CannonTower, CannonTower::create, "CannonTower", bt_GuardTower, 550, 150 },
 };
+
+unsigned buildings_count = sizeof(buildings) / sizeof(BuildingData);

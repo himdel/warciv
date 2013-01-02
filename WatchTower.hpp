@@ -5,10 +5,8 @@
 
 class WatchTower : public Building {
 public:
-	WatchTower(Player *owner) : Building("WatchTower", owner) {}
+	WatchTower(Player *owner) : Building("WatchTower", owner) { this->type = bt_WatchTower; }
 	WatchTower(std::string popis, Player *owner) : Building(popis, owner) {}
-
-	virtual bool upgrade();
 
 	void preturnAction();
 

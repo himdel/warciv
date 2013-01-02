@@ -14,5 +14,6 @@ struct UnitData {
 };
 
 extern UnitData units[];
+extern unsigned units_count;
 
 #endif	// __UNITS_HPP__

@@ -5,8 +5,7 @@
 
 class Stronghold : public TownHall {
 public:
-	Stronghold(Player *owner) : TownHall("Stronghold", owner) {}
-	virtual bool upgrade();
+	Stronghold(Player *owner) : TownHall("Stronghold", owner) { this->type = bt_Stronghold; }
 
 	static Building *create(Player *owner);
 };

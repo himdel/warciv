@@ -70,15 +70,15 @@ MapItem*
 		Grunt
 		Axethrower
 	Building*
-		TownHall
-			Stronghold
-			Fortress
-		Farm*
-		Barracks*
+		TownHall*0
+			Stronghold*0
+			Fortress*0
+		Farm*0
+		Barracks*0
 		WatchTower**
-			GuardTower
-			CannonTower
-	Rock*
+			GuardTower*0
+			CannonTower*0
+	Rock*0
 	Resource*
 		Forest*
 		GoldMine*

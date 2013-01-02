@@ -9,3 +9,4 @@ UnitData units[] = {
 	{ ut_Axethrower, Axethrower::create, "Axethrower", bt_Barracks, 500, 50 },
 };
 
+unsigned units_count = sizeof(units) / sizeof(UnitData);

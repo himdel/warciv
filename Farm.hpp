@@ -5,7 +5,7 @@
 
 class Farm : public Building {
 public:
-	Farm(Player *owner) : Building("Farm", owner) {}
+	Farm(Player *owner) : Building("Farm", owner) { this->type = bt_Farm; }
 
 	static Building *create(Player *owner) { return new Farm(owner); }
 };

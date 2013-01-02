@@ -5,11 +5,8 @@
 
 class TownHall : public Building {
 public:
-	TownHall(Player *owner) : Building("TownHall", owner) {}
+	TownHall(Player *owner) : Building("TownHall", owner) { this->type = bt_TownHall; }
 	TownHall(std::string popis, Player *owner) : Building(popis, owner) {}
-
-	bool create(UnitType u);
-	virtual bool upgrade();
 
 	static Building *create(Player *owner) { return new TownHall(owner); }
 };
