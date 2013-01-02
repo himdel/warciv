@@ -61,7 +61,7 @@ Na kazdem policku mapy muze byt tradicne jen 1 vec mimo:
 
 Game*
 Player*
-Map*
+Map*h
 UI**
 
 MapItem*
