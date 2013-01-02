@@ -26,3 +26,8 @@ std::string
 MapItem::getPopis() {
 	return this->popis;
 }
+
+std::ostream&
+operator<<(std::ostream &o, MapItem *m) {
+	return o << m->getPopis();
+}

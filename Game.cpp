@@ -47,11 +47,6 @@ Game::score() {
 	return out.str();
 }
 
-
-static void _delete_player(Player *p) {
-	delete p;
-}
-
 Game::~Game() {
 	delete this->ui;
 	for (Player *p : this->players)

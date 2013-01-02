@@ -1,6 +1,7 @@
 #ifndef __MAP_HPP__
 #define __MAP_HPP__
 
+#include <iostream>
 #include <vector>
 using namespace std;
 

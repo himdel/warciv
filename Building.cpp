@@ -9,7 +9,7 @@ bool
 Building::upgrade() {
 	Building *building = NULL;
 
-	for (int i = 0; i < buildings_count; i++)
+	for (unsigned i = 0; i < buildings_count; i++)
 		if (buildings[i].base == this->type) {
 			if (this->owner->cost(buildings[i].gold, buildings[i].wood))
 				building = buildings[i].make(this->owner);
@@ -35,7 +35,7 @@ isa(BuildingType is, BuildingType base) {
 		if (is == bt_Any)
 			return false;
 
-		for (int i = 0; i < buildings_count; i++)
+		for (unsigned i = 0; i < buildings_count; i++)
 			if (is == buildings[i].type) {
 				is = buildings[i].base;
 				break;
@@ -48,7 +48,7 @@ bool
 Building::create(UnitType u) {
 	Unit *unit = NULL;
 
-	for (int i = 0; i < units_count; i++)
+	for (unsigned i = 0; i < units_count; i++)
 		if ((units[i].type == u) && isa(this->type, units[i].where)) {
 			if (this->owner->cost(units[i].gold, units[i].wood))
 				unit = units[i].make(this->owner);

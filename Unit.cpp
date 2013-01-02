@@ -9,6 +9,7 @@ bool
 Unit::move(int x, int y) {
 	//TODO proper pathfinding
 	//TODO moving too :)
+	return false;
 }
 
 bool
@@ -36,6 +37,7 @@ Unit::build(int x, int y, BuildingType b) {
 		return false;
 
 	//TODO build
+	return false;
 }
 
 bool
@@ -43,6 +45,7 @@ Unit::attack(int x, int y) {
 	// TODO attackujeme souseda
 	// TODO just get within this->attack_distance
 	// ..rest done by subclass
+	return false;
 }
 
 bool
