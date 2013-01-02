@@ -75,7 +75,7 @@ MapItem*
 			Fortress
 		Farm*
 		Barracks*
-		WatchTower
+		WatchTower**
 			GuardTower
 			CannonTower
 	Rock*

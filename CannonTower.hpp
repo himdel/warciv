@@ -8,7 +8,7 @@ public:
 	CannonTower(Player *owner) : WatchTower("CannonTower", owner) {}
 	virtual bool upgrade();
 
-	static Building *create(Player *owner);
+	static Building *create(Player *owner) { return new CannonTower(owner); }
 };
 
 #endif	// __CANNONTOWER_HPP__
