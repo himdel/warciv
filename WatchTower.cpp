@@ -3,5 +3,5 @@
 
 void
 WatchTower::preturnAction() {
-//TODO attack
+//TODO attack, range, damage
 }

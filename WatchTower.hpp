@@ -10,7 +10,7 @@ public:
 		this->type = bt_WatchTower;
 		this->hitpoints = 100;
 		this->range = 9;
-		this->damage = 4;
+		this->damage = 1;
 	}
 
 	void preturnAction();

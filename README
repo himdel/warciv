@@ -66,9 +66,9 @@ UI**
 
 MapItem*
 	Unit**
-		Peon
-		Grunt
-		Axethrower
+		Peon*
+		Grunt*0
+		Axethrower*0
 	Building*
 		TownHall*0
 			Stronghold*0

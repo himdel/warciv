@@ -14,37 +14,20 @@ Unit::move(int x, int y) {
 
 bool
 Unit::gather(int x, int y) {
-	bool r = this->move(x, y);
-	if ((this->x != x) && (this->y != y))
-		return r;
-
-	// on the spot
-	Resource *spot = dynamic_cast<Resource *>( this->map->get(x, y) );
-	if (!spot)
-		return false;
-
-	return !! spot->gather(10, this->owner);
+	return false;	// done, overidden in Peon
 }
 
 bool
 Unit::build(int x, int y, BuildingType b) {
-	bool r = this->move(x, y);
-	if ((this->x != x) && (this->y != y))
-		return r;
-
-	// on the spot
-	if (this->map->get(x, y) != NULL)
-		return false;
-
-	//TODO build
-	return false;
+	return false;	// done, overidden in Peon
 }
 
 bool
 Unit::attack(int x, int y) {
 	// TODO attackujeme souseda
-	// TODO just get within this->attack_distance
-	// ..rest done by subclass
+	// TODO just get within this->range
+
+	// TODO then check range, damage
 	return false;
 }
 
