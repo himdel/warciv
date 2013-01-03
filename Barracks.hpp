@@ -5,7 +5,10 @@
 
 class Barracks : public Building {
 public:
-	Barracks(Player *owner) : Building("Barracks", owner) { this->type = bt_Barracks; }
+	Barracks(Player *owner) : Building("Barracks", owner) {
+		this->type = bt_Barracks;
+		this->hitpoints = 800;
+	}
 
 	static Building *create(Player *owner) { return new Barracks(owner); }
 };

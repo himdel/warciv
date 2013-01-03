@@ -5,7 +5,13 @@
 
 class CannonTower : public WatchTower {
 public:
-	CannonTower(Player *owner) : WatchTower("CannonTower", owner) { this->type = bt_CannonTower; }
+	CannonTower(Player *owner) : WatchTower("CannonTower", owner) {
+		this->type = bt_CannonTower;
+		this->hitpoints = 160;
+		this->range = 9;
+		this->damage = 50;
+	}
+	}
 
 	static Building *create(Player *owner) { return new CannonTower(owner); }
 };

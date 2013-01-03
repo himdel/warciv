@@ -5,7 +5,12 @@
 
 class GuardTower : public WatchTower {
 public:
-	GuardTower(Player *owner) : WatchTower("GuardTower", owner) { this->type = bt_GuardTower; }
+	GuardTower(Player *owner) : WatchTower("GuardTower", owner) {
+		this->type = bt_GuardTower;
+		this->hitpoints = 130;
+		this->range = 9;
+		this->damage = 12;
+	}
 
 	static Building *create(Player *owner) { return new GuardTower(owner); }
 };
