@@ -18,6 +18,8 @@ Player::getScore() {
 
 string
 Player::getName() {
+	if (this == NULL)
+		return "(none)";
 	return this->name;
 }
 
