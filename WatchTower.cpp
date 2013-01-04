@@ -1,7 +1,7 @@
 #include "WatchTower.hpp"
-#include "buildings.hpp"
 
 void
 WatchTower::preturnAction() {
-//TODO attack, range, damage
+
+	//TODO AttackMapItem::attack(x, y);
 }

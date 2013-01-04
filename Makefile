@@ -1,7 +1,7 @@
 CXX=g++ -std=c++11 -Wall -g
-LD=true
+LD=$(CXX)
 
-warciv: main.o units.o buildings.o Game.o Player.o MapItem.o UI.o Resource.o Forest.o GoldMine.o Unit.o Building.o WatchTower.o Peon.o
+warciv: main.o units.o buildings.o Game.o Player.o MapItem.o UI.o Resource.o Forest.o GoldMine.o Unit.o Building.o WatchTower.o Peon.o AttackMapItem.o
 	$(LD) -o $@ $^ $(LDFLAGS)
 
 clean:

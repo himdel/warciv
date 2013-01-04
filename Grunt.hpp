@@ -6,11 +6,10 @@
 class Grunt : public Unit {
 public:
 	Grunt(Player *owner) : Unit("Grunt", owner) {
-		this->hp = 60;
-		this->damage = 6 + 3 * (rand() % 2);	// 6 + 3
-		this->range = 1;
+		this->hitpoints = 60;
+		this->attack_damage = 6 + 3 * (rand() % 2);	// 6 + 3
+		this->attack_range = 1;
 	}
-	bool attack(int x, int y);
 
 	static Unit *create(Player *owner) { return new Grunt(owner); }
 };

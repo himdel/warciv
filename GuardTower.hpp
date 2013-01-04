@@ -8,8 +8,8 @@ public:
 	GuardTower(Player *owner) : WatchTower("GuardTower", owner) {
 		this->type = bt_GuardTower;
 		this->hitpoints = 130;
-		this->range = 9;
-		this->damage = 4 + 12 * (rand() % 2);	// 4 + 12
+		this->attack_range = 9;
+		this->attack_damage = 4 + 12 * (rand() % 2);	// 4 + 12
 	}
 
 	static Building *create(Player *owner) { return new GuardTower(owner); }

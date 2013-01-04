@@ -2,6 +2,8 @@
 #include "Building.hpp"
 #include "buildings.hpp"
 #include "units.hpp"
+#include "Rock.hpp"
+
 using namespace std;
 
 
@@ -65,7 +67,14 @@ Building::create(UnitType u) {
 
 void
 Building::damage(int hitpoints) {
-	this->hitpoints -= min(this->hitpoints, hitpoints);
+	AttackMapItem::damage(hitpoints);
+
+	if (this->hitpoints == 0) {
+		this->owner->delBuilding(this);
+
+		(new Rock())->place(this->map, this->x, this->y);
+		delete this;
+	}
 }
 
 string

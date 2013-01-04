@@ -1,6 +1,5 @@
 #include <sstream>
 #include "Unit.hpp"
-#include "Resource.hpp"
 
 
 //TODO no queueing actions yet
@@ -22,13 +21,22 @@ Unit::build(int x, int y, BuildingType b) {
 	return false;	// done, overidden in Peon
 }
 
+void
+Unit::damage(int hitpoints) {
+	AttackMapItem::damage(hitpoints);
+
+	if (this->hitpoints == 0) {
+		this->owner->delUnit(this);
+		delete this;
+	}
+}
+
 bool
 Unit::attack(int x, int y) {
 	// TODO attackujeme souseda
 	// TODO just get within this->range
 
-	// TODO then check range, damage
-	return false;
+	return AttackMapItem::attack(x, y);
 }
 
 bool
@@ -56,6 +64,6 @@ Unit::performAction() {
 std::string
 Unit::getPopis() {
 	std::ostringstream out;
-	out << this->popis << " (" << this->hp << ")";
+	out << this->popis << " (" << this->hitpoints << ")";
 	return out.str();
 }

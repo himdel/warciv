@@ -6,7 +6,7 @@
 class Peon : public Unit {
 public:
 	Peon(Player *owner) : Unit("Peon", owner) {
-		this->hp = 30;
+		this->hitpoints = 30;
 	}
 
 	bool gather(int x, int y);

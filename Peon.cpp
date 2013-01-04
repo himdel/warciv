@@ -1,4 +1,5 @@
 #include "Peon.hpp"
+#include "Resource.hpp"
 
 
 bool

@@ -3,25 +3,20 @@
 
 #include <stdbool.h>
 #include "enums.hpp"
-#include "MapItem.hpp"
+#include "AttackMapItem.hpp"
 #include "Player.hpp"
 
-class Building : public MapItem {
+class Building : public AttackMapItem {
 protected:
 	Player *owner;
 	int hitpoints;
 	int feeds;
 	BuildingType type;
-	int range;
-	int damage;
 
 public:
-	Building(std::string popis, Player *p) : MapItem(popis), owner(p) {
+	Building(std::string popis, Player *p) : AttackMapItem(popis), owner(p) {
 		this->type = bt_Any;
-		this->hitpoints = 0;
 		this->feeds = 0;
-		this->range = 0;
-		this->damage = 0;
 	}
 
 	virtual bool create(UnitType u);
