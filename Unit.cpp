@@ -43,20 +43,35 @@ Unit::attack(int x, int y) {
 	return AttackMapItem::attack(x, y);
 }
 
-bool
+void
 Unit::stop() {
-	// TODO purge queue
-	return true;
+	this->queue_move = false;
+	this->queue_attack = false;
+	this->queue_gather = false;
+	this->queue_build = bt_Any;
+	this->queue_x = -1;
+	this->queue_y = -1;
 }
 
 bool
 Unit::actionPending() {
-	return false;	//TODO
+	return this->queue_move
+		|| this->queue_attack
+		|| this->queue_gather
+		|| this->queue_build
+		|| false;
 }
 
+// nevolat pokud byl tah delan rucne
 bool
 Unit::performAction() {
-	return false;	//TODO; nevolat kdyz byla rucne akce ten tah
+	if (!this->actionPending())
+		return false;
+
+	auto action = [] () { };
+
+
+	return action();
 }
 
 std::string

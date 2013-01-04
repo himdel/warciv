@@ -18,12 +18,7 @@ protected:
 
 public:
 	Unit(std::string popis, Player *p) : AttackMapItem(popis, p) {
-		this->queue_move = false;
-		this->queue_attack = false;
-		this->queue_gather = false;
-		this->queue_build = bt_Any;
-		this->queue_x = -1;
-		this->queue_y = -1;
+		this->stop();
 	}
 
 	bool move(int x, int y);
@@ -31,7 +26,7 @@ public:
 	virtual bool build(int x, int y, BuildingType b);
 	void damage(int hitpoints);
 	bool attack(int x, int y);
-	bool stop();
+	void stop();
 
 	virtual bool actionPending();
 	virtual bool performAction();
