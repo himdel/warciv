@@ -19,7 +19,7 @@ private:
 	list<Building *> buildings;
 	int gold;
 	int wood;
-	int score;
+	int score;	// TODO incerement somewhere
 	Game *game;
 
 public:

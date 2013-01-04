@@ -12,7 +12,7 @@ protected:
 
 public:
 	MapItem(std::string popis);
-	void place(Map<MapItem> *map, int x, int y);
+	void place(Map<MapItem> *map = this->map, int x, int y);
 	void remove();
 
 	double distance(int x, int y);

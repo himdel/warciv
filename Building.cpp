@@ -60,7 +60,8 @@ Building::create(UnitType u) {
 	if (!unit)
 		return false;
 
-	unit->place(this->map, this->x, this->y);
+	pair<int, int> empty = this->map->closestEmpty(this->x, this->y);
+	unit->place(this->map, empty.first, empty.second);
 	this->owner->addUnit(unit);
 	return true;
 }

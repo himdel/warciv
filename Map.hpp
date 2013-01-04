@@ -28,7 +28,7 @@ public:
 	}
 
 	T *get(int x, int y) {
-		if ((x >= this->width) || (y >= this->height)) {
+		if ((x < 0) || (y < 0) || (x >= this->width) || (y >= this->height)) {
 			cerr << "Map::get out of bounds " << x << ", " << y << endl;
 			return NULL;
 		}
@@ -37,7 +37,7 @@ public:
 	}
 
 	void put(int x, int y, T* elem) {
-		if ((x >= this->width) || (y >= this->height)) {
+		if ((x < 0) || (y < 0) || (x >= this->width) || (y >= this->height)) {
 			cerr << "Map::put out of bounds " << x << ", " << y << endl;
 			return;
 		}
@@ -158,7 +158,7 @@ public:
 
 	// find position closest to x, y that fulfills condition f() without passing through something on the way
 	list< pair<int, int> >
-	closest(bool (*f)(T *), int x, int y) {
+	closest(bool (*f)(T *, int, int), int x, int y) {
 		vector< vector<int> > dist;
 		dist.resize(this->width);
 		for (int i = 0; i < this->width; i++)
@@ -174,7 +174,7 @@ public:
 			int d = dist[px][py];
 			T* item = this->get(px, py);
 
-			if (f(item) == true)
+			if (f(item, px, py) == true)
 				return this->wayUp(coords, dist);
 
 			if (item != NULL)
@@ -193,6 +193,16 @@ public:
 
 		list< pair<int, int> > ret;
 		return ret;
+	}
+
+	list< pair<int, int> >
+	closest(bool (*f)(T *), int x, int y) {
+		return this->closest([] (T *t, int x, int y) { return f(t); }, x, y);
+	}
+
+	list< pair<int, int> >
+	closest(bool (*f)(int, int), int x, int y) {
+		return this->closest([] (T *t, int x, int y) { return f(x, y); }, x, y);
 	}
 };
 

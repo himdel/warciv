@@ -1,17 +1,27 @@
 #include <sstream>
 #include "Unit.hpp"
+#include "Map.hpp"
 
-
-//TODO no queueing actions yet
-
-//TODO map closest townhall/..
-//TODO map closest empty
 
 bool
 Unit::move(int x, int y) {
-	//TODO proper pathfinding
-	//TODO moving too :)
-	return false;
+	vector< pair<int, int> > path = this->map->closest([x, y] (int px, int py) { return (x == px) && (y == py); });
+	if (path.empty())
+		return false;
+
+	int px = path.front().first;
+	int py = path.front().second;
+
+	if (this->map->get(px, py))
+		return false;
+
+	this->remove();
+	this->place(px, py);
+
+	if (x == this->pending_x && y == this->pending_y && this->pending == at_Move)
+		this->pending = at_None;
+
+	return true;
 }
 
 bool
@@ -24,6 +34,7 @@ Unit::build(int x, int y, BuildingType b) {
 	return false;	// done, overidden in Peon
 }
 
+// do not use this afterwards
 void
 Unit::damage(int hitpoints) {
 	AttackMapItem::damage(hitpoints);
@@ -42,6 +53,9 @@ Unit::attack(int x, int y) {
 			return true;
 		return this->move(x, y);
 	}
+
+	if (x == this->pending_x && y == this->pending_y && this->pending == at_Attack)
+		this->pending = at_None;
 
 	return AttackMapItem::attack(x, y);
 }
