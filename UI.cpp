@@ -73,7 +73,12 @@ UI::playerTurn(int turn, Player *p) {
 				return;
 
 			default:
-				printf("?");
+				printf("unknown action %c\n", c);
 		}
 	}
+}
+
+bool
+UI::eof() {
+	return cin.eof();
 }

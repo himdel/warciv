@@ -24,6 +24,8 @@ Game::play() {
 		this->turn++;
 		for (Player *p : this->players)
 			this->ui->playerTurn(turn, p);
+		if (this->ui->eof())
+			break;
 	}
 }
 

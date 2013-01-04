@@ -14,6 +14,7 @@ private:
 public:
 	UI(Map<MapItem> *m) : map(m) {}
 	void playerTurn(int turn, Player *p);
+	bool eof();
 };
 
 #endif	// __UI_HPP__
