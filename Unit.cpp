@@ -38,7 +38,7 @@ bool
 Unit::attack(int x, int y) {
 	// if not in range, attack anything or move
 	if (this->distance(x, y) > this->attack_range) {
-		if (this->attack())
+		if (this->AttackMapItem::attack())
 			return true;
 		return this->move(x, y);
 	}
