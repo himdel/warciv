@@ -40,12 +40,12 @@ MapItem::getPopis() {
 
 double
 MapItem::distance(int x, int y) {
-	return distance(this->x, this->y, x, y);
+	return ::distance(this->x, this->y, x, y);
 }
 
 double
 MapItem::distance(MapItem *i) {
-	return distance(this->x, this->y, i->x, i->y);
+	return ::distance(this->x, this->y, i->x, i->y);
 }
 
 std::ostream&

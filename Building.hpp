@@ -8,13 +8,12 @@
 
 class Building : public AttackMapItem {
 protected:
-	Player *owner;
 	int hitpoints;
 	int feeds;
 	BuildingType type;
 
 public:
-	Building(std::string popis, Player *p) : AttackMapItem(popis), owner(p) {
+	Building(std::string popis, Player *p) : AttackMapItem(popis, p) {
 		this->type = bt_Any;
 		this->feeds = 0;
 	}

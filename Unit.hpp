@@ -7,11 +7,8 @@
 #include "Player.hpp"
 
 class Unit : public AttackMapItem {
-protected:
-	Player *owner;
-
 public:
-	Unit(std::string popis, Player *p) : AttackMapItem(popis), owner(p) {}
+	Unit(std::string popis, Player *p) : AttackMapItem(popis, p) {}
 
 	bool move(int x, int y);
 	virtual bool gather(int x, int y);

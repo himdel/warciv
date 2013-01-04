@@ -27,11 +27,11 @@ public:
 	int getScore();
 	string getName();
 
-	const list<Unit *> getUnits(UnitType ut);
+	const list<Unit *> getUnits(UnitType ut = ut_Any);
 	void addUnit(Unit *u);
 	void delUnit(Unit *u);
 
-	const list<Building *> getBuildings(BuildingType bt);
+	const list<Building *> getBuildings(BuildingType bt = bt_Any);
 	void addBuilding(Building *b);
 	void delBuilding(Building *b);
 

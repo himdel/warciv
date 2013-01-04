@@ -13,7 +13,7 @@ public:
 		this->attack_damage = 1;
 	}
 
-	void preturnAction();
+	void preturnAction() { this->attack(); }
 
 	static Building *create(Player *owner) { return new WatchTower(owner); }
 };

@@ -21,7 +21,7 @@ Player::getName() {
 }
 
 const list<Unit *>
-Player::getUnits(UnitType ut = ut_Any) {
+Player::getUnits(UnitType ut) {
 	//TODO ut
 	return this->units;
 }
@@ -37,7 +37,7 @@ Player::delUnit(Unit *u) {
 }
 
 const list<Building *>
-Player::getBuildings(BuildingType bt = bt_Any) {
+Player::getBuildings(BuildingType bt) {
 	// TODO bt
 	return this->buildings;
 }
@@ -84,7 +84,7 @@ Player::cost(int gold, int wood) {
 
 const list<Player *>
 Player::getEnemies() {
-	list<Player *p> enemies;
+	list<Player *> enemies;
 	for (Player *p : this->game->getPlayers())
 		if (p != this)
 			enemies.push_back(p);
