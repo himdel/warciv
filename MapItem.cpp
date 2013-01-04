@@ -21,6 +21,11 @@ MapItem::MapItem(std::string popis) {
 void
 MapItem::place(Map<MapItem> *map, int x, int y) {
 	this->map = map;
+	this->place(x, y);
+}
+
+void
+MapItem::place(int x, int y) {
 	this->x = x;
 	this->y = y;
 	this->map->put(x, y, this);

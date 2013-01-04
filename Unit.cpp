@@ -5,7 +5,8 @@
 
 bool
 Unit::move(int x, int y) {
-	vector< pair<int, int> > path = this->map->closest([x, y] (int px, int py) { return (x == px) && (y == py); });
+	auto f = [x, y] (MapItem *mi, int px, int py) { return (x == px) && (y == py); };
+	list< pair<int, int> > path = this->map->closest(f, x, y);
 	if (path.empty())
 		return false;
 

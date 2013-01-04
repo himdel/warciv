@@ -2,6 +2,7 @@
 #include "Resource.hpp"
 #include "enums.hpp"
 #include "buildings.hpp"
+#include "TownHall.hpp"
 
 
 // we don't unqueue gather, it loops by defualt
@@ -9,10 +10,11 @@ bool
 Peon::gather(int x, int y) {
 	// full, going to townhall
 	if (this->cargo) {
-		vector< pair<int, int> > path = this->map->closest([] (MapItem *m) {
+		auto f = [x, y] (MapItem *mi, int px, int py) {
 			// find closest TownHall or descendant
-			return dynamic_cast<TownHall *>(m) != NULL;
-		}, this->x, this->y);
+			return dynamic_cast<TownHall *>(mi) != NULL;
+		};
+		list< pair<int, int> > path = this->map->closest(f, this->x, this->y);
 
 		if (path.size() < 2)
 			this->cargo = false;
@@ -62,8 +64,8 @@ Peon::build(int x, int y, BuildingType b) {
 	pair<int, int> empty = this->map->closestEmpty(this->x, this->y);
 	this->place(empty.first, empty.second);
 
-	if (this->action == at_Build)
-		this->action = at_None;
+	if (this->pending == at_Build)
+		this->pending = at_None;
 
 	return true;
 }

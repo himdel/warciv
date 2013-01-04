@@ -136,7 +136,7 @@ public:
 		this->pushV(x, y, fifo, visited);
 
 		while (!fifo.empty()) {
-			pair<int, int> coords = fifo.pop();
+			pair<int, int> coords = fifo.front(); fifo.pop();
 			int px = coords.first;
 			int py = coords.second;
 
@@ -157,8 +157,9 @@ public:
 	}
 
 	// find position closest to x, y that fulfills condition f() without passing through something on the way
+	template<typename Lambda>
 	list< pair<int, int> >
-	closest(bool (*f)(T *, int, int), int x, int y) {
+	closest(Lambda f, int x, int y) {
 		vector< vector<int> > dist;
 		dist.resize(this->width);
 		for (int i = 0; i < this->width; i++)
@@ -168,7 +169,7 @@ public:
 		this->pushD(x, y, fifo, dist, 0);
 
 		while (!fifo.empty()) {
-			pair<int, int> coords = fifo.pop();
+			pair<int, int> coords = fifo.front(); fifo.pop();
 			int px = coords.first;
 			int py = coords.second;
 			int d = dist[px][py];
@@ -193,16 +194,6 @@ public:
 
 		list< pair<int, int> > ret;
 		return ret;
-	}
-
-	list< pair<int, int> >
-	closest(bool (*f)(T *), int x, int y) {
-		return this->closest([] (T *t, int x, int y) { return f(t); }, x, y);
-	}
-
-	list< pair<int, int> >
-	closest(bool (*f)(int, int), int x, int y) {
-		return this->closest([] (T *t, int x, int y) { return f(x, y); }, x, y);
 	}
 };
 
