@@ -6,6 +6,7 @@
 #include <queue>
 #include <list>
 #include <limits.h>
+#include <functional>
 
 using namespace std;
 
@@ -157,9 +158,8 @@ public:
 	}
 
 	// find position closest to x, y that fulfills condition f() without passing through something on the way
-	template<typename Lambda>
 	list< pair<int, int> >
-	closest(Lambda f, int x, int y) {
+	closest(function< bool(T *, int, int) > f, int x, int y) {
 		vector< vector<int> > dist;
 		dist.resize(this->width);
 		for (int i = 0; i < this->width; i++)

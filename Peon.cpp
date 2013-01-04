@@ -10,10 +10,8 @@ bool
 Peon::gather(int x, int y) {
 	// full, going to townhall
 	if (this->cargo) {
-		auto f = [x, y] (MapItem *mi, int px, int py) {
-			// find closest TownHall or descendant
-			return dynamic_cast<TownHall *>(mi) != NULL;
-		};
+		// find closest TownHall or descendant
+		auto f = [x, y] (MapItem *mi, int px, int py) { return dynamic_cast<TownHall *>(mi) != NULL; };
 		list< pair<int, int> > path = this->map->closest(f, this->x, this->y);
 
 		if (path.size() < 2)
