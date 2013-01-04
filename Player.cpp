@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Player.hpp"
 #include "Game.hpp"
 
@@ -20,7 +21,7 @@ Player::getName() {
 	return this->name;
 }
 
-const list<Unit *>
+const vector<Unit *>
 Player::getUnits(UnitType ut) {
 	//TODO ut
 	return this->units;
@@ -33,10 +34,10 @@ Player::addUnit(Unit *u) {
 
 void
 Player::delUnit(Unit *u) {
-	this->units.remove(u);
+	this->units.erase(std::find(this->units.begin(), this->units.end(), u));
 }
 
-const list<Building *>
+const vector<Building *>
 Player::getBuildings(BuildingType bt) {
 	// TODO bt
 	return this->buildings;
@@ -49,7 +50,7 @@ Player::addBuilding(Building *b) {
 
 void
 Player::delBuilding(Building *b) {
-	this->buildings.remove(b);
+	this->buildings.erase(std::find(this->buildings.begin(), this->buildings.end(), b));
 }
 
 int
@@ -82,9 +83,9 @@ Player::cost(int gold, int wood) {
 	return true;
 }
 
-const list<Player *>
+const vector<Player *>
 Player::getEnemies() {
-	list<Player *> enemies;
+	vector<Player *> enemies;
 	for (Player *p : this->game->getPlayers())
 		if (p != this)
 			enemies.push_back(p);

@@ -1,7 +1,7 @@
 #ifndef __PLAYER_HPP__
 #define __PLAYER_HPP__
 
-#include <list>
+#include <vector>
 class Player;
 class Unit;
 class Building;
@@ -15,8 +15,8 @@ using namespace std;
 class Player {
 private:
 	string name;
-	list<Unit *> units;
-	list<Building *> buildings;
+	vector<Unit *> units;
+	vector<Building *> buildings;
 	int gold;
 	int wood;
 	int score;	// TODO incerement somewhere
@@ -27,15 +27,15 @@ public:
 	int getScore();
 	string getName();
 
-	const list<Unit *> getUnits(UnitType ut = ut_Any);
+	const vector<Unit *> getUnits(UnitType ut = ut_Any);
 	void addUnit(Unit *u);
 	void delUnit(Unit *u);
 
-	const list<Building *> getBuildings(BuildingType bt = bt_Any);
+	const vector<Building *> getBuildings(BuildingType bt = bt_Any);
 	void addBuilding(Building *b);
 	void delBuilding(Building *b);
 
-	const list<Player *> getEnemies();
+	const vector<Player *> getEnemies();
 
 	int getGold();
 	int getWood();
