@@ -4,6 +4,9 @@
 
 //TODO no queueing actions yet
 
+//TODO map closest townhall/..
+//TODO map closest empty
+
 bool
 Unit::move(int x, int y) {
 	//TODO proper pathfinding
@@ -33,8 +36,9 @@ Unit::damage(int hitpoints) {
 
 bool
 Unit::attack(int x, int y) {
-	// TODO attackujeme souseda
-	// TODO just get within this->range
+	if (this->distance(x, y) > this->attack_range)
+		return this->move(x, y);
+	//TODO attack move
 
 	return AttackMapItem::attack(x, y);
 }
@@ -45,12 +49,6 @@ Unit::stop() {
 	return true;
 }
 
-void
-Unit::die() {
-	// TODO remove from map and player units
-	this->owner->delUnit(this);
-}
-
 bool
 Unit::actionPending() {
 	return false;	//TODO
@@ -58,7 +56,7 @@ Unit::actionPending() {
 
 bool
 Unit::performAction() {
-	return false;	//TODO
+	return false;	//TODO; nevolat kdyz byla rucne akce ten tah
 }
 
 std::string

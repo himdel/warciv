@@ -41,12 +41,15 @@ AttackMapItem::attack(int x, int y) {
 
 bool
 AttackMapItem::attack(AttackMapItem *i) {
+	if (i == this)
+		return false;
+
 	if (!this->attack_damage || !this->attack_range)
 		return false;
 
 	if (this->distance(i->x, i->y) > this->attack_range)
 		return false;
 
-	//TODO cast utoceni s porovnani attack_*, pozice
+	//TODO cast utoceni s porovnani attack_*, pozice; i->damage se musi volat posledni
 	return true;
 }
