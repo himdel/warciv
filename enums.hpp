@@ -20,4 +20,12 @@ enum UnitType {
 	ut_Axethrower,
 };
 
+enum ActionType {
+	at_None = 0,
+	at_Move,
+	at_Attack,
+	at_Gather,
+	at_Build,
+};
+
 #endif	// __ENUMS_HPP__

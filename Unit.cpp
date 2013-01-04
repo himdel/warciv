@@ -36,30 +36,27 @@ Unit::damage(int hitpoints) {
 
 bool
 Unit::attack(int x, int y) {
-	if (this->distance(x, y) > this->attack_range)
+	// if not in range, attack anything or move
+	if (this->distance(x, y) > this->attack_range) {
+		if (this->attack())
+			return true;
 		return this->move(x, y);
-	//TODO attack move
+	}
 
 	return AttackMapItem::attack(x, y);
 }
 
 void
 Unit::stop() {
-	this->queue_move = false;
-	this->queue_attack = false;
-	this->queue_gather = false;
-	this->queue_build = bt_Any;
-	this->queue_x = -1;
-	this->queue_y = -1;
+	this->pending = at_None;
+	this->pending_build = bt_Any;
+	this->pending_x = this->x;
+	this->pending_y = this->y;
 }
 
 bool
 Unit::actionPending() {
-	return this->queue_move
-		|| this->queue_attack
-		|| this->queue_gather
-		|| this->queue_build
-		|| false;
+	return this->pending != at_None;
 }
 
 // nevolat pokud byl tah delan rucne
@@ -68,10 +65,19 @@ Unit::performAction() {
 	if (!this->actionPending())
 		return false;
 
-	auto action = [] () { };
+	if (this->pending == at_Move)
+		return this->move(this->pending_x, this->pending_y);
 
+	if (this->pending == at_Attack)
+		return this->attack(this->pending_x, this->pending_y);
 
-	return action();
+	if (this->pending == at_Gather)
+		return this->gather(this->pending_x, this->pending_y);
+
+	if (this->pending == at_Build)
+		return this->build(this->pending_x, this->pending_y, this->pending_build);
+
+	return false;
 }
 
 std::string

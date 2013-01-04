@@ -8,12 +8,10 @@
 
 class Unit : public AttackMapItem {
 protected:
-	bool queue_move;
-	bool queue_attack;
-	bool queue_gather;
-	BuildingType queue_build;
-	int queue_x;
-	int queue_y;
+	ActionType pending;
+	BuildingType pending_build;
+	int pending_x;
+	int pending_y;
 	friend class UI;
 
 public:
