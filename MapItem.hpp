@@ -15,6 +15,9 @@ public:
 	void place(Map<MapItem> *map, int x, int y);
 	void remove();
 
+	double distance(int x, int y);
+	double distance(MapItem *i);
+
 	virtual std::string getPopis();
 	virtual ~MapItem(){}
 };

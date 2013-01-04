@@ -9,8 +9,8 @@ using namespace std;
 Game::Game(int w, int h, string p1, string p2, int win_score) {
 	this->map = new Map<MapItem>(w, h);
 	this->players = {
-		new Player(p1),
-		new Player(p2),
+		new Player(p1, this),
+		new Player(p2, this),
 	};
 	this->ui = new UI(this->map);
 	this->win_score = win_score;
@@ -45,6 +45,11 @@ Game::score() {
 	for (Player *p : this->players)
 		out << p->getName() << "\t\t" << p->getScore() << endl;
 	return out.str();
+}
+
+const vector<Player *>
+Game::getPlayers() {
+	return this->players;
 }
 
 Game::~Game() {

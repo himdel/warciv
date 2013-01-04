@@ -1,5 +1,7 @@
 #include "Peon.hpp"
 #include "Resource.hpp"
+#include "enums.hpp"
+#include "buildings.hpp"
 
 
 bool
@@ -26,6 +28,20 @@ Peon::build(int x, int y, BuildingType b) {
 	if (this->map->get(x, y) != NULL)
 		return false;
 
-	//TODO build
-	return false;
+	// actual build
+	Building *building = NULL;
+
+	for (unsigned i = 0; i < buildings_count; i++)
+		if ((buildings[i].type == b) && (buildings[i].base == bt_Any)) {
+			if (this->owner->cost(buildings[i].gold, buildings[i].wood))
+				building = buildings[i].make(this->owner);
+			break;
+		}
+
+	if (!building)
+		return false;
+
+	building->place(this->map, this->x, this->y);
+	this->owner->addBuilding(building);
+	return true;
 }

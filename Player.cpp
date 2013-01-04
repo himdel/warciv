@@ -1,11 +1,13 @@
 #include "Player.hpp"
+#include "Game.hpp"
 
 
-Player::Player(string name) {
+Player::Player(string name, Game *game) {
 	this->name = name;
 	this->gold = 1000;
 	this->wood = 500;
 	this->score = 0;
+	this->game = game;
 }
 
 int
@@ -19,7 +21,8 @@ Player::getName() {
 }
 
 const list<Unit *>
-Player::getUnits(UnitType ut) {
+Player::getUnits(UnitType ut = ut_Any) {
+	//TODO ut
 	return this->units;
 }
 
@@ -34,7 +37,8 @@ Player::delUnit(Unit *u) {
 }
 
 const list<Building *>
-Player::getBuildings(BuildingType bt) {
+Player::getBuildings(BuildingType bt = bt_Any) {
+	// TODO bt
 	return this->buildings;
 }
 
@@ -76,4 +80,13 @@ Player::cost(int gold, int wood) {
 	this->gold -= gold;
 	this->wood -= wood;
 	return true;
+}
+
+const list<Player *>
+Player::getEnemies() {
+	list<Player *p> enemies;
+	for (Player *p : this->game->getPlayers())
+		if (p != this)
+			enemies.push_back(p);
+	return enemies;
 }

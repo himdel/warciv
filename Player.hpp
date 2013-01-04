@@ -5,10 +5,12 @@
 class Player;
 class Unit;
 class Building;
+class Game;
 #include "Unit.hpp"
 #include "Building.hpp"
 
 using namespace std;
+
 
 class Player {
 private:
@@ -18,9 +20,10 @@ private:
 	int gold;
 	int wood;
 	int score;
+	Game *game;
 
 public:
-	Player(string name);
+	Player(string name, Game *game);
 	int getScore();
 	string getName();
 
@@ -31,6 +34,8 @@ public:
 	const list<Building *> getBuildings(BuildingType bt);
 	void addBuilding(Building *b);
 	void delBuilding(Building *b);
+
+	const list<Player *> getEnemies();
 
 	int getGold();
 	int getWood();

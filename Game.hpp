@@ -21,6 +21,7 @@ public:
 	void play();
 	Player *winner();
 	string score();
+	const vector<Player *> getPlayers();
 
 	~Game();
 };
