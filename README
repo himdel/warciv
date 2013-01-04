@@ -84,3 +84,4 @@ MapItem*
 		GoldMine*
 
 TODO units a buildings ne na stejnym planu mapy
+TODO increment Player->score
