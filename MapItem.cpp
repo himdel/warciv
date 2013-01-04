@@ -50,5 +50,5 @@ MapItem::distance(MapItem *i) {
 
 std::ostream&
 operator<<(std::ostream &o, MapItem *m) {
-	return o << m->getPopis();
+	return o << (m ? m->getPopis() : "(road)");
 }
