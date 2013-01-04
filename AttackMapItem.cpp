@@ -1,4 +1,6 @@
 #include "AttackMapItem.hpp"
+#include "Unit.hpp"
+#include "Building.hpp"
 
 void
 AttackMapItem::damage(int hitpoints) {
@@ -11,17 +13,17 @@ AttackMapItem::damage(int hitpoints) {
 
 bool
 AttackMapItem::attack() {
-	bool b = false;
+	bool bb = false;
 	for (Player *e : this->owner->getEnemies()) {
 		for (Unit *u : e->getUnits())
 			if (this->distance(u) <= this->attack_range)
-				b ||= AttackMapItem::attack(u);
+				bb |= AttackMapItem::attack(u);
 
-		for (Building *b : e->getUnits())
+		for (Building *b : e->getBuildings())
 			if (this->distance(b) <= this->attack_range)
-				b ||= AttackMapItem::attack(b);
+				bb |= AttackMapItem::attack(b);
 	}
-	return b;
+	return bb;
 }
 
 bool
