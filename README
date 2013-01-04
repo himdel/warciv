@@ -83,5 +83,5 @@ MapItem*
 		Forest*
 		GoldMine*
 
-TODO units a buildings ne na stejnym planu mapy
+TODO units a buildings ne na stejnym planu mapy ;; jo ale odhazovat pres getClosestEmpty
 TODO increment Player->score

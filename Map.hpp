@@ -3,7 +3,11 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
+#include <limits.h>
+
 using namespace std;
+
 
 template <typename T>
 class Map {
@@ -59,6 +63,103 @@ public:
 				this->data[x][y] = NULL;
 			}
 		}
+	}
+
+private:
+	static void pushV(int px, int py, queue< pair<int, int> > &fifo, vector< vector<bool> > &visited) {
+		if ((px < 0) || (py < 0) || (px >= this->width) || (py >= this->height))
+			return;
+		if (visited[px][py])
+			return;
+		visited[px][py] = true;
+
+		fifo.push_back(make_pair(px, py));
+	}
+
+	static void pushD(int px, int py, queue< pair<int, int> > &fifo, vector< vector<int> > &dist, int d) {
+		if ((px < 0) || (py < 0) || (px >= this->width) || (py >= this->height))
+			return;
+		if (dist[px][py] <= d)
+			return;
+		dist[px][py] = d;
+
+		fifo.push_back(make_pair(px, py));
+	}
+
+public:
+
+	// find empty position closest to x, y
+	bool closestEmpty(/*inout */ int &x, /*inout*/ int &y) {
+		vector< vector<bool> > visited;
+		visited.resize(this->width);
+		for (int i = 0; i < this->width; i++)
+			visited[i].resize(this->height, false);
+
+		queue<pair<int, int> > fifo;
+		Map::pushV(x, y, fifo, visited);
+
+		while (!fifo.empty()) {
+			pair<int, int> coords = fifo.pop_front();
+			int px = coords.first;
+			int py = coords.second;
+
+			if (this->get(px, py) == NULL) {
+				x = px;
+				y = py;
+				return true;
+			}
+
+			Map::pushV(px - 0, py - 1, fifo, visited);
+			Map::pushV(px - 1, py - 1, fifo, visited);
+			Map::pushV(px - 1, py - 0, fifo, visited);
+			Map::pushV(px - 1, py + 1, fifo, visited);
+			Map::pushV(px + 0, py + 1, fifo, visited);
+			Map::pushV(px + 1, py + 1, fifo, visited);
+			Map::pushV(px + 1, py + 0, fifo, visited);
+			Map::pushV(px + 1, py - 1, fifo, visited);
+		}
+
+		return false;
+	}
+
+	// find position closest to x, y that fulfills condition f() without passing through something on the way
+	bool closest(bool (*f)(T *), /*inout*/ int &x, /*inout*/ int &y) {
+		vector< vector<int> > dist;
+		dist.resize(this->width);
+		for (int i = 0; i < this->width; i++)
+			dist[i].resize(this->height, INT_MAX);
+
+		queue<pair<int, int> > fifo;
+		Map::pushD(x, y, fifo, dist, 0);
+
+		while (!fifo.empty()) {
+			pair<int, int> coords = fifo.pop_front();
+			int px = coords.first;
+			int py = coords.second;
+			int d = dist[px][py];
+			T* item = this->get(px, py);
+
+			if (f(item) == true) {
+				x = px;
+				y = py;
+				return true;
+			}
+
+			if (item != NULL)
+				continue;
+
+			d++;
+			Map::pushD(px - 0, py - 1, fifo, dist, d);
+			Map::pushD(px - 1, py - 1, fifo, dist, d);
+			Map::pushD(px - 1, py - 0, fifo, dist, d);
+			Map::pushD(px - 1, py + 1, fifo, dist, d);
+			Map::pushD(px + 0, py + 1, fifo, dist, d);
+			Map::pushD(px + 1, py + 1, fifo, dist, d);
+			Map::pushD(px + 1, py + 0, fifo, dist, d);
+			Map::pushD(px + 1, py - 1, fifo, dist, d);
+		}
+
+		return false;
 	}
 };
 
