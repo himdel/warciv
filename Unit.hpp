@@ -30,6 +30,7 @@ public:
 	virtual bool performAction();
 
 	virtual std::string getPopis();
+	virtual std::string getDetail();
 };
 
 #endif	// __UNIT_HPP__

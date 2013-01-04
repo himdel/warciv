@@ -1,6 +1,7 @@
 #include <sstream>
 #include "Unit.hpp"
 #include "Map.hpp"
+#include "buildings.hpp"
 
 
 bool
@@ -99,5 +100,29 @@ std::string
 Unit::getPopis() {
 	std::ostringstream out;
 	out << this->popis << " (" << this->hitpoints << ")";
+	return out.str();
+}
+
+std::string
+Unit::getDetail() {
+	std::ostringstream out;
+	out << this->popis << " (hp: " << this->hitpoints;
+	switch (this->pending) {
+		case at_Move:
+			out << ", action: " << "move(" << this->pending_x << ", " << this->pending_y << ")";
+			break;
+		case at_Attack:
+			out << ", action: " << "attack(" << this->pending_x << ", " << this->pending_y << ")";
+			break;
+		case at_Gather:
+			out << ", action: " << "gather(" << this->pending_x << ", " << this->pending_y << ")";
+			break;
+		case at_Build:
+			out << ", action: " << "build(" << this->pending_x << ", " << this->pending_y << ", " << buildings[this->pending_build - 1].name << ")";
+			break;
+		case at_None:
+			out << ", no action";
+	}
+	out << ")";
 	return out.str();
 }

@@ -43,6 +43,11 @@ MapItem::getPopis() {
 	return this->popis;
 }
 
+std::string
+MapItem::getDetail() {
+	return this->getPopis();
+}
+
 double
 MapItem::distance(int x, int y) {
 	return ::distance(this->x, this->y, x, y);

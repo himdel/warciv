@@ -20,6 +20,7 @@ public:
 	double distance(MapItem *i);
 
 	virtual std::string getPopis();
+	virtual std::string getDetail();
 	virtual ~MapItem(){}
 };
 
