@@ -64,10 +64,15 @@ Unit::attack(int x, int y) {
 
 void
 Unit::stop() {
-	this->pending = at_None;
-	this->pending_build = bt_Any;
-	this->pending_x = this->x;
-	this->pending_y = this->y;
+	this->queueAction();
+}
+
+void
+Unit::queueAction(ActionType at, int x, int y, BuildingType bt) {
+	this->pending = at;
+	this->pending_build = bt;
+	this->pending_x = x;
+	this->pending_y = y;
 }
 
 bool

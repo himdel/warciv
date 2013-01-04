@@ -12,7 +12,6 @@ protected:
 	BuildingType pending_build;
 	int pending_x;
 	int pending_y;
-	friend class UI;
 
 public:
 	Unit(std::string popis, Player *p) : AttackMapItem(popis, p) {
@@ -25,6 +24,8 @@ public:
 	void damage(int hitpoints);
 	bool attack(int x, int y);
 	void stop();
+
+	void queueAction(ActionType at = at_None, int x = -1, int y = -1, BuildingType bt = bt_Any);
 
 	virtual bool actionPending();
 	virtual bool performAction();
