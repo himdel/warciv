@@ -23,6 +23,8 @@ public:
 	string score();
 	const vector<Player *> getPlayers();
 
+	Map<MapItem> *getMap() { return this->map; }
+
 	~Game();
 };
 

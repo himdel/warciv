@@ -1,6 +1,7 @@
 #include <algorithm>
 #include "Player.hpp"
 #include "Game.hpp"
+#include "Peon.hpp"
 
 
 Player::Player(string name, Game *game) {
@@ -9,6 +10,12 @@ Player::Player(string name, Game *game) {
 	this->wood = 500;
 	this->score = 0;
 	this->game = game;
+
+	Unit *peon = new Peon(this);
+	auto map = game->getMap();
+	pair<int, int> empty = map->closestEmpty(rand() % map->getWidth(), rand() % map->getHeight());
+	peon->place(map, empty.first, empty.second);
+	this->addUnit(peon);
 }
 
 int

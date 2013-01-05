@@ -7,15 +7,17 @@ using namespace std;
 
 
 Game::Game(int w, int h, string p1, string p2, int win_score) {
+	srand(time(NULL));
+	this->win_score = win_score;
+	this->turn = 0;
+
 	this->map = new Map<MapItem>(w, h);
+	this->ui = new UI(this->map);
+
 	this->players = {
 		new Player(p1, this),
 		new Player(p2, this),
 	};
-	this->ui = new UI(this->map);
-	this->win_score = win_score;
-	this->turn = 0;
-	srand(time(NULL));
 }
 
 void
