@@ -29,27 +29,25 @@ void
 UI::unit(Player *p, Unit *u) {
 	// doable actions
 	vector<ActionData> acts;
-	int nacts = 0;
 	for (unsigned i = 0; i < actions_count; i++)
 		if (u->availActions().count( actions[i].type ))
-			acts[nacts++] = actions[i];
+			acts.push_back( actions[i] );
 
 	// buildable buildings
 	vector<BuildingData> bld;
-	int nbld = 0;
 	for (unsigned i = 0; i < buildings_count; i++)
 		if (buildings[i].base == bt_Any)
-			bld[nbld++] = buildings[i];
+			bld.push_back( buildings[i] );
 
 	// the loop
 	for (;;) {
 		printf("Selected unit: %s\n", u->getDetail().c_str());
 
-		if (nacts == 0) {
+		if (acts.size() == 0) {
 			printf("(no available actions)\n");
 			return;
 		}
-		ActionData a = choice("Actions:", acts, nacts);
+		ActionData a = choice("Actions:", acts, acts.size());
 
 		int x, y;
 		switch (a.type) {
@@ -68,7 +66,7 @@ UI::unit(Player *p, Unit *u) {
 
 		BuildingType bt = bt_Any;
 		if (a.type == at_Build) {
-			BuildingData bd = choice("\nBuild what?", bld, nbld);
+			BuildingData bd = choice("\nBuild what?", bld, bld.size());
 			bt = bd.type;
 		}
 
@@ -91,30 +89,29 @@ UI::building(Player *p, Building *b) {
 		std::function<bool(void)> code;
 	};
 	vector< BuAcData > acts;
-	int nacts = 0;
 
 	for (unsigned bb = 0; bb < buildings_count; bb++)
 		if (buildings[bb].base == b->Building::getType())
-			acts[nacts++] = { "Upgrade to " + buildings[bb].name, [b, bb] () {
+			acts.push_back({ "Upgrade to " + buildings[bb].name, [b, bb] () {
 				return b->upgrade( buildings[bb].type );
-			}};
+			}});
 
 	for (unsigned uu = 0; uu < units_count; uu++)
 		if (units[uu].where == b->getType())
-			acts[nacts++] = { "Build " + units[uu].name, [b, uu] () {
+			acts.push_back({ "Build " + units[uu].name, [b, uu] () {
 				return b->create( units[uu].type );
-			}};
+			}});
 
 	// the loop
 	for (;;) {
 		printf("Selected building: %s\n", b->getDetail().c_str());
 
-		if (nacts == 0) {
+		if (acts.size() == 0) {
 			printf("(no available actions)\n");
 			return;
 		}
 
-		BuAcData c = choice("Actions:", acts, nacts);
+		BuAcData c = choice("Actions:", acts, acts.size());
 		bool r = c.code();
 		printf("%s: %s\n", r ? "OK": "didn't finish", c.name.c_str());
 	}
