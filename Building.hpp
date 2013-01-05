@@ -26,6 +26,8 @@ public:
 	virtual std::string getPopis();
 
 	virtual bool upgrade(BuildingType b);
+
+	virtual BuildingType getType();
 };
 
 #endif	// __BUILDING_HPP__

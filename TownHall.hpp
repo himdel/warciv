@@ -11,6 +11,7 @@ public:
 		this->hitpoints = 1200;
 	}
 
+	/*final*/ BuildingType getType() { return bt_TownHall; }
 	static Building *create(Player *owner) { return new TownHall(owner); }
 };
 

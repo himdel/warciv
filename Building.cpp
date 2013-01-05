@@ -78,6 +78,11 @@ Building::damage(int hitpoints) {
 	}
 }
 
+BuildingType
+Building::getType() {
+	return this->type;
+}
+
 string
 Building::getPopis() {
 	ostringstream os;

@@ -1,5 +1,7 @@
 #include <cstdio>
 #include <ctype.h>
+#include <functional>
+#include <vector>
 #include "UI.hpp"
 #include "actions.hpp"
 #include "units.hpp"
@@ -9,14 +11,14 @@
 void
 UI::unit(Player *p, Unit *u) {
 	// doable actions
-	ActionData acts[actions_count];
+	vector<ActionData> acts;
 	int nacts = 0;
 	for (unsigned i = 0; i < actions_count; i++)
 		if (u->availActions().count( actions[i].type ))
 			acts[nacts++] = actions[i];
 
 	// buildable buildings
-	BuildingData bld[buildings_count];
+	vector<BuildingData> bld;
 	int nbld = 0;
 	for (unsigned i = 0; i < buildings_count; i++)
 		if (buildings[i].base == bt_Any)
@@ -87,24 +89,21 @@ void
 UI::building(Player *p, Building *b) {
 	// doable actions
 	struct {
-		string name,
-		auto code,
+		string name;
+		std::function<bool(void)> code;
 	} acts[2];
 	int nacts = 0;
 
-	for (unsigned bb = 0; bb < buildings_count; bi++)
-		if (buildings[bb].base == b->type)
+	for (unsigned bb = 0; bb < buildings_count; bb++)
+		if (buildings[bb].base == b->Building::getType())
 			acts[nacts++] = { "Upgrade to " + buildings[bb].name, [b, bb] () {
-				b->upgrade( buildings[bb].type );
+				return b->upgrade( buildings[bb].type );
 			}};
 
-	BuildingType btype = b->type;
-	if (dynamic_cast<TownHall *>(b) != NULL)
-		btype = bt_TownHall;
 	for (unsigned uu = 0; uu < units_count; uu++)
-		if (units[uu].where == btype)
+		if (units[uu].where == b->getType())
 			acts[nacts++] = { "Build " + units[uu].name, [b, uu] () {
-				b->create( units[uu].type );
+				return b->create( units[uu].type );
 			}};
 
 	// the loop
@@ -125,8 +124,8 @@ UI::building(Player *p, Building *b) {
 		if (!i)
 			break;
 
-		printf("OK: %s done\n", acts[i - 1].name.c_str());
-		acts[i - 1].code();
+		bool r = acts[i - 1].code();
+		printf("%s: %s\n", r ? "OK": "didn't finish", acts[i - 1].name.c_str());
 	}
 }
 
