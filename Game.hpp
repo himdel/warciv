@@ -17,6 +17,7 @@ private:
 
 public:
 	Game(int w, int h, std::string p1, std::string p2, int win_score);
+	void genMap(double pRock, double pRes);
 
 	void play();
 	Player *winner();

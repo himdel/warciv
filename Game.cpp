@@ -2,6 +2,9 @@
 #include <sstream>
 #include <time.h>
 #include "Game.hpp"
+#include "Rock.hpp"
+#include "GoldMine.hpp"
+#include "Forest.hpp"
 
 using namespace std;
 
@@ -14,10 +17,35 @@ Game::Game(int w, int h, string p1, string p2, int win_score) {
 	this->map = new Map<MapItem>(w, h);
 	this->ui = new UI(this->map);
 
+	this->genMap(0.1, 0.2);
+
 	this->players = {
 		new Player(p1, this),
 		new Player(p2, this),
 	};
+}
+
+void
+Game::genMap(double pRock, double pRes) {
+	if (pRock + pRes >= 1) {
+		cerr << "genMap: pRock + pRes >= 1" << endl;
+		return;
+	}
+
+	for (int x = 0; x < this->map->getWidth(); x++)
+		for (int y = 0; y < this->map->getHeight(); y++) {
+			MapItem *mi = NULL;
+			int r = rand() % 100000;
+
+			if (r < pRock * 100000)
+				mi = new Rock();
+
+			if ((r >= pRock * 100000) && (r < ((pRock + pRes) * 100000)))
+				mi = (r % 2) ? (MapItem *) new Forest() : (MapItem *) new GoldMine();
+
+			if (mi)
+				mi->place(this->map, x, y);
+		}
 }
 
 void
