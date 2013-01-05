@@ -121,6 +121,9 @@ UI::playerTurn(int turn, Player *p) {
 	this->map->show();
 	printf("\n");
 
+	for (Building *b : p->getBuildings())
+		b->preturnAction();
+
 	const vector<Building *> buildings = p->getBuildings();
 	if (buildings.size()) {
 		printf("Available buildings:\n");
@@ -134,14 +137,14 @@ UI::playerTurn(int turn, Player *p) {
 	if (units.size()) {
 		printf("Available units:\n");
 		int i = 0;
-		for (Unit *b : units)
-			printf("%d. %s\n", ++i, b->getDetail().c_str());
+		for (Unit *u : units)
+			printf("%d. %s\n", ++i, u->getDetail().c_str());
 		printf("\n");
 	}
 
 	for (;;) {
 		if (cin.eof())
-			return;
+			throw EOF;
 
 		char c;
 		printf("Actions: [u]nit, [b]uilding, [t]urn\n");
@@ -158,7 +161,7 @@ UI::playerTurn(int turn, Player *p) {
 					printf("unknown unit %d\n", u);
 					break;
 				}
-				this->unit(p, units[u]);
+				this->unit(p, units[u - 1]);
 				break;
 
 			case 'B':
@@ -167,10 +170,13 @@ UI::playerTurn(int turn, Player *p) {
 					printf("unknown building %d\n", b);
 					break;
 				}
-				this->building(p, buildings[b]);
+				this->building(p, buildings[b - 1]);
 				break;
 
 			case 'T':
+				for (Unit *u : units)
+					u->performAction();
+				//TODO probably destroy dead units here
 				return;
 
 			default:
