@@ -7,6 +7,23 @@
 #include "units.hpp"
 #include "buildings.hpp"
 
+template<typename T>
+static T choice(std::string title, const vector<T> options, int count) {
+	printf("%s\n", title.c_str());
+
+	for (int i = 0; i < count; i++)
+		printf("%d. %s\n", i + 1, options[i].name.c_str());
+
+	int i = 0;
+	do {
+		printf("> ");
+		cin >> i;
+		if (cin.eof())
+			throw EOF;
+	} while(i < 1 || i > count);
+
+	return options[i - 1];
+}
 
 void
 UI::unit(Player *p, Unit *u) {
@@ -28,22 +45,10 @@ UI::unit(Player *p, Unit *u) {
 	for (;;) {
 		printf("Selected unit: %s\n", u->getDetail().c_str());
 
-		printf("Actions:\n");
-		for (int i = 0; i < nacts; i++)
-			printf("%d. %s\n", i + 1, acts[i].name.c_str());
-		printf("0. back");
-
-		int i;
-		printf("> ");
-		cin >> i;
-		if (i < 0 || i > nacts)
-			continue;
-
-		if (!i)
-			break;
-
 		int x, y;
-		ActionData a = acts[i - 1];
+		BuildingType bt = bt_Any;
+		ActionData a = choice("Actions:", acts, nacts);
+
 		switch (a.type) {
 			case at_None:
 				x = y = -1;
@@ -58,20 +63,9 @@ UI::unit(Player *p, Unit *u) {
 				break;
 		}
 
-		BuildingType bt = bt_Any;
 		if (a.type == at_Build) {
-			printf("\nBuild what?\n");
-			for (int i = 0; i < nbld; i++)
-				printf("%d. %s\n", i + 1, bld[i].name.c_str());
-			printf("0. back");
-
-			int b;
-			printf("> ");
-			cin >> b;
-			if ((b < 1) || (b > nbld))
-				continue;
-
-			bt = bld[b - 1].type;
+			BuildingData bd = choice("\nBuild what?", bld, nbld);
+			bt = bd.type;
 		}
 
 		printf("\naction: %s", a.name.c_str());
@@ -111,22 +105,9 @@ UI::building(Player *p, Building *b) {
 	for (;;) {
 		printf("Selected building: %s\n", b->getDetail().c_str());
 
-		printf("Actions:\n");
-		for (int i = 0; i < nacts; i++)
-			printf("%d. %s\n", i + 1, acts[i].name.c_str());
-		printf("0. back");
-
-		int i;
-		printf("> ");
-		cin >> i;
-		if (i < 0 || i > nacts)
-			continue;
-
-		if (!i)
-			break;
-
-		bool r = acts[i - 1].code();
-		printf("%s: %s\n", r ? "OK": "didn't finish", acts[i - 1].name.c_str());
+		BuAcData c = choice("Actions:", acts, nacts);
+		bool r = c.code();
+		printf("%s: %s\n", r ? "OK": "didn't finish", c.name.c_str());
 	}
 }
 
