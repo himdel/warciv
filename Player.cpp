@@ -25,7 +25,6 @@ Player::getName() {
 
 const vector<Unit *>
 Player::getUnits(UnitType ut) {
-	//TODO ut
 	return this->units;
 }
 
@@ -41,7 +40,6 @@ Player::delUnit(Unit *u) {
 
 const vector<Building *>
 Player::getBuildings(BuildingType bt) {
-	// TODO bt
 	return this->buildings;
 }
 
