@@ -24,7 +24,7 @@ Player::getName() {
 }
 
 const vector<Unit *>
-Player::getUnits(UnitType ut) {
+Player::getUnits() {
 	return this->units;
 }
 
@@ -39,7 +39,7 @@ Player::delUnit(Unit *u) {
 }
 
 const vector<Building *>
-Player::getBuildings(BuildingType bt) {
+Player::getBuildings() {
 	return this->buildings;
 }
 
