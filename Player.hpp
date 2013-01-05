@@ -26,6 +26,7 @@ public:
 	Player(string name, Game *game);
 	int getScore();
 	string getName();
+	bool isAlive();
 
 	const vector<Unit *> getUnits();
 	void addUnit(Unit *u);

@@ -91,3 +91,8 @@ Player::getEnemies() {
 			enemies.push_back(p);
 	return enemies;
 }
+
+bool
+Player::isAlive() {
+	return this->buildings.size() || this->units.size();
+}

@@ -37,6 +37,13 @@ Game::winner() {
 			best = p;
 		if (best && (p->getScore() >= best->getScore()))
 			best = p;
+
+		bool survivor = true;
+		for (Player *e : p->getEnemies())
+			survivor &= !e->isAlive();
+
+		if (survivor && !best)
+			best = p;
 	}
 	return best;
 }

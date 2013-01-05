@@ -45,10 +45,13 @@ UI::unit(Player *p, Unit *u) {
 	for (;;) {
 		printf("Selected unit: %s\n", u->getDetail().c_str());
 
-		int x, y;
-		BuildingType bt = bt_Any;
+		if (nacts == 0) {
+			printf("(no available actions)\n");
+			return;
+		}
 		ActionData a = choice("Actions:", acts, nacts);
 
+		int x, y;
 		switch (a.type) {
 			case at_None:
 				x = y = -1;
@@ -63,6 +66,7 @@ UI::unit(Player *p, Unit *u) {
 				break;
 		}
 
+		BuildingType bt = bt_Any;
 		if (a.type == at_Build) {
 			BuildingData bd = choice("\nBuild what?", bld, nbld);
 			bt = bd.type;
@@ -105,6 +109,11 @@ UI::building(Player *p, Building *b) {
 	for (;;) {
 		printf("Selected building: %s\n", b->getDetail().c_str());
 
+		if (nacts == 0) {
+			printf("(no available actions)\n");
+			return;
+		}
+
 		BuAcData c = choice("Actions:", acts, nacts);
 		bool r = c.code();
 		printf("%s: %s\n", r ? "OK": "didn't finish", c.name.c_str());
@@ -140,6 +149,11 @@ UI::playerTurn(int turn, Player *p) {
 		for (Unit *u : units)
 			printf("%d. %s\n", ++i, u->getDetail().c_str());
 		printf("\n");
+	}
+
+	if (units.empty() && buildings.empty()) {
+		printf("(no actions available)\n");
+		return;
 	}
 
 	for (;;) {
