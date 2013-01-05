@@ -8,11 +8,11 @@ using namespace std;
 
 
 bool
-Building::upgrade() {
+Building::upgrade(BuildingType b) {
 	Building *building = NULL;
 
 	for (unsigned i = 0; i < buildings_count; i++)
-		if (buildings[i].base == this->type) {
+		if ((buildings[i].base == this->type) && (buildings[i].type = b)) {
 			if (this->owner->cost(buildings[i].gold, buildings[i].wood))
 				building = buildings[i].make(this->owner);
 			break;

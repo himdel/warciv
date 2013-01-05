@@ -12,6 +12,10 @@ public:
 	}
 
 	static Unit *create(Player *owner) { return new Axethrower(owner); }
+
+	const set<ActionType> availActions() {
+		return set<ActionType>({ at_None, at_Move, at_Attack });
+	}
 };
 
 #endif	// __AXETHROWER_HPP__

@@ -2,6 +2,7 @@
 #define __UNIT_HPP__
 
 #include <stdbool.h>
+#include <set>
 #include "enums.hpp"
 #include "AttackMapItem.hpp"
 #include "Player.hpp"
@@ -26,6 +27,7 @@ public:
 	void stop();
 
 	void queueAction(ActionType at = at_None, int x = -1, int y = -1, BuildingType bt = bt_Any);
+	virtual const set<ActionType> availActions() = 0;
 
 	virtual bool actionPending();
 	virtual bool performAction();

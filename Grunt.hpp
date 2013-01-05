@@ -11,6 +11,10 @@ public:
 		this->attack_range = 1;
 	}
 
+	const set<ActionType> availActions() {
+		return set<ActionType>({ at_None, at_Move, at_Attack });
+	}
+
 	static Unit *create(Player *owner) { return new Grunt(owner); }
 };
 
