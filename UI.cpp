@@ -88,10 +88,11 @@ UI::unit(Player *p, Unit *u) {
 void
 UI::building(Player *p, Building *b) {
 	// doable actions
-	struct {
+	struct BuAcData {
 		string name;
 		std::function<bool(void)> code;
-	} acts[2];
+	};
+	vector< BuAcData > acts;
 	int nacts = 0;
 
 	for (unsigned bb = 0; bb < buildings_count; bb++)
