@@ -104,6 +104,7 @@ Unit::performAction() {
 std::string
 Unit::getPopis() {
 	std::ostringstream out;
+	//TODO odlisit enemy & owner
 	out << this->popis << " (" << this->hitpoints << ")";
 	return out.str();
 }
