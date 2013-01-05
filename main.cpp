@@ -12,7 +12,7 @@ main(int argc, char **argv) {
 
 	cout << "Game over" << endl;
 	cout << "Winner: " << g->winner()->getName() << endl;
-	cout << endl << "Score" << endl << g->score() << endl;
+	cout << endl << "** Score **" << endl << g->score() << endl;
 
 	delete g;
 	return 0;
