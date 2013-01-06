@@ -9,7 +9,7 @@ public:
 		this->type = bt_CannonTower;
 		this->hitpoints = 160;
 		this->attack_damage = 50;
-		this->attack_range = 9;
+		this->attack_range = 3;
 	}
 
 	static Building *create(Player *owner) { return new CannonTower(owner); }

@@ -8,7 +8,7 @@ public:
 	GuardTower(Player *owner) : WatchTower("GuardTower", owner) {
 		this->type = bt_GuardTower;
 		this->hitpoints = 130;
-		this->attack_range = 9;
+		this->attack_range = 4;
 		this->attack_damage = 4 + 12 * (rand() % 2);	// 4 + 12
 	}
 

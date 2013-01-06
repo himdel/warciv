@@ -8,7 +8,7 @@ public:
 	Axethrower(Player *owner) : Unit("Axethrower", owner) {
 		this->hitpoints = 40;
 		this->attack_damage = rand() % 7 + 3 + 6 * (rand() % 2);	// 3-9 + 6
-		this->attack_range = 4;
+		this->attack_range = 3;
 	}
 
 	static Unit *create(Player *owner) { return new Axethrower(owner); }
