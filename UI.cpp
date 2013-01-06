@@ -133,8 +133,13 @@ UI::building(Player *p, Building *b) {
 			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood);
 		};
 		BuAcData c = choice("Actions:", acts, true, fun);
+		pair<int, int> pos = b->getPos();
 		bool r = c.code();
 		printf("%s: %s\n", r ? "OK": "didn't finish", c.name.c_str());
+
+		// after upgrade
+		if (this->map->get(pos.first, pos.second) != b)
+			return;
 	}
 }
 
@@ -151,32 +156,32 @@ UI::playerTurn(int turn, Player *p) {
 	for (Building *b : p->getBuildings())
 		b->preturnAction();
 
-	printf("Gold: %d; Wood: %d\n", p->getGold(), p->getWood());
-
-	const vector<Building *> buildings = p->getBuildings();
-	if (buildings.size()) {
-		printf("Available buildings:\n");
-		int i = 0;
-		for (Building *b : buildings)
-			printf("%d. %s\n", ++i, b->getDetail().c_str());
-		printf("\n");
-	}
-
-	const vector<Unit *> units = p->getUnits();
-	if (units.size()) {
-		printf("Available units:\n");
-		int i = 0;
-		for (Unit *u : units)
-			printf("%d. %s\n", ++i, u->getDetail().c_str());
-		printf("\n");
-	}
-
-	if (units.empty() && buildings.empty()) {
-		printf("(no actions available)\n");
-		return;
-	}
-
 	for (;;) {
+		printf("Gold: %d; Wood: %d\n\n", p->getGold(), p->getWood());
+
+		const vector<Building *> buildings = p->getBuildings();
+		if (buildings.size()) {
+			printf("Available buildings:\n");
+			int i = 0;
+			for (Building *b : buildings)
+				printf("%d. %s\n", ++i, b->getDetail().c_str());
+			printf("\n");
+		}
+
+		const vector<Unit *> units = p->getUnits();
+		if (units.size()) {
+			printf("Available units:\n");
+			int i = 0;
+			for (Unit *u : units)
+				printf("%d. %s\n", ++i, u->getDetail().c_str());
+			printf("\n");
+		}
+
+		if (units.empty() && buildings.empty()) {
+			printf("(no actions available)\n");
+			return;
+		}
+
 		if (cin.eof())
 			throw EOF;
 

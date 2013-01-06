@@ -69,7 +69,7 @@ Unit::damage(int hitpoints) {
 bool
 Unit::attack(int x, int y) {
 	// if not in range, attack anything or move
-	if (this->distance(x, y) > this->attack_range) {
+	if (round( this->distance(x, y) ) > this->attack_range) {
 		if (this->AttackMapItem::attack()) {
 			UI::logAction(this, "attack", "enemy around", make_pair(this->x, this->y));
 			return true;

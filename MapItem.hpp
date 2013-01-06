@@ -22,6 +22,8 @@ public:
 	virtual std::string getPopis();
 	virtual std::string getDetail();
 	virtual ~MapItem(){}
+
+	pair<int, int> getPos() { return make_pair(this->x, this->y); }
 };
 
 std::ostream& operator<<(std::ostream &o, MapItem *m);

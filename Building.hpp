@@ -24,6 +24,7 @@ public:
 	void damage(int hitpoints);
 
 	virtual std::string getPopis();
+	virtual std::string getDetail();
 
 	virtual bool upgrade(BuildingType b);
 

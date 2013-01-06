@@ -100,3 +100,10 @@ Building::getPopis() {
 	os << MapItem::getPopis() << "(" << this->hitpoints << ")";
 	return os.str();
 }
+
+string
+Building::getDetail() {
+	ostringstream os;
+	os << this->popis << " (hp: " << this->hitpoints << ")";
+	return os.str();
+}
