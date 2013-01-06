@@ -48,7 +48,7 @@ AttackMapItem::attack(AttackMapItem *i) {
 	if (!this->attack_damage || !this->attack_range)
 		return false;
 
-	if (this->distance(i->x, i->y) > this->attack_range)
+	if (round( this->distance(i->x, i->y) ) > this->attack_range)
 		return false;
 
 	i->damage( rand() % this->attack_damage );

@@ -3,6 +3,7 @@
 #include "buildings.hpp"
 #include "units.hpp"
 #include "Rock.hpp"
+#include "UI.hpp"
 
 using namespace std;
 
@@ -26,6 +27,8 @@ Building::upgrade(BuildingType b) {
 
 	building->place(this->map, this->x, this->y);
 	this->owner->addBuilding(building);
+
+	UI::logAction(this, "upgrade", "upgraded", building);
 
 	delete this;
 	return true;
@@ -63,6 +66,8 @@ Building::create(UnitType u) {
 	pair<int, int> empty = this->map->closestEmpty(this->x, this->y);
 	unit->place(this->map, empty.first, empty.second);
 	this->owner->addUnit(unit);
+
+	UI::logAction(this, "create", "unit", unit);
 	return true;
 }
 
@@ -71,10 +76,15 @@ Building::damage(int hitpoints) {
 	AttackMapItem::damage(hitpoints);
 
 	if (this->hitpoints == 0) {
+		UI::logAction(this, "damage", "building dead");
 		this->owner->delBuilding(this);
 
 		(new Rock())->place(this->map, this->x, this->y);
 		delete this;
+	} else {
+		ostringstream os;
+		os << "lost " << hitpoints << " hp, remaining " << this->hitpoints;
+		UI::logAction(this, "damage", os.str());
 	}
 }
 

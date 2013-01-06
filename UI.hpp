@@ -17,6 +17,7 @@ public:
 	bool eof();
 
 	static void logAction(Unit *u, string action, string desc, pair<int, int> pos = { -1, -1 }, MapItem *tgt = NULL);
+	static void logAction(Building *b, string action, string desc, MapItem *tgt = NULL);
 };
 
 #endif	// __UI_HPP__

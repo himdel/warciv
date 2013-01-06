@@ -245,3 +245,13 @@ UI::logAction(Unit *u, string action, string desc, pair<int, int> pos, MapItem *
 		printf(" %s", desc.c_str());
 	printf("\n");
 }
+
+/*static*/ void
+UI::logAction(Building *b, string action, string desc, MapItem *tgt) {
+	printf("building %s: %s", b->getPopis().c_str(), action.c_str());
+	if (tgt)
+		printf(" = %s", tgt->getPopis().c_str());
+	if (desc != "")
+		printf(" %s", desc.c_str());
+	printf("\n");
+}
