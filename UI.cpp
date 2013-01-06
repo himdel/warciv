@@ -25,6 +25,12 @@ static T choice(std::string title, const vector<T> options, bool back, std::func
 		cin >> i;
 		if (cin.eof())
 			throw EOF;
+		if (cin.fail()) {
+			cin.clear();
+			string s;
+			cin >> s;
+			// ignored
+		}
 	} while (i < (back ? 0 : 1) || i > options.size());
 
 	if (i == 0)
