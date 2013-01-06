@@ -77,7 +77,7 @@ UI::unit(Player *p, Unit *u) {
 				printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood);
 			};
 			BuildingData bd = choice("\nBuild what?", bld, false, fun);
- 			bt = bd.type;
+			bt = bd.type;
 		}
 
 		printf("\naction: %s", a.name.c_str());
@@ -96,19 +96,21 @@ UI::building(Player *p, Building *b) {
 	// doable actions
 	struct BuAcData {
 		string name;
+		int gold;
+		int wood;
 		std::function<bool(void)> code;
 	};
 	vector< BuAcData > acts;
 
 	for (unsigned bb = 0; bb < buildings_count; bb++)
 		if (buildings[bb].base == b->Building::getType())
-			acts.push_back({ "Upgrade to " + buildings[bb].name, [b, bb] () {
+			acts.push_back({ "Upgrade to " + buildings[bb].name, buildings[bb].gold, buildings[bb].wood, [b, bb] () {
 				return b->upgrade( buildings[bb].type );
 			}});
 
 	for (unsigned uu = 0; uu < units_count; uu++)
 		if (units[uu].where == b->getType())
-			acts.push_back({ "Build " + units[uu].name, [b, uu] () {
+			acts.push_back({ "Build " + units[uu].name, units[uu].gold, units[uu].wood, [b, uu] () {
 				return b->create( units[uu].type );
 			}});
 
@@ -121,7 +123,10 @@ UI::building(Player *p, Building *b) {
 			return;
 		}
 
-		BuAcData c = choice("Actions:", acts, true);
+		std::function< void(BuAcData) > fun = [] (BuAcData d) {
+			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood);
+		};
+		BuAcData c = choice("Actions:", acts, true, fun);
 		bool r = c.code();
 		printf("%s: %s\n", r ? "OK": "didn't finish", c.name.c_str());
 	}
