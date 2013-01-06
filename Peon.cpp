@@ -53,8 +53,9 @@ Peon::build(int x, int y, BuildingType b) {
 		return r;
 
 	// on the spot
-	if (this->map->get(x, y) != NULL) {
-		UI::logAction(this, "build", "not empty", make_pair(x, y), this->map->get(x, y));
+	MapItem *mi = this->map->get(x, y);
+	if ((mi != NULL) && (mi != this)) {
+		UI::logAction(this, "build", "not empty", make_pair(x, y), mi);
 		return false;
 	}
 

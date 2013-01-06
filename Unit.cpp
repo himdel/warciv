@@ -7,6 +7,9 @@
 
 bool
 Unit::move(int x, int y) {
+	if (x == this->x && y == this->y)
+		return true;
+
 	auto f = [x, y] (MapItem *mi, int px, int py) { return (x == px) && (y == py); };
 	list< pair<int, int> > path = this->map->closest(f, x, y);
 	if (path.empty()) {
