@@ -223,6 +223,9 @@ UI::playerTurn(int turn, Player *p) {
 				//TODO probably destroy dead units here
 				return;
 
+			case 'Q':
+				throw EOF;
+
 			default:
 				printf("unknown action %c\n", c);
 		}

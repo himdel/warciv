@@ -96,6 +96,7 @@ Building::getType() {
 string
 Building::getPopis() {
 	ostringstream os;
+	os << "_" << this->owner->getName()[0] << this->owner->getName()[1] << "_";
 	os << MapItem::getPopis() << "(" << this->hitpoints << ")";
 	return os.str();
 }
