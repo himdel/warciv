@@ -8,20 +8,24 @@
 #include "buildings.hpp"
 
 template<typename T>
-static T choice(std::string title, const vector<T> options, int count) {
+static T choice(std::string title, const vector<T> options, bool back = false) {
 	printf("%s\n", title.c_str());
 
-	for (int i = 0; i < count; i++)
+	for (unsigned i = 0; i < options.size(); i++)
 		printf("%d. %s\n", i + 1, options[i].name.c_str());
+	if (back)
+		printf("0. back\n");
 
-	int i = 0;
+	unsigned i = 0;
 	do {
 		printf("> ");
 		cin >> i;
 		if (cin.eof())
 			throw EOF;
-	} while(i < 1 || i > count);
+	} while (i < (back ? 0 : 1) || i > options.size());
 
+	if (i == 0)
+		throw 0;
 	return options[i - 1];
 }
 
@@ -47,7 +51,7 @@ UI::unit(Player *p, Unit *u) {
 			printf("(no available actions)\n");
 			return;
 		}
-		ActionData a = choice("Actions:", acts, acts.size());
+		ActionData a = choice("Actions:", acts, true);
 
 		int x, y;
 		switch (a.type) {
@@ -66,7 +70,7 @@ UI::unit(Player *p, Unit *u) {
 
 		BuildingType bt = bt_Any;
 		if (a.type == at_Build) {
-			BuildingData bd = choice("\nBuild what?", bld, bld.size());
+			BuildingData bd = choice("\nBuild what?", bld, false);
 			bt = bd.type;
 		}
 
@@ -74,7 +78,7 @@ UI::unit(Player *p, Unit *u) {
 		if (a.type != at_None)
 			printf("(%d, %d)", x, y);
 		if (bt)
-			printf(" - %s", buildings[bt].name.c_str());
+			printf(" - %s", buildings[bt - 1].name.c_str());
 		printf("\n");
 
 		u->queueAction(a.type, x, y, bt);
@@ -111,7 +115,7 @@ UI::building(Player *p, Building *b) {
 			return;
 		}
 
-		BuAcData c = choice("Actions:", acts, acts.size());
+		BuAcData c = choice("Actions:", acts, true);
 		bool r = c.code();
 		printf("%s: %s\n", r ? "OK": "didn't finish", c.name.c_str());
 	}
@@ -172,7 +176,12 @@ UI::playerTurn(int turn, Player *p) {
 					printf("unknown unit %d\n", u);
 					break;
 				}
-				this->unit(p, units[u - 1]);
+				try {
+					this->unit(p, units[u - 1]);
+				} catch (int e) {
+					if (e != 0)
+						throw e;
+				}
 				break;
 
 			case 'B':
@@ -181,7 +190,12 @@ UI::playerTurn(int turn, Player *p) {
 					printf("unknown building %d\n", b);
 					break;
 				}
-				this->building(p, buildings[b - 1]);
+				try {
+					this->building(p, buildings[b - 1]);
+				} catch (int e) {
+					if (e != 0)
+						throw e;
+				}
 				break;
 
 			case 'T':
