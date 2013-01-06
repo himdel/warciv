@@ -15,6 +15,8 @@ public:
 	UI(Map<MapItem> *m) : map(m) {}
 	void playerTurn(int turn, Player *p);
 	bool eof();
+
+	static void logAction(Unit *u, string action, string desc, pair<int, int> pos = { -1, -1 }, MapItem *tgt = NULL);
 };
 
 #endif	// __UI_HPP__

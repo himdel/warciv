@@ -2,37 +2,48 @@
 #include "Unit.hpp"
 #include "Map.hpp"
 #include "buildings.hpp"
+#include "UI.hpp"
 
 
 bool
 Unit::move(int x, int y) {
 	auto f = [x, y] (MapItem *mi, int px, int py) { return (x == px) && (y == py); };
 	list< pair<int, int> > path = this->map->closest(f, x, y);
-	if (path.empty())
+	if (path.empty()) {
+		UI::logAction(this, "move", "target not found", make_pair(x, y));
 		return false;
+	}
 
 	int px = path.front().first;
 	int py = path.front().second;
 
-	if (this->map->get(px, py))
+	if (this->map->get(px, py)) {
+		UI::logAction(this, "move", "position occupied", make_pair(px, py), this->map->get(px, py));
 		return false;
+	}
 
 	this->remove();
 	this->place(px, py);
 
-	if (x == this->pending_x && y == this->pending_y && this->pending == at_Move)
+	bool was_pending = false;
+	if (x == this->pending_x && y == this->pending_y && this->pending == at_Move) {
 		this->pending = at_None;
+		was_pending = true;
+	}
 
+	UI::logAction(this, "move", was_pending ? "OK, unqueued" : "OK", make_pair(px, py));
 	return true;
 }
 
 bool
 Unit::gather(int x, int y) {
+	UI::logAction(this, "gather", "not supported", make_pair(x, y));
 	return false;	// done, overidden in Peon
 }
 
 bool
 Unit::build(int x, int y, BuildingType b) {
+	UI::logAction(this, "gather", "not supported", make_pair(x, y));
 	return false;	// done, overidden in Peon
 }
 
@@ -42,8 +53,13 @@ Unit::damage(int hitpoints) {
 	AttackMapItem::damage(hitpoints);
 
 	if (this->hitpoints == 0) {
+		UI::logAction(this, "damage", "unit dead");
 		this->owner->delUnit(this);
 		delete this;
+	} else {
+		ostringstream os;
+		os << "lost " << hitpoints << " hp, remaining " << this->hitpoints;
+		UI::logAction(this, "damage", os.str());
 	}
 }
 
@@ -51,14 +67,17 @@ bool
 Unit::attack(int x, int y) {
 	// if not in range, attack anything or move
 	if (this->distance(x, y) > this->attack_range) {
-		if (this->AttackMapItem::attack())
+		if (this->AttackMapItem::attack()) {
+			UI::logAction(this, "attack", "enemy around", make_pair(this->x, this->y));
 			return true;
+		}
 		return this->move(x, y);
 	}
 
 	if (x == this->pending_x && y == this->pending_y && this->pending == at_Attack)
 		this->pending = at_None;
 
+	UI::logAction(this, "attack", "enemy at ", make_pair(x, y), this->map->get(x, y));
 	return AttackMapItem::attack(x, y);
 }
 
@@ -80,7 +99,7 @@ Unit::actionPending() {
 	return this->pending != at_None;
 }
 
-// nevolat pokud byl tah delan rucne
+// nevolat pokud byl tah udelan rucne
 bool
 Unit::performAction() {
 	if (!this->actionPending())
@@ -128,6 +147,7 @@ Unit::getDetail() {
 		case at_None:
 			out << ", no action";
 	}
+	out << ", @[ " << this->x << " " << this->y << " ]";
 	out << ")";
 	return out.str();
 }

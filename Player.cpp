@@ -6,8 +6,8 @@
 
 Player::Player(string name, Game *game) {
 	this->name = name;
-	this->gold = 1000;
-	this->wood = 500;
+	this->gold = 2400;
+	this->wood = 1200;
 	this->score = 0;
 	this->game = game;
 

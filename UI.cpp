@@ -8,11 +8,14 @@
 #include "buildings.hpp"
 
 template<typename T>
-static T choice(std::string title, const vector<T> options, bool back = false) {
+static T choice(std::string title, const vector<T> options, bool back, std::function<void(T)> fun = [] (T d) { cout << d.name; } ) {
 	printf("%s\n", title.c_str());
 
-	for (unsigned i = 0; i < options.size(); i++)
-		printf("%d. %s\n", i + 1, options[i].name.c_str());
+	for (unsigned i = 0; i < options.size(); i++) {
+		printf("%d. ", i + 1);
+		fun(options[i]);
+		printf("\n");
+	}
 	if (back)
 		printf("0. back\n");
 
@@ -70,8 +73,11 @@ UI::unit(Player *p, Unit *u) {
 
 		BuildingType bt = bt_Any;
 		if (a.type == at_Build) {
-			BuildingData bd = choice("\nBuild what?", bld, false);
-			bt = bd.type;
+			std::function<void(BuildingData)> fun = [] (BuildingData d) {
+				printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood);
+			};
+			BuildingData bd = choice("\nBuild what?", bld, false, fun);
+ 			bt = bd.type;
 		}
 
 		printf("\naction: %s", a.name.c_str());
@@ -133,6 +139,8 @@ UI::playerTurn(int turn, Player *p) {
 
 	for (Building *b : p->getBuildings())
 		b->preturnAction();
+
+	printf("Gold: %d; Wood: %d\n", p->getGold(), p->getWood());
 
 	const vector<Building *> buildings = p->getBuildings();
 	if (buildings.size()) {
@@ -213,4 +221,16 @@ UI::playerTurn(int turn, Player *p) {
 bool
 UI::eof() {
 	return cin.eof();
+}
+
+/*static*/ void
+UI::logAction(Unit *u, string action, string desc, pair<int, int> pos, MapItem *tgt) {
+	printf("unit %s: %s", u->getPopis().c_str(), action.c_str());
+	if (pos.first >= 0 && pos.second >= 0)
+		printf("(%d, %d)", pos.first, pos.second);
+	if (tgt)
+		printf(" = %s", tgt->getPopis().c_str());
+	if (desc != "")
+		printf(" %s", desc.c_str());
+	printf("\n");
 }

@@ -1,6 +1,7 @@
 #ifndef __MAP_HPP__
 #define __MAP_HPP__
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -50,11 +51,26 @@ public:
 	int getHeight() { return this->height; }
 
 	void show() {
-		for (int y = 0; y < this->height; y++) {
-			for (int x = 0; x < this->width; x++)
-				cout << this->data[x][y] << "\t\t";
+		unsigned maxw = 0;
+		for (int y = 0; y < this->height; y++)
+			for (int x = 0; x < this->width; x++) {
+				T *mi = this->data[x][y];
+				maxw = std::max(maxw, mi ? (unsigned) mi->getPopis().length() : 1);
+			}
+		maxw++;
 
-			cout << endl;
+		printf("   / ");
+		for (int x = 0; x < this->width; x++)
+			printf("%-*d", maxw, x);
+		printf("\n");
+
+		for (int y = 0; y < this->height; y++) {
+			printf("%-3d| ", y);
+			for (int x = 0; x < this->width; x++) {
+				T *mi = this->data[x][y];
+				printf("%-*s", maxw, mi ? mi->getPopis().c_str() : "-");
+			}
+			printf("\n");
 		}
 	}
 
