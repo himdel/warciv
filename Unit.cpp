@@ -11,7 +11,7 @@ Unit::move(int x, int y) {
 		return true;
 
 	auto f = [x, y] (MapItem *mi, int px, int py) { return (x == px) && (y == py); };
-	list< pair<int, int> > path = this->map->closest(f, x, y);
+	list< pair<int, int> > path = this->map->closest(f, this->x, this->y);
 	if (path.empty()) {
 		UI::logAction(this, "move", "target not found", make_pair(x, y));
 		return false;
@@ -29,7 +29,7 @@ Unit::move(int x, int y) {
 	this->place(px, py);
 
 	bool was_pending = false;
-	if (x == this->pending_x && y == this->pending_y && this->pending == at_Move) {
+	if (px == this->pending_x && py == this->pending_y && this->pending == at_Move) {
 		this->pending = at_None;
 		was_pending = true;
 	}

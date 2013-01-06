@@ -104,11 +104,14 @@ private:
 		fifo.push(make_pair(px, py));
 	}
 
-	bool getD(pair<int, int> pos, int px, int py, vector< vector<int> > dist, int d) {
+	bool getD(pair<int, int> &pos, int px, int py, vector< vector<int> > dist, int d) {
 		if ((px < 0) || (py < 0) || (px >= this->width) || (py >= this->height))
 			return false;
 
 		if (dist[px][py] != d - 1)
+			return false;
+
+		if (this->get(px, py) != NULL)
 			return false;
 
 		pos.first = px;
@@ -120,6 +123,7 @@ private:
 	wayUp(pair<int, int> pos, vector< vector<int> > dist) {
 		list< pair<int, int> > ret;
 		int d, px, py;
+
 		while ((d = dist[px = pos.first][py = pos.second]) > 0) {
 			ret.push_front(pos);
 
@@ -194,7 +198,7 @@ public:
 			if (f(item, px, py) == true)
 				return this->wayUp(coords, dist);
 
-			if (item != NULL)
+			if ((item != NULL) && ((px != x) || (py != y)))
 				continue;
 
 			d++;
