@@ -2,6 +2,9 @@
 #include "Player.hpp"
 #include "Game.hpp"
 #include "Peon.hpp"
+#include "TownHall.hpp"
+#include "Stronghold.hpp"
+#include "Fortress.hpp"
 
 
 Player::Player(string name, Game *game) {
@@ -108,4 +111,18 @@ int
 Player::addScore(int s) {
 	this->score += s;
 	return this->score;
+}
+
+int
+Player::getGatherSpeed() {
+	int gs = 10;
+	for (Building *b: this->buildings) {
+		if (dynamic_cast<TownHall *>(b))
+			gs = max(gs, 40);
+		if (dynamic_cast<Stronghold *>(b))
+			gs = max(gs, 50);
+		if (dynamic_cast<Fortress *>(b))
+			gs = max(gs, 75);
+	}
+	return gs;
 }

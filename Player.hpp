@@ -37,6 +37,8 @@ public:
 	void addBuilding(Building *b);
 	void delBuilding(Building *b);
 
+	int getGatherSpeed();
+
 	const vector<Player *> getEnemies();
 
 	int getGold();

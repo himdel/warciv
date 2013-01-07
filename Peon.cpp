@@ -35,10 +35,11 @@ Peon::gather(int x, int y) {
 		return false;
 	}
 
-	int cargo = spot->gather(10, this->owner);
+	int gs = this->owner->getGatherSpeed();
+	int cargo = spot->gather(gs, this->owner);
 	this->cargo = !! cargo;
 
-	this->owner->addScore( (cargo % 10) ? 100 : cargo );
+	this->owner->addScore( (cargo % gs) ? 150 : cargo );
 
 	ostringstream os;
 	os << "gathered " << cargo;

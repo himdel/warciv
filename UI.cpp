@@ -52,49 +52,48 @@ UI::unit(Player *p, Unit *u) {
 		if (buildings[i].base == bt_Any)
 			bld.push_back( buildings[i] );
 
-	// the loop
-	for (;;) {
-		printf("Selected unit: %s\n", u->getDetail().c_str());
+	// no unit loop
+	printf("Selected unit: %s\n", u->getDetail().c_str());
 
-		if (acts.size() == 0) {
-			printf("(no available actions)\n");
-			return;
-		}
-		ActionData a = choice("Actions:", acts, true);
-
-		int x, y;
-		switch (a.type) {
-			case at_None:
-				x = y = -1;
-				break;
-
-			case at_Move:
-			case at_Attack:
-			case at_Gather:
-			case at_Build:
-				printf("target> ");
-				cin >> x >> y;
-				break;
-		}
-
-		BuildingType bt = bt_Any;
-		if (a.type == at_Build) {
-			std::function<void(BuildingData)> fun = [] (BuildingData d) {
-				printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood);
-			};
-			BuildingData bd = choice("\nBuild what?", bld, false, fun);
-			bt = bd.type;
-		}
-
-		printf("\naction: %s", a.name.c_str());
-		if (a.type != at_None)
-			printf("(%d, %d)", x, y);
-		if (bt)
-			printf(" - %s", buildings[bt - 1].name.c_str());
-		printf("\n");
-
-		u->queueAction(a.type, x, y, bt);
+	if (acts.size() == 0) {
+		printf("(no available actions)\n");
+		return;
 	}
+	ActionData a = choice("Actions:", acts, true);
+
+	int x, y;
+	switch (a.type) {
+		case at_None:
+			x = y = -1;
+			break;
+
+		case at_Move:
+		case at_Attack:
+		case at_Gather:
+		case at_Build:
+			printf("target> ");
+			cin >> x >> y;
+			break;
+	}
+
+	BuildingType bt = bt_Any;
+	if (a.type == at_Build) {
+		std::function<void(BuildingData)> fun = [] (BuildingData d) {
+			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood);
+		};
+		BuildingData bd = choice("\nBuild what?", bld, false, fun);
+		bt = bd.type;
+	}
+
+	printf("\naction: %s", a.name.c_str());
+	if (a.type != at_None)
+		printf("(%d, %d)", x, y);
+	if (bt)
+		printf(" - %s", buildings[bt - 1].name.c_str());
+	printf("\n");
+
+	u->queueAction(a.type, x, y, bt);
+	printf("Queued: %s\n\n", u->getDetail().c_str());
 }
 
 void
