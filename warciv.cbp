@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="warciv" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/warciv" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/warciv" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=c++11" />
+					<Add option="-Wall" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="AttackMapItem.cpp" />
+		<Unit filename="AttackMapItem.hpp" />
+		<Unit filename="Axethrower.hpp" />
+		<Unit filename="Barracks.hpp" />
+		<Unit filename="Building.cpp" />
+		<Unit filename="Building.hpp" />
+		<Unit filename="CannonTower.hpp" />
+		<Unit filename="Farm.hpp" />
+		<Unit filename="Forest.hpp" />
+		<Unit filename="Fortress.hpp" />
+		<Unit filename="Game.cpp" />
+		<Unit filename="Game.hpp" />
+		<Unit filename="GoldMine.hpp" />
+		<Unit filename="Grunt.hpp" />
+		<Unit filename="GuardTower.hpp" />
+		<Unit filename="Map.hpp" />
+		<Unit filename="MapItem.cpp" />
+		<Unit filename="MapItem.hpp" />
+		<Unit filename="Peon.cpp" />
+		<Unit filename="Peon.hpp" />
+		<Unit filename="Player.cpp" />
+		<Unit filename="Player.hpp" />
+		<Unit filename="Resource.cpp" />
+		<Unit filename="Resource.hpp" />
+		<Unit filename="Rock.hpp" />
+		<Unit filename="Stronghold.hpp" />
+		<Unit filename="TownHall.hpp" />
+		<Unit filename="UI.cpp" />
+		<Unit filename="UI.hpp" />
+		<Unit filename="Unit.cpp" />
+		<Unit filename="Unit.hpp" />
+		<Unit filename="WatchTower.hpp" />
+		<Unit filename="actions.cpp" />
+		<Unit filename="actions.hpp" />
+		<Unit filename="buildings.cpp" />
+		<Unit filename="buildings.hpp" />
+		<Unit filename="enums.hpp" />
+		<Unit filename="main.cpp" />
+		<Unit filename="units.cpp" />
+		<Unit filename="units.hpp" />
+		<Extensions>
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+			<code_completion />
+			<editor_config active="1" use_tabs="1" tab_indents="1" tab_width="4" indent="4" eol_mode="2" />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

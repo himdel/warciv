@@ -2,3 +2,7 @@
 *.o
 core
 warciv
+bin
+obj
+warciv.depend
+warciv.layout
