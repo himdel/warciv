@@ -39,6 +39,8 @@ Peon::gather(int x, int y) {
 	int cargo = spot->gather(10, this->owner);
 	this->cargo = !! cargo;
 
+	this->owner->addScore( (cargo % 10) ? 100 : cargo );
+
 	ostringstream os;
 	os << "gathered " << cargo;
 	UI::logAction(this, "gather", os.str(), make_pair(x, y), spot);
