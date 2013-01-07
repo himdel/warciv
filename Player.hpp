@@ -25,6 +25,7 @@ private:
 public:
 	Player(string name, Game *game);
 	int getScore();
+	int addScore(int s);
 	string getName();
 	bool isAlive();
 

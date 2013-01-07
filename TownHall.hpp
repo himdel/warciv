@@ -9,6 +9,7 @@ public:
 	TownHall(Player *owner) : Building("TownHall", owner) {
 		this->type = bt_TownHall;
 		this->hitpoints = 1200;
+		owner->addScore(200);
 	}
 
 	/*final*/ BuildingType getType() { return bt_TownHall; }

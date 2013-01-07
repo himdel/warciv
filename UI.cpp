@@ -147,7 +147,7 @@ void
 UI::playerTurn(int turn, Player *p) {
 	printf("\n\nTah: %d\n", turn);
 
-	printf("Hrac: %s\n", p->getName().c_str());
+	printf("Hrac: %s (score %d)\n", p->getName().c_str(), p->getScore());
 	printf("\n");
 
 	this->map->show();
@@ -186,7 +186,7 @@ UI::playerTurn(int turn, Player *p) {
 			throw EOF;
 
 		char c;
-		printf("Actions: [u]nit, [b]uilding, [t]urn\n");
+		printf("Actions: [u]nit, [b]uilding, [t]urn, reshow [m]ap, [q]uit\n");
 		printf("> ");
 		cin >> c;
 		c = toupper(c);
@@ -230,6 +230,12 @@ UI::playerTurn(int turn, Player *p) {
 
 			case 'Q':
 				throw EOF;
+
+			case 'M':
+				printf("\n");
+				this->map->show();
+				printf("\n");
+				break;
 
 			default:
 				printf("unknown action %c\n", c);

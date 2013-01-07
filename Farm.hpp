@@ -9,6 +9,7 @@ public:
 		this->type = bt_Farm;
 		this->hitpoints = 400;
 		this->feeds = 4;
+		owner->addScore(20);
 	}
 
 	static Building *create(Player *owner) { return new Farm(owner); }

@@ -103,3 +103,9 @@ bool
 Player::isAlive() {
 	return this->buildings.size() || this->units.size();
 }
+
+int
+Player::addScore(int s) {
+	this->score += s;
+	return this->score;
+}

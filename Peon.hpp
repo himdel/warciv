@@ -11,6 +11,7 @@ public:
 	Peon(Player *owner) : Unit("Peon", owner) {
 		this->hitpoints = 30;
 		this->cargo = false;
+		owner->addScore(30);
 	}
 
 	bool gather(int x, int y);

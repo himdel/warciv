@@ -11,6 +11,7 @@ public:
 		this->hitpoints = 100;
 		this->attack_range = 2;
 		this->attack_damage = 1;
+		owner->addScore(50);
 	}
 
 	void preturnAction() { this->attack(); }
