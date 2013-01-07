@@ -25,9 +25,8 @@ Peon::gather(int x, int y) {
 		return this->move(path.front().first, path.front().second);
 	}
 
-	bool r = this->move(x, y);
 	if (this->distance(x, y) > 1)
-		return r;
+		return this->move(x, y);
 
 	// by the spot
 	Resource *spot = dynamic_cast<Resource *>( this->map->get(x, y) );
