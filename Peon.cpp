@@ -51,7 +51,7 @@ Peon::gather(int x, int y) {
 bool
 Peon::build(int x, int y, BuildingType b) {
 	bool r = this->move(x, y);
-	if ((this->x != x) && (this->y != y))
+	if ((this->x != x) || (this->y != y))
 		return r;
 
 	// on the spot
