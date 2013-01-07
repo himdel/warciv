@@ -77,11 +77,13 @@ Unit::attack(int x, int y) {
 		return this->move(x, y);
 	}
 
-	if (x == this->pending_x && y == this->pending_y && this->pending == at_Attack)
+	UI::logAction(this, "attack", "enemy at position", make_pair(x, y), this->map->get(x, y));
+	bool r = AttackMapItem::attack(x, y);
+
+	if (x == this->pending_x && y == this->pending_y && r == false && this->pending == at_Attack)
 		this->pending = at_None;
 
-	UI::logAction(this, "attack", "enemy at ", make_pair(x, y), this->map->get(x, y));
-	return AttackMapItem::attack(x, y);
+	return r;
 }
 
 void
