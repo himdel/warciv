@@ -8,7 +8,6 @@
 
 class Building : public AttackMapItem {
 protected:
-	int hitpoints;
 	int feeds;
 	BuildingType type;
 
