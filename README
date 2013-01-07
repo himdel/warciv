@@ -62,3 +62,12 @@ Actions: [u]nit, [b]uilding, [t]urn, reshow [m]ap, [q]uit
 
 
 Kompilace vyzaduje C++11 kompiler, potrebuje clang 3.1 a vyssi nebo gcc 4.7 (4.6 mozna?).
+
+Game vlastni vsechny ostatni aspekty hry, vcetne loopu s prepinanim tahu (Game::play).
+Vlastni mapu, seznam hracu a UI.
+
+Mapa spravuje polozky na sobe, ale ne kdyz se samy odpoji;
+Hrac ma odkaz na seznam jednotek a budov i odkaz zpet na Game ale nic nevlastni;
+UI se stara o komunikaci s hracem v ramci tahu - playerTurn(cislo tahu, aktualni hrac).
+
+Vsechny herni polozky jsou na mape - resources, units i buildings.
