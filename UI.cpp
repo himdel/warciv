@@ -224,7 +224,6 @@ UI::playerTurn(int turn, Player *p) {
 			case 'T':
 				for (Unit *u : units)
 					u->performAction();
-				//TODO probably destroy dead units here
 				return;
 
 			case 'Q':

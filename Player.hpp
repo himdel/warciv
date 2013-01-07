@@ -19,7 +19,7 @@ private:
 	vector<Building *> buildings;
 	int gold;
 	int wood;
-	int score;	// TODO incerement somewhere
+	int score;
 	Game *game;
 
 public:
