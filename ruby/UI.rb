@@ -6,17 +6,17 @@ require './Player.rb'
 
 class UI
 private:
-	Map<MapItem> *map;
-	void unit(Player *p, Unit *u);
-	void building(Player *p, Building *b);
+	Map<MapItem> *map
+	void unit(Player *p, Unit *u)
+	void building(Player *p, Building *b)
 
 public:
 	UI(Map<MapItem> *m) : map(m) {}
-	void playerTurn(int turn, Player *p);
-	bool eof();
+	void playerTurn(int turn, Player *p)
+	bool eof()
 
-	static void logAction(Unit *u, string action, string desc, pair<int, int> pos = { -1, -1 }, MapItem *tgt = NULL);
-	static void logAction(Building *b, string action, string desc, MapItem *tgt = NULL);
+	static void logAction(Unit *u, string action, string desc, pair<int, int> pos = { -1, -1 }, MapItem *tgt = NULL)
+	static void logAction(Building *b, string action, string desc, MapItem *tgt = NULL)
 end
 
 require './UI.rb'
@@ -26,261 +26,261 @@ require './buildings.rb'
 
 template<typename T>
 static T choice(std::string title, const vector<T> options, bool back, std::function<void(T)> fun = [] (T d) { cout << d.name; } ) {
-	printf("%s\n", title.c_str());
+	printf("%s\n", title.c_str())
 
 	for (unsigned i = 0; i < options.size(); i++) {
-		printf("%d. ", i + 1);
-		fun(options[i]);
-		printf("\n");
+		printf("%d. ", i + 1)
+		fun(options[i])
+		printf("\n")
 	}
 	if (back)
-		printf("0. back\n");
+		printf("0. back\n")
 
-	unsigned i = 0;
+	unsigned i = 0
 	do {
-		printf("> ");
-		cin >> i;
+		printf("> ")
+		cin >> i
 		if (cin.eof())
-			throw EOF;
+			throw EOF
 		if (cin.fail()) {
-			cin.clear();
-			string s;
-			cin >> s;
+			cin.clear()
+			string s
+			cin >> s
 			# ignored
 		}
-	} while (i < (back ? 0 : 1) || i > options.size());
+	} while (i < (back ? 0 : 1) || i > options.size())
 
 	if (i == 0)
-		throw 0;
-	return options[i - 1];
+		throw 0
+	return options[i - 1]
 }
 
 void
 UI::unit(Player *p, Unit *u) {
 	# doable actions
-	vector<ActionData> acts;
+	vector<ActionData> acts
 	for (unsigned i = 0; i < actions_count; i++)
-		if (u->availActions().count( actions[i].type ))
-			acts.push_back( actions[i] );
+		if (u.availActions().count( actions[i].type ))
+			acts.push_back( actions[i] )
 
 	# buildable buildings
-	vector<BuildingData> bld;
+	vector<BuildingData> bld
 	for (unsigned i = 0; i < buildings_count; i++)
 		if (buildings[i].base == bt_Any)
-			bld.push_back( buildings[i] );
+			bld.push_back( buildings[i] )
 
 	# no unit loop
-	printf("Selected unit: %s\n", u->getDetail().c_str());
+	printf("Selected unit: %s\n", u.getDetail().c_str())
 
 	if (acts.size() == 0) {
-		printf("(no available actions)\n");
-		return;
+		printf("(no available actions)\n")
+		return
 	}
-	ActionData a = choice("Actions:", acts, true);
+	ActionData a = choice("Actions:", acts, true)
 
-	int x, y;
+	int x, y
 	switch (a.type) {
 		case at_None:
-			x = y = -1;
-			break;
+			x = y = -1
+			break
 
 		case at_Move:
 		case at_Attack:
 		case at_Gather:
 		case at_Build:
-			printf("target> ");
-			cin >> x >> y;
-			break;
+			printf("target> ")
+			cin >> x >> y
+			break
 	}
 
-	BuildingType bt = bt_Any;
+	BuildingType bt = bt_Any
 	if (a.type == at_Build) {
 		std::function<void(BuildingData)> fun = [] (BuildingData d) {
-			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood);
-		};
-		BuildingData bd = choice("\nBuild what?", bld, false, fun);
-		bt = bd.type;
+			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood)
+		}
+		BuildingData bd = choice("\nBuild what?", bld, false, fun)
+		bt = bd.type
 	}
 
-	printf("\naction: %s", a.name.c_str());
+	printf("\naction: %s", a.name.c_str())
 	if (a.type != at_None)
-		printf("(%d, %d)", x, y);
+		printf("(%d, %d)", x, y)
 	if (bt)
-		printf(" - %s", buildings[bt - 1].name.c_str());
-	printf("\n");
+		printf(" - %s", buildings[bt - 1].name.c_str())
+	printf("\n")
 
-	u->queueAction(a.type, x, y, bt);
-	printf("Queued: %s\n\n", u->getDetail().c_str());
+	u.queueAction(a.type, x, y, bt)
+	printf("Queued: %s\n\n", u.getDetail().c_str())
 }
 
 void
 UI::building(Player *p, Building *b) {
 	# doable actions
 	struct BuAcData {
-		string name;
-		int gold;
-		int wood;
-		std::function<bool(void)> code;
-	};
-	vector< BuAcData > acts;
+		string name
+		int gold
+		int wood
+		std::function<bool(void)> code
+	}
+	vector< BuAcData > acts
 
 	for (unsigned bb = 0; bb < buildings_count; bb++)
-		if (buildings[bb].base == b->Building::getType())
+		if (buildings[bb].base == b.Building::getType())
 			acts.push_back({ "Upgrade to " + buildings[bb].name, buildings[bb].gold, buildings[bb].wood, [b, bb] () {
-				return b->upgrade( buildings[bb].type );
-			}});
+				return b.upgrade( buildings[bb].type )
+			}})
 
 	for (unsigned uu = 0; uu < units_count; uu++)
-		if (units[uu].where == b->getType())
+		if (units[uu].where == b.getType())
 			acts.push_back({ "Build " + units[uu].name, units[uu].gold, units[uu].wood, [b, uu] () {
-				return b->create( units[uu].type );
-			}});
+				return b.create( units[uu].type )
+			}})
 
 	# the loop
 	for (;;) {
-		printf("Selected building: %s\n", b->getDetail().c_str());
+		printf("Selected building: %s\n", b.getDetail().c_str())
 
 		if (acts.size() == 0) {
-			printf("(no available actions)\n");
-			return;
+			printf("(no available actions)\n")
+			return
 		}
 
 		std::function< void(BuAcData) > fun = [] (BuAcData d) {
-			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood);
-		};
-		BuAcData c = choice("Actions:", acts, true, fun);
-		pair<int, int> pos = b->getPos();
-		bool r = c.code();
-		printf("%s: %s\n", r ? "OK": "didn't finish", c.name.c_str());
+			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood)
+		}
+		BuAcData c = choice("Actions:", acts, true, fun)
+		pair<int, int> pos = b.getPos()
+		bool r = c.code()
+		printf("%s: %s\n", r ? "OK": "didn't finish", c.name.c_str())
 
 		# after upgrade
-		if (this->map->get(pos.first, pos.second) != b)
-			return;
+		if (@map.get(pos.first, pos.second) != b)
+			return
 	}
 }
 
 void
 UI::playerTurn(int turn, Player *p) {
-	printf("\n\nTah: %d\n", turn);
+	printf("\n\nTah: %d\n", turn)
 
-	printf("Hrac: %s (score %d)\n", p->getName().c_str(), p->getScore());
-	printf("\n");
+	printf("Hrac: %s (score %d)\n", p.getName().c_str(), p.getScore())
+	printf("\n")
 
-	this->map->show();
-	printf("\n");
+	@map.show()
+	printf("\n")
 
-	for (Building *b : p->getBuildings())
-		b->preturnAction();
+	for (Building *b : p.getBuildings())
+		b.preturnAction()
 
 	for (;;) {
-		printf("Gold: %d; Wood: %d\n\n", p->getGold(), p->getWood());
+		printf("Gold: %d; Wood: %d\n\n", p.getGold(), p.getWood())
 
-		const vector<Building *> buildings = p->getBuildings();
+		const vector<Building *> buildings = p.getBuildings()
 		if (buildings.size()) {
-			printf("Available buildings:\n");
-			int i = 0;
+			printf("Available buildings:\n")
+			int i = 0
 			for (Building *b : buildings)
-				printf("%d. %s\n", ++i, b->getDetail().c_str());
-			printf("\n");
+				printf("%d. %s\n", ++i, b.getDetail().c_str())
+			printf("\n")
 		}
 
-		const vector<Unit *> units = p->getUnits();
+		const vector<Unit *> units = p.getUnits()
 		if (units.size()) {
-			printf("Available units:\n");
-			int i = 0;
+			printf("Available units:\n")
+			int i = 0
 			for (Unit *u : units)
-				printf("%d. %s\n", ++i, u->getDetail().c_str());
-			printf("\n");
+				printf("%d. %s\n", ++i, u.getDetail().c_str())
+			printf("\n")
 		}
 
 		if (units.empty() && buildings.empty()) {
-			printf("(no actions available)\n");
-			return;
+			printf("(no actions available)\n")
+			return
 		}
 
 		if (cin.eof())
-			throw EOF;
+			throw EOF
 
-		char c;
-		printf("Actions: [u]nit, [b]uilding, [t]urn, reshow [m]ap, [q]uit\n");
-		printf("> ");
-		cin >> c;
-		c = toupper(c);
+		char c
+		printf("Actions: [u]nit, [b]uilding, [t]urn, reshow [m]ap, [q]uit\n")
+		printf("> ")
+		cin >> c
+		c = toupper(c)
 
-		unsigned u, b;
+		unsigned u, b
 
 		switch (c) {
 			case 'U':
-				cin >> u;
+				cin >> u
 				if (u < 1 || u > units.size()) {
-					printf("unknown unit %d\n", u);
-					break;
+					printf("unknown unit %d\n", u)
+					break
 				}
 				try {
-					this->unit(p, units[u - 1]);
+					self.unit(p, units[u - 1])
 				} catch (int e) {
 					if (e != 0)
-						throw e;
+						throw e
 				}
-				break;
+				break
 
 			case 'B':
-				cin >> b;
+				cin >> b
 				if (b < 1 || b > buildings.size()) {
-					printf("unknown building %d\n", b);
-					break;
+					printf("unknown building %d\n", b)
+					break
 				}
 				try {
-					this->building(p, buildings[b - 1]);
+					self.building(p, buildings[b - 1])
 				} catch (int e) {
 					if (e != 0)
-						throw e;
+						throw e
 				}
-				break;
+				break
 
 			case 'T':
 				for (Unit *u : units)
-					u->performAction();
-				return;
+					u.performAction()
+				return
 
 			case 'Q':
-				throw EOF;
+				throw EOF
 
 			case 'M':
-				printf("\n");
-				this->map->show();
-				printf("\n");
-				break;
+				printf("\n")
+				@map.show()
+				printf("\n")
+				break
 
 			default:
-				printf("unknown action %c\n", c);
+				printf("unknown action %c\n", c)
 		}
 	}
 }
 
 bool
 UI::eof() {
-	return cin.eof();
+	return cin.eof()
 }
 
  void
 UI::logAction(Unit *u, string action, string desc, pair<int, int> pos, MapItem *tgt) {
-	printf("unit %s: %s", u->getPopis().c_str(), action.c_str());
+	printf("unit %s: %s", u.getPopis().c_str(), action.c_str())
 	if (pos.first >= 0 && pos.second >= 0)
-		printf("(%d, %d)", pos.first, pos.second);
+		printf("(%d, %d)", pos.first, pos.second)
 	if (tgt)
-		printf(" = %s", tgt->getPopis().c_str());
+		printf(" = %s", tgt.getPopis().c_str())
 	if (desc != "")
-		printf(" %s", desc.c_str());
-	printf("\n");
+		printf(" %s", desc.c_str())
+	printf("\n")
 }
 
  void
 UI::logAction(Building *b, string action, string desc, MapItem *tgt) {
-	printf("building %s: %s", b->getPopis().c_str(), action.c_str());
+	printf("building %s: %s", b.getPopis().c_str(), action.c_str())
 	if (tgt)
-		printf(" = %s", tgt->getPopis().c_str());
+		printf(" = %s", tgt.getPopis().c_str())
 	if (desc != "")
-		printf(" %s", desc.c_str());
-	printf("\n");
+		printf(" %s", desc.c_str())
+	printf("\n")
 }

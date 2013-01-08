@@ -3,12 +3,12 @@
 require './enums.rb'
 
 struct ActionData {
-	ActionType type;
-	std::string name;
+	ActionType type
+	std::string name
 end
 
-extern ActionData actions[];
-extern unsigned actions_count;
+extern ActionData actions[]
+extern unsigned actions_count
 
 require './actions.rb'
 
@@ -20,4 +20,4 @@ ActionData actions[] = {
 	{ at_Build, "Build" },
 end
 
-unsigned actions_count = sizeof(actions) / sizeof(ActionData);
+unsigned actions_count = sizeof(actions) / sizeof(ActionData)

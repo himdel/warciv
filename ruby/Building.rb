@@ -6,26 +6,26 @@ require './Player.rb'
 
 class Building < AttackMapItem
 protected:
-	int feeds;
-	BuildingType type;
+	int feeds
+	BuildingType type
 
 public:
 	Building(std::string popis, Player *p) : AttackMapItem(popis, p) {
-		this->type = bt_Any;
-		this->feeds = 0;
+		@type = bt_Any
+		@feeds = 0
 	}
 
-	virtual bool create(UnitType u);
+	virtual bool create(UnitType u)
 	virtual void preturnAction() {}
 
-	void damage(int hitpoints);
+	void damage(int hitpoints)
 
-	virtual std::string getPopis();
-	virtual std::string getDetail();
+	virtual std::string getPopis()
+	virtual std::string getDetail()
 
-	virtual bool upgrade(BuildingType b);
+	virtual bool upgrade(BuildingType b)
 
-	virtual BuildingType getType();
+	virtual BuildingType getType()
 end
 
 require './Building.rb'
@@ -34,105 +34,104 @@ require './units.rb'
 require './Rock.rb'
 require './UI.rb'
 
-using namespace std;
 
 
 bool
 Building::upgrade(BuildingType b) {
-	Building *building = NULL;
+	Building *building = NULL
 
 	for (unsigned i = 0; i < buildings_count; i++)
-		if ((buildings[i].base == this->type) && (buildings[i].type = b)) {
-			if (this->owner->cost(buildings[i].gold, buildings[i].wood))
-				building = buildings[i].make(this->owner);
-			break;
+		if ((buildings[i].base == @type) && (buildings[i].type = b)) {
+			if (@owner.cost(buildings[i].gold, buildings[i].wood))
+				building = buildings[i].make(@owner)
+			break
 		}
 
 	if (!building)
-		return false;
+		return false
 
-	this->remove();
-	this->owner->delBuilding(this);
+	self.remove()
+	@owner.delBuilding(self)
 
-	building->place(this->map, this->x, this->y);
-	this->owner->addBuilding(building);
+	building.place(@map, @x, @y)
+	@owner.addBuilding(building)
 
-	UI::logAction(this, "upgrade", "upgraded", building);
+	UI::logAction(self, "upgrade", "upgraded", building)
 
-	delete this;
-	return true;
+	delete self
+	return true
 }
 
 static bool
 isa(BuildingType is, BuildingType base) {
 	while (is != base) {
 		if (is == bt_Any)
-			return false;
+			return false
 
 		for (unsigned i = 0; i < buildings_count; i++)
 			if (is == buildings[i].type) {
-				is = buildings[i].base;
-				break;
+				is = buildings[i].base
+				break
 			}
 	}
-	return true;
+	return true
 }
 
 bool
 Building::create(UnitType u) {
-	Unit *unit = NULL;
+	Unit *unit = NULL
 
 	for (unsigned i = 0; i < units_count; i++)
-		if ((units[i].type == u) && isa(this->type, units[i].where)) {
-			if (this->owner->cost(units[i].gold, units[i].wood))
-				unit = units[i].make(this->owner);
-			break;
+		if ((units[i].type == u) && isa(@type, units[i].where)) {
+			if (@owner.cost(units[i].gold, units[i].wood))
+				unit = units[i].make(@owner)
+			break
 		}
 
 	if (!unit)
-		return false;
+		return false
 
-	pair<int, int> empty = this->map->closestEmpty(this->x, this->y);
-	unit->place(this->map, empty.first, empty.second);
-	this->owner->addUnit(unit);
+	pair<int, int> empty = @map.closestEmpty(@x, @y)
+	unit.place(@map, empty.first, empty.second)
+	@owner.addUnit(unit)
 
-	UI::logAction(this, "create", "unit", unit);
-	return true;
+	UI::logAction(self, "create", "unit", unit)
+	return true
 }
 
 void
 Building::damage(int hitpoints) {
-	AttackMapItem::damage(hitpoints);
+	AttackMapItem::damage(hitpoints)
 
-	if (this->hitpoints == 0) {
-		UI::logAction(this, "damage", "building dead");
-		this->owner->delBuilding(this);
+	if (@hitpoints == 0) {
+		UI::logAction(self, "damage", "building dead")
+		@owner.delBuilding(self)
 
-		(new Rock())->place(this->map, this->x, this->y);
-		delete this;
+		(new Rock()).place(@map, @x, @y)
+		delete self
 	} else {
-		ostringstream os;
-		os << "lost " << hitpoints << " hp, remaining " << this->hitpoints;
-		UI::logAction(this, "damage", os.str());
+		ostringstream os
+		os << "lost " << hitpoints << " hp, remaining " << @hitpoints
+		UI::logAction(self, "damage", os.str())
 	}
 }
 
 BuildingType
 Building::getType() {
-	return this->type;
+	return @type
 }
 
 string
 Building::getPopis() {
-	ostringstream os;
-	os << "_" << this->owner->getName()[0] << this->owner->getName()[1] << "_";
-	os << MapItem::getPopis() << "(" << this->hitpoints << ")";
-	return os.str();
+	ostringstream os
+	os << "_" << @owner.getName()[0] << @owner.getName()[1] << "_"
+	os << MapItem::getPopis() << "(" << @hitpoints << ")"
+	return os.str()
 }
 
 string
 Building::getDetail() {
-	ostringstream os;
-	os << this->popis << " (hp: " << this->hitpoints << ")";
-	return os.str();
+	ostringstream os
+	os << @popis << " (hp: " << @hitpoints << ")"
+	return os.str()
 }

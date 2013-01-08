@@ -5,11 +5,11 @@ require './WatchTower.rb'
 class CannonTower < WatchTower
 public:
 	CannonTower(Player *owner) : WatchTower("CannonTower", owner) {
-		this->type = bt_CannonTower;
-		this->hitpoints = 160;
-		this->attack_damage = 50;
-		this->attack_range = 3;
-		owner->addScore(20);
+		@type = bt_CannonTower
+		@hitpoints = 160
+		@attack_damage = 50
+		@attack_range = 3
+		owner.addScore(20)
 	}
 
 	static Building *create(Player *owner) { return new CannonTower(owner); }

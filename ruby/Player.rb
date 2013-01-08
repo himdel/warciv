@@ -3,43 +3,42 @@
 require './Unit.rb'
 require './Building.rb'
 
-using namespace std;
 
 
 class Player
 private:
-	string name;
-	vector<Unit *> units;
-	vector<Building *> buildings;
-	int gold;
-	int wood;
-	int score;
-	Game *game;
+	string name
+	vector<Unit *> units
+	vector<Building *> buildings
+	int gold
+	int wood
+	int score
+	Game *game
 
 public:
-	Player(string name, Game *game);
-	int getScore();
-	int addScore(int s);
-	string getName();
-	bool isAlive();
+	Player(string name, Game *game)
+	int getScore()
+	int addScore(int s)
+	string getName()
+	bool isAlive()
 
-	const vector<Unit *> getUnits();
-	void addUnit(Unit *u);
-	void delUnit(Unit *u);
+	const vector<Unit *> getUnits()
+	void addUnit(Unit *u)
+	void delUnit(Unit *u)
 
-	const vector<Building *> getBuildings();
-	void addBuilding(Building *b);
-	void delBuilding(Building *b);
+	const vector<Building *> getBuildings()
+	void addBuilding(Building *b)
+	void delBuilding(Building *b)
 
-	int getGatherSpeed();
+	int getGatherSpeed()
 
-	const vector<Player *> getEnemies();
+	const vector<Player *> getEnemies()
 
-	int getGold();
-	int getWood();
-	void addGold(int quantity);
-	void addWood(int quantity);
-	bool cost(int gold, int wood);
+	int getGold()
+	int getWood()
+	void addGold(int quantity)
+	void addWood(int quantity)
+	bool cost(int gold, int wood)
 end
 
 require './Player.rb'
@@ -51,121 +50,121 @@ require './Fortress.rb'
 
 
 Player::Player(string name, Game *game) {
-	this->name = name;
-	this->gold = 2400;
-	this->wood = 1200;
-	this->score = 0;
-	this->game = game;
+	@name = name
+	@gold = 2400
+	@wood = 1200
+	@score = 0
+	@game = game
 
-	Unit *peon = new Peon(this);
-	auto map = game->getMap();
-	pair<int, int> empty = map->closestEmpty(rand() % map->getWidth(), rand() % map->getHeight());
-	peon->place(map, empty.first, empty.second);
-	this->addUnit(peon);
+	Unit *peon = new Peon(self)
+	auto map = game.getMap()
+	pair<int, int> empty = map.closestEmpty(rand() % map.getWidth(), rand() % map.getHeight())
+	peon.place(map, empty.first, empty.second)
+	self.addUnit(peon)
 }
 
 int
 Player::getScore() {
-	return this->score;
+	return @score
 }
 
 string
 Player::getName() {
-	if (this == NULL)
-		return "(none)";
-	return this->name;
+	if (self == NULL)
+		return "(none)"
+	return @name
 }
 
 const vector<Unit *>
 Player::getUnits() {
-	return this->units;
+	return @units
 }
 
 void
 Player::addUnit(Unit *u) {
-	this->units.push_back(u);
+	@units.push_back(u)
 }
 
 void
 Player::delUnit(Unit *u) {
-	this->units.erase(std::find(this->units.begin(), this->units.end(), u));
+	@units.erase(std::find(@units.begin(), @units.end(), u))
 }
 
 const vector<Building *>
 Player::getBuildings() {
-	return this->buildings;
+	return @buildings
 }
 
 void
 Player::addBuilding(Building *b) {
-	this->buildings.push_back(b);
+	@buildings.push_back(b)
 }
 
 void
 Player::delBuilding(Building *b) {
-	this->buildings.erase(std::find(this->buildings.begin(), this->buildings.end(), b));
+	@buildings.erase(std::find(@buildings.begin(), @buildings.end(), b))
 }
 
 int
 Player::getGold() {
-	return this->gold;
+	return @gold
 }
 
 int
 Player::getWood() {
-	return this->wood;
+	return @wood
 }
 
 void
 Player::addGold(int quantity) {
-	this->gold += quantity;
+	@gold += quantity
 }
 
 void
 Player::addWood(int quantity) {
-	this->wood += quantity;
+	@wood += quantity
 }
 
 bool
 Player::cost(int gold, int wood) {
-	if ((this->gold < gold) || (this->wood < wood))
-		return false;
+	if ((@gold < gold) || (@wood < wood))
+		return false
 
-	this->gold -= gold;
-	this->wood -= wood;
-	return true;
+	@gold -= gold
+	@wood -= wood
+	return true
 }
 
 const vector<Player *>
 Player::getEnemies() {
-	vector<Player *> enemies;
-	for (Player *p : this->game->getPlayers())
-		if (p != this)
-			enemies.push_back(p);
-	return enemies;
+	vector<Player *> enemies
+	for (Player *p : @game.getPlayers())
+		if (p != self)
+			enemies.push_back(p)
+	return enemies
 }
 
 bool
 Player::isAlive() {
-	return this->buildings.size() || this->units.size();
+	return @buildings.size() || @units.size()
 }
 
 int
 Player::addScore(int s) {
-	this->score += s;
-	return this->score;
+	@score += s
+	return @score
 }
 
 int
 Player::getGatherSpeed() {
-	int gs = 10;
-	for (Building *b: this->buildings) {
+	int gs = 10
+	for (Building *b: @buildings) {
 		if (dynamic_cast<TownHall *>(b))
-			gs = max(gs, 40);
+			gs = max(gs, 40)
 		if (dynamic_cast<Stronghold *>(b))
-			gs = max(gs, 50);
+			gs = max(gs, 50)
 		if (dynamic_cast<Fortress *>(b))
-			gs = max(gs, 75);
+			gs = max(gs, 75)
 	}
-	return gs;
+	return gs
 }
