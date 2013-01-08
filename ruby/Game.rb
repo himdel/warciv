@@ -27,7 +27,6 @@ public:
 	~Game()
 end
 
-require './Game.rb'
 require './Rock.rb'
 require './GoldMine.rb'
 require './Forest.rb'

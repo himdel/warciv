@@ -33,7 +33,6 @@ public:
 	virtual std::string getDetail()
 end
 
-require './Unit.rb'
 require './Map.rb'
 require './buildings.rb'
 require './UI.rb'

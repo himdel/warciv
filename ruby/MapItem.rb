@@ -26,7 +26,6 @@ end
 
 std::ostream& operator<<(std::ostream &o, MapItem m)
 
-require './MapItem.rb'
 
 
 static int

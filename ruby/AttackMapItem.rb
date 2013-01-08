@@ -23,7 +23,6 @@ public:
 	virtual bool attack(AttackMapItem i)
 end
 
-require './AttackMapItem.rb'
 require './Unit.rb'
 require './Building.rb'
 

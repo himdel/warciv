@@ -7,10 +7,7 @@ struct ActionData {
 	std::string name
 end
 
-extern ActionData actions[]
-extern unsigned actions_count
 
-require './actions.rb'
 
 ActionData actions[] = {
 	{ at_None, "(relax)" },

@@ -12,10 +12,7 @@ struct BuildingData {
 	int wood
 end
 
-extern BuildingData buildings[]
-extern unsigned buildings_count
 
-require './buildings.rb'
 require './TownHall.rb'
 require './Stronghold.rb'
 require './Fortress.rb'

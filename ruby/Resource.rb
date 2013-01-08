@@ -16,7 +16,6 @@ public:
 	std::string getPopis();	# popis(quantity)
 end
 
-require './Resource.rb'
 
 
 int

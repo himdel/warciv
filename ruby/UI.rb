@@ -19,7 +19,6 @@ public:
 	static void logAction(Building b, string action, string desc, MapItem tgt = nil)
 end
 
-require './UI.rb'
 require './actions.rb'
 require './units.rb'
 require './buildings.rb'

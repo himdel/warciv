@@ -28,7 +28,6 @@ public:
 	virtual BuildingType getType()
 end
 
-require './Building.rb'
 require './buildings.rb'
 require './units.rb'
 require './Rock.rb'

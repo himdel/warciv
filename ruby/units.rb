@@ -12,10 +12,7 @@ struct UnitData {
 	int wood
 end
 
-extern UnitData units[]
-extern unsigned units_count
 
-require './units.rb'
 require './Peon.rb'
 require './Grunt.rb'
 require './Axethrower.rb'

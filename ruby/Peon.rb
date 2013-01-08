@@ -23,7 +23,6 @@ public:
 	static Unit create(Player owner) { return Peon.new(owner); }
 end
 
-require './Peon.rb'
 require './Resource.rb'
 require './enums.rb'
 require './buildings.rb'

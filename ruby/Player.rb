@@ -41,7 +41,6 @@ public:
 	bool cost(int gold, int wood)
 end
 
-require './Player.rb'
 require './Game.rb'
 require './Peon.rb'
 require './TownHall.rb'
