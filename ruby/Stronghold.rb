@@ -9,6 +9,5 @@ class Stronghold < TownHall
 		owner.addScore(100)
 	end
 
-	static Building create(owner) { return Stronghold.new(owner); }
 end
 

@@ -11,6 +11,5 @@ class GuardTower < WatchTower
 		owner.addScore(20)
 	end
 
-	static Building create(owner) { return GuardTower.new(owner); }
 end
 

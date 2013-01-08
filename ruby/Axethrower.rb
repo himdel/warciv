@@ -10,7 +10,6 @@ class Axethrower < Unit
 		owner.addScore(10)
 	end
 
-	static Unit create(owner) { return Axethrower.new(owner); }
 
 	const set<ActionType> availActions() {
 		return set<ActionType>({ at_None, at_Move, at_Attack })

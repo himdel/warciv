@@ -9,6 +9,5 @@ class Barracks < Building
 		owner.addScore(80)
 	end
 
-	static Building create(owner) { return Barracks.new(owner); }
 end
 

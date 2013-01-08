@@ -11,6 +11,5 @@ class TownHall < Building
 	end
 
 	 BuildingType getType() { return bt_TownHall; }
-	static Building create(owner) { return TownHall.new(owner); }
 end
 

@@ -22,7 +22,6 @@ class Peon < Unit
 		return set<ActionType>({ at_None, at_Move, at_Build, at_Gather })
 	end
 
-	static Unit create(owner) { return Peon.new(owner); }
 end
 
 

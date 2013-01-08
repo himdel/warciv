@@ -14,6 +14,5 @@ class Grunt < Unit
 		return set<ActionType>({ at_None, at_Move, at_Attack })
 	end
 
-	static Unit create(owner) { return Grunt.new(owner); }
 end
 

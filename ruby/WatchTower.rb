@@ -14,6 +14,5 @@ class WatchTower < Building
 
 	void preturnAction() { self.attack(); }
 
-	static Building create(owner) { return WatchTower.new(owner); }
 end
 

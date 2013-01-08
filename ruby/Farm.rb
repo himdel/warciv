@@ -10,6 +10,5 @@ class Farm < Building
 		owner.addScore(100);	# feeds nedodelano, zvyseno score
 	end
 
-	static Building create(owner) { return Farm.new(owner); }
 end
 
