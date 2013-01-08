@@ -1,0 +1,80 @@
+WarCiv
+(c) 2013 Martin Hradil <himdel@seznam.cz>
+license: GPL2+
+
+
+work in progress - ruby translation
+next up: html+js gui
+
+
+
+Budovy a jednotky jsou inspirovane Warcraftem 2, system pohybu a boje spise Civilizaci 1.
+Cil hry pochazi z nejake stolni hry.
+
+
+Hrac zacina s 1 peonem, 2400 zlata, 1200 dreva a 30 skore.
+
+Peon umi stavet budovy, tezit drevo i zlato, chodit a stat.
+Budovy umi stavet jednotky a jine veci.
+Mimo Peona existuji 2 utocne jednotky - nablizko Grunt a na dalku Axethrower.
+
+
+Cilem hry je ziskat 1000 bodu, hrac dostava body za postavene budovy a jednotky a za tezeni. "Bezcenne" budovy (treba upgrade town hall) jsou za hodne bodu.
+
+Mapa je ctverec 10x10, na kazdem policku muze byt max 1 vec - jednotka, budova, resource, kamen (zed).
+
+
+Jednotky si pamatuji ukoly dokud je nedokonci nebo nejsou zmeneny. Nektere akce mohou byt nekonecne.
+
+Budovy jsou staveci (TownHall, Barracks), obranne (*Tower) ci nicnedelajici (Farm).
+Nektere jdou upgradovat.
+
+Veze utoci samy, vzdy na zacatku tahu jejich vlastnika.
+Jednotky zadany ukol vykonaji az po skonceni tahu.
+
+
+Jednotky:
+	peon - bezbranny stavec
+	grunt - jenotka na boj z blizka
+	axethrower - jednotka na boj z dalky
+
+Budovy:
+	town hall / stronghold / fortress - stavi stavece, prijima suroviny; stronghold i fortress zvysuje vynos ze surovin
+	farm - zvysuje jen score (a neni to spatna zed)
+	barracks - stavi utocne jednotky
+	watch/guard/cannon tower - obranna vez, ruzne dosahy a utoky
+
+Policka:
+	gold mine - obsahuje N zlata, po vytezeni zustane na mape
+	forest - obsahuje N dreva, po vytezeni zmizi
+	rock - neznicitelny
+	budova - znicitelna, zmeni se v rock
+	jednotka - znicitelna, zmizi
+	(prazdno)
+
+
+Ovladani:
+hrac ma tah dokud ho explicitne neukonci
+muze naplanovat akce svym jednotkam, upgradovat budovy ci v nich stavet, zobrazit mapu ci tahnout:
+
+Actions: [u]nit, [b]uilding, [t]urn, reshow [m]ap, [q]uit
+> u 1 3 5 2
+= 1st unit, 3rd action (=Gather or Attack) at position 5, 2
+
+> b 6 1 1 0
+= 6th building, 1st option (=Upgrade or Build), 1st option again (could be upgrade to 1st possibility or build the same unit again), 0 = back to turn menu
+
+(prikazy lze zadavat i postupne, se zobrazenymi moznostmi v prubehu)
+
+
+
+Kompilace vyzaduje C++11 kompiler, potrebuje clang 3.1 a vyssi nebo gcc 4.7 (4.6 mozna?).
+
+Game vlastni vsechny ostatni aspekty hry, vcetne loopu s prepinanim tahu (Game::play).
+Vlastni mapu, seznam hracu a UI.
+
+Mapa spravuje polozky na sobe, ale ne kdyz se samy odpoji;
+Hrac ma odkaz na seznam jednotek a budov i odkaz zpet na Game ale nic nevlastni;
+UI se stara o komunikaci s hracem v ramci tahu - playerTurn(cislo tahu, aktualni hrac).
+
+Vsechny herni polozky jsou na mape - resources, units i buildings.
