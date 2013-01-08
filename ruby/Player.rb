@@ -48,7 +48,7 @@ end
 
 
 
-Player::Player(string name, Game game) {
+Player(string name, Game game) {
 	@name = name
 	@gold = 2400
 	@wood = 1200
@@ -63,69 +63,69 @@ Player::Player(string name, Game game) {
 end
 
 int
-Player::getScore() {
+getScore() {
 	return @score
 end
 
 string
-Player::getName() {
+getName() {
 	if (self.nil?)
 		return "(none)"
 	return @name
 end
 
 const vector<Unit >
-Player::getUnits() {
+getUnits() {
 	return @units
 end
 
 void
-Player::addUnit(Unit u) {
+addUnit(Unit u) {
 	@units.push_back(u)
 end
 
 void
-Player::delUnit(Unit u) {
-	@units.erase(std::find(@units.begin(), @units.end(), u))
+delUnit(Unit u) {
+	@units.erase(find(@units.begin(), @units.end(), u))
 end
 
 const vector<Building >
-Player::getBuildings() {
+getBuildings() {
 	return @buildings
 end
 
 void
-Player::addBuilding(Building b) {
+addBuilding(Building b) {
 	@buildings.push_back(b)
 end
 
 void
-Player::delBuilding(Building b) {
-	@buildings.erase(std::find(@buildings.begin(), @buildings.end(), b))
+delBuilding(Building b) {
+	@buildings.erase(find(@buildings.begin(), @buildings.end(), b))
 end
 
 int
-Player::getGold() {
+getGold() {
 	return @gold
 end
 
 int
-Player::getWood() {
+getWood() {
 	return @wood
 end
 
 void
-Player::addGold(int quantity) {
+addGold(int quantity) {
 	@gold += quantity
 end
 
 void
-Player::addWood(int quantity) {
+addWood(int quantity) {
 	@wood += quantity
 end
 
 bool
-Player::cost(int gold, int wood) {
+cost(int gold, int wood) {
 	if ((@gold < gold) || (@wood < wood))
 		return false
 
@@ -135,7 +135,7 @@ Player::cost(int gold, int wood) {
 end
 
 const vector<Player >
-Player::getEnemies() {
+getEnemies() {
 	vector<Player > enemies
 	@game.getPlayers().each do |p|
 		if (p != self)
@@ -145,18 +145,18 @@ Player::getEnemies() {
 end
 
 bool
-Player::isAlive() {
+isAlive() {
 	return @buildings.size() || @units.size()
 end
 
 int
-Player::addScore(int s) {
+addScore(int s) {
 	@score += s
 	return @score
 end
 
 int
-Player::getGatherSpeed() {
+getGatherSpeed() {
 	int gs = 10
 	for (Building b: @buildings) {
 		if (dynamic_cast<TownHall >(b))

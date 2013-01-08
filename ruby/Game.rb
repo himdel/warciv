@@ -17,7 +17,7 @@ private:
 	int turn
 
 public:
-	Game(int w, int h, std::string p1, std::string p2, int win_score)
+	Game(int w, int h, string p1, string p2, int win_score)
 	void genMap(double pRock, double pRes)
 
 	void play()
@@ -31,7 +31,7 @@ end
 
 
 
-Game::Game(int w, int h, string p1, string p2, int win_score) {
+Game(int w, int h, string p1, string p2, int win_score) {
 	srand(time(nil))
 	@win_score = win_score
 	@turn = 0
@@ -48,7 +48,7 @@ Game::Game(int w, int h, string p1, string p2, int win_score) {
 end
 
 void
-Game::genMap(double pRock, double pRes) {
+genMap(double pRock, double pRes) {
 	if (pRock + pRes >= 1) {
 		cerr << "genMap: pRock + pRes >= 1" << endl
 		return
@@ -71,7 +71,7 @@ Game::genMap(double pRock, double pRes) {
 end
 
 void
-Game::play() {
+play() {
 	while (self.winner().nil?) {
 		@turn++
 		@players.each do |p|
@@ -83,7 +83,7 @@ Game::play() {
 end
 
 Player *
-Game::winner() {
+winner() {
 	Player best = nil
 	@players.each do |p|
 		if (!best && (p.getScore() >= @win_score))
@@ -103,7 +103,7 @@ Game::winner() {
 end
 
 string
-Game::score() {
+score() {
 	ostringstream out
 	@players.each do |p|
 		out << p.getName() << "\t\t" << p.getScore() << endl
@@ -112,6 +112,6 @@ Game::score() {
 end
 
 const vector<Player >
-Game::getPlayers() {
+getPlayers() {
 	return @players
 end

@@ -14,7 +14,7 @@ require './enums.rb'
 struct BuildingData {
 	BuildingType type
 	Building (make)(Player owner)
-	std::string name
+	string name
 	BuildingType base;	# base building, or bt_Any if buildable by peons
 	int gold
 	int wood

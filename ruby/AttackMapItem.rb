@@ -12,7 +12,7 @@ protected:
 	int attack_range
 
 public:
-	AttackMapItem(std::string popis, Player p) : MapItem(popis), owner(p) {
+	AttackMapItem(string popis, Player p) : MapItem(popis), owner(p) {
 		@hitpoints = 0
 		@attack_damage = 0
 		@attack_range = 0
@@ -27,7 +27,7 @@ end
 
 
 void
-AttackMapItem::damage(int hitpoints) {
+damage(int hitpoints) {
 	@hitpoints -= min(@hitpoints, hitpoints)
 
 	if (@hitpoints == 0)
@@ -36,7 +36,7 @@ end
 
 
 bool
-AttackMapItem::attack() {
+attack() {
 	bool bb = false
 	@owner.getEnemies().each do |e|
 		e.getUnits().each do |u|
@@ -53,7 +53,7 @@ AttackMapItem::attack() {
 end
 
 bool
-AttackMapItem::attack(int x, int y) {
+attack(int x, int y) {
 	MapItem i = @map.get(x, y)
 	if (!i)
 		return false
@@ -67,7 +67,7 @@ end
 
 # do not use i afterwards
 bool
-AttackMapItem::attack(AttackMapItem i) {
+attack(AttackMapItem i) {
 	if (i == self)
 		return false
 

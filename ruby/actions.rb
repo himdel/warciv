@@ -4,7 +4,7 @@ require './enums.rb'
 
 struct ActionData {
 	ActionType type
-	std::string name
+	string name
 end
 
 

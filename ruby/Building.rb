@@ -14,7 +14,7 @@ protected:
 	BuildingType type
 
 public:
-	Building(std::string popis, Player p) : AttackMapItem(popis, p) {
+	Building(string popis, Player p) : AttackMapItem(popis, p) {
 		@type = bt_Any
 		@feeds = 0
 	end
@@ -24,8 +24,8 @@ public:
 
 	void damage(int hitpoints)
 
-	virtual std::string getPopis()
-	virtual std::string getDetail()
+	virtual string getPopis()
+	virtual string getDetail()
 
 	virtual bool upgrade(BuildingType b)
 
@@ -36,7 +36,7 @@ end
 
 
 bool
-Building::upgrade(BuildingType b) {
+upgrade(BuildingType b) {
 	Building building = nil
 
 	for (unsigned i = 0; i < buildings_count; i++)
@@ -76,7 +76,7 @@ isa(BuildingType is, BuildingType base) {
 end
 
 bool
-Building::create(UnitType u) {
+create(UnitType u) {
 	Unit unit = nil
 
 	for (unsigned i = 0; i < units_count; i++)
@@ -98,7 +98,7 @@ Building::create(UnitType u) {
 end
 
 void
-Building::damage(int hitpoints) {
+damage(int hitpoints) {
 	AttackMapItem::damage(hitpoints)
 
 	if (@hitpoints == 0) {
@@ -114,12 +114,12 @@ Building::damage(int hitpoints) {
 end
 
 BuildingType
-Building::getType() {
+getType() {
 	return @type
 end
 
 string
-Building::getPopis() {
+getPopis() {
 	ostringstream os
 	os << "_" << @owner.getName()[0] << @owner.getName()[1] << "_"
 	os << MapItem::getPopis() << "(" << @hitpoints << ")"
@@ -127,7 +127,7 @@ Building::getPopis() {
 end
 
 string
-Building::getDetail() {
+getDetail() {
 	ostringstream os
 	os << @popis << " (hp: " << @hitpoints << ")"
 	return os.str()

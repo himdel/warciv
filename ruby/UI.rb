@@ -24,7 +24,7 @@ end
 
 
 template<typename T>
-static T choice(std::string title, const vector<T> options, bool back, std::function<void(T)> fun = [] (T d) { cout << d.name; } ) {
+static T choice(string title, const vector<T> options, bool back, function<void(T)> fun = [] (T d) { cout << d.name; } ) {
 	printf("%s\n", title.c_str())
 
 	for (unsigned i = 0; i < options.size(); i++) {
@@ -55,7 +55,7 @@ static T choice(std::string title, const vector<T> options, bool back, std::func
 end
 
 void
-UI::unit(Player p, Unit u) {
+unit(Player p, Unit u) {
 	# doable actions
 	vector<ActionData> acts
 	for (unsigned i = 0; i < actions_count; i++)
@@ -94,7 +94,7 @@ UI::unit(Player p, Unit u) {
 
 	BuildingType bt = bt_Any
 	if (a.type == at_Build) {
-		std::function<void(BuildingData)> fun = [] (BuildingData d) {
+		function<void(BuildingData)> fun = [] (BuildingData d) {
 			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood)
 		end
 		BuildingData bd = choice("\nBuild what?", bld, false, fun)
@@ -113,13 +113,13 @@ UI::unit(Player p, Unit u) {
 end
 
 void
-UI::building(Player p, Building b) {
+building(Player p, Building b) {
 	# doable actions
 	struct BuAcData {
 		string name
 		int gold
 		int wood
-		std::function<bool(void)> code
+		function<bool(void)> code
 	end
 	vector< BuAcData > acts
 
@@ -144,7 +144,7 @@ UI::building(Player p, Building b) {
 			return
 		end
 
-		std::function< void(BuAcData) > fun = [] (BuAcData d) {
+		function< void(BuAcData) > fun = [] (BuAcData d) {
 			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood)
 		end
 		BuAcData c = choice("Actions:", acts, true, fun)
@@ -159,7 +159,7 @@ UI::building(Player p, Building b) {
 end
 
 void
-UI::playerTurn(int turn, Player p) {
+playerTurn(int turn, Player p) {
 	printf("\n\nTah: %d\n", turn)
 
 	printf("Hrac: %s (score %d)\n", p.getName().c_str(), p.getScore())
@@ -262,12 +262,12 @@ UI::playerTurn(int turn, Player p) {
 end
 
 bool
-UI::eof() {
+eof() {
 	return cin.eof()
 end
 
  void
-UI::logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tgt) {
+logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tgt) {
 	printf("unit %s: %s", u.getPopis().c_str(), action.c_str())
 	if (pos.first >= 0 && pos.second >= 0)
 		printf("(%d, %d)", pos.first, pos.second)
@@ -279,7 +279,7 @@ UI::logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tg
 end
 
  void
-UI::logAction(Building b, string action, string desc, MapItem tgt) {
+logAction(Building b, string action, string desc, MapItem tgt) {
 	printf("building %s: %s", b.getPopis().c_str(), action.c_str())
 	if (tgt)
 		printf(" = %s", tgt.getPopis().c_str())

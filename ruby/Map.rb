@@ -46,7 +46,7 @@ public:
 		for (int y = 0; y < @height; y++)
 			for (int x = 0; x < @width; x++) {
 				T mi = @data[x][y]
-				maxw = std::max(maxw, mi ? (unsigned) mi.getPopis().length() : 1)
+				maxw = max(maxw, mi ? (unsigned) mi.getPopis().length() : 1)
 			end
 		maxw++
 

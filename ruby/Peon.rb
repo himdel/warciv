@@ -32,7 +32,7 @@ end
 
 # we don't unqueue gather, it loops by defualt
 bool
-Peon::gather(int x, int y) {
+gather(int x, int y) {
 	# full, going to townhall
 	if (@cargo) {
 		# find closest TownHall or descendant
@@ -72,7 +72,7 @@ Peon::gather(int x, int y) {
 end
 
 bool
-Peon::build(int x, int y, BuildingType b) {
+build(int x, int y, BuildingType b) {
 	bool r = self.move(x, y)
 	if ((@x != x) || (@y != y))
 		return r

@@ -9,7 +9,7 @@ require './enums.rb'
 struct UnitData {
 	UnitType type
 	Unit (make)(Player )
-	std::string name
+	string name
 	BuildingType where
 	int gold
 	int wood

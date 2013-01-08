@@ -4,7 +4,7 @@ require './Building.rb'
 
 class TownHall < Building
 public:
-	TownHall(std::string popis, Player owner) : Building(popis, owner) {}
+	TownHall(string popis, Player owner) : Building(popis, owner) {}
 	TownHall(Player owner) : Building("TownHall", owner) {
 		@type = bt_TownHall
 		@hitpoints = 1200

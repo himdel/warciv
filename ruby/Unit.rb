@@ -15,7 +15,7 @@ protected:
 	int pending_y
 
 public:
-	Unit(std::string popis, Player p) : AttackMapItem(popis, p) {
+	Unit(string popis, Player p) : AttackMapItem(popis, p) {
 		self.stop()
 	end
 
@@ -32,14 +32,14 @@ public:
 	virtual bool actionPending()
 	virtual bool performAction()
 
-	virtual std::string getPopis()
-	virtual std::string getDetail()
+	virtual string getPopis()
+	virtual string getDetail()
 end
 
 
 
 bool
-Unit::move(int x, int y) {
+move(int x, int y) {
 	if (x == @x && y == @y)
 		return true
 
@@ -72,20 +72,20 @@ Unit::move(int x, int y) {
 end
 
 bool
-Unit::gather(int x, int y) {
+gather(int x, int y) {
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
 end
 
 bool
-Unit::build(int x, int y, BuildingType b) {
+build(int x, int y, BuildingType b) {
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
 end
 
 # do not use self afterwards
 void
-Unit::damage(int hitpoints) {
+damage(int hitpoints) {
 	AttackMapItem::damage(hitpoints)
 
 	if (@hitpoints == 0) {
@@ -99,7 +99,7 @@ Unit::damage(int hitpoints) {
 end
 
 bool
-Unit::attack(int x, int y) {
+attack(int x, int y) {
 	# if not in range, attack anything or move
 	if (self.distance(x, y) > @attack_range) {
 		if (@AttackMapItem::attack()) {
@@ -119,12 +119,12 @@ Unit::attack(int x, int y) {
 end
 
 void
-Unit::stop() {
+stop() {
 	self.queueAction()
 end
 
 void
-Unit::queueAction(ActionType at, int x, int y, BuildingType bt) {
+queueAction(ActionType at, int x, int y, BuildingType bt) {
 	@pending = at
 	@pending_build = bt
 	@pending_x = x
@@ -132,13 +132,13 @@ Unit::queueAction(ActionType at, int x, int y, BuildingType bt) {
 end
 
 bool
-Unit::actionPending() {
+actionPending() {
 	return @pending != at_None
 end
 
 # nevolat pokud byl tah udelan rucne
 bool
-Unit::performAction() {
+performAction() {
 	if (!self.actionPending())
 		return false
 
@@ -157,16 +157,16 @@ Unit::performAction() {
 	return false
 end
 
-std::string
-Unit::getPopis() {
-	std::ostringstream out
+string
+getPopis() {
+	ostringstream out
 	out << "_" << @owner.getName()[0] << @owner.getName()[1] << "_" << @popis << " (" << @hitpoints << ")"
 	return out.str()
 end
 
-std::string
-Unit::getDetail() {
-	std::ostringstream out
+string
+getDetail() {
+	ostringstream out
 	out << @popis << " (hp: " << @hitpoints
 	switch (@pending) {
 		case at_Move:
