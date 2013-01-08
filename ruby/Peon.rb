@@ -1,6 +1,6 @@
 # not ruby yet!
 
-#include "Unit.hpp"
+require './Unit.rb'
 
 class Peon : public Unit {
 private:
@@ -23,13 +23,12 @@ public:
 	static Unit *create(Player *owner) { return new Peon(owner); }
 };
 
-#include <sstream>
-#include "Peon.hpp"
-#include "Resource.hpp"
-#include "enums.hpp"
-#include "buildings.hpp"
-#include "TownHall.hpp"
-#include "UI.hpp"
+require './Peon.rb'
+require './Resource.rb'
+require './enums.rb'
+require './buildings.rb'
+require './TownHall.rb'
+require './UI.rb'
 
 
 // we don't unqueue gather, it loops by defualt

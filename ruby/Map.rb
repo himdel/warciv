@@ -1,12 +1,5 @@
 # not ruby yet!
 
-#include <algorithm>
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <list>
-#include <limits.h>
-#include <functional>
 
 using namespace std;
 

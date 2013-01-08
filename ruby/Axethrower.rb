@@ -1,6 +1,6 @@
 # not ruby yet!
 
-#include "Unit.hpp"
+require './Unit.rb'
 
 class Axethrower : public Unit {
 public:

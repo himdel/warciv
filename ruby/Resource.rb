@@ -1,8 +1,7 @@
 # not ruby yet!
 
-#include <cstdlib>
-#include "MapItem.hpp"
-#include "Player.hpp"
+require './MapItem.rb'
+require './Player.rb'
 
 
 class Resource : public MapItem {
@@ -17,8 +16,7 @@ public:
 	std::string getPopis();	// popis(quantity)
 };
 
-#include <sstream>
-#include "Resource.hpp"
+require './Resource.rb'
 
 
 int

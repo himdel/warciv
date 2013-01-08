@@ -1,6 +1,6 @@
 # not ruby yet!
 
-#include "Resource.hpp"
+require './Resource.rb'
 
 class Forest : public Resource {
 public:

@@ -1,7 +1,6 @@
 # not ruby yet!
 
-#include "MapItem.hpp"
-class Player;
+require './MapItem.rb'
 
 class AttackMapItem : public MapItem {
 protected:
@@ -24,9 +23,9 @@ public:
 	virtual bool attack(AttackMapItem *i);
 };
 
-#include "AttackMapItem.hpp"
-#include "Unit.hpp"
-#include "Building.hpp"
+require './AttackMapItem.rb'
+require './Unit.rb'
+require './Building.rb'
 
 void
 AttackMapItem::damage(int hitpoints) {

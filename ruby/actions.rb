@@ -1,7 +1,6 @@
 # not ruby yet!
 
-#include <string>
-#include "enums.hpp"
+require './enums.rb'
 
 struct ActionData {
 	ActionType type;
@@ -11,7 +10,7 @@ struct ActionData {
 extern ActionData actions[];
 extern unsigned actions_count;
 
-#include "actions.hpp"
+require './actions.rb'
 
 ActionData actions[] = {
 	{ at_None, "(relax)" },

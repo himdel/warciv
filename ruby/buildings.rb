@@ -1,7 +1,7 @@
 # not ruby yet!
 
-#include "enums.hpp"
-#include "Building.hpp"
+require './enums.rb'
+require './Building.rb'
 
 struct BuildingData {
 	BuildingType type;
@@ -15,15 +15,15 @@ struct BuildingData {
 extern BuildingData buildings[];
 extern unsigned buildings_count;
 
-#include "buildings.hpp"
-#include "TownHall.hpp"
-#include "Stronghold.hpp"
-#include "Fortress.hpp"
-#include "Farm.hpp"
-#include "Barracks.hpp"
-#include "WatchTower.hpp"
-#include "GuardTower.hpp"
-#include "CannonTower.hpp"
+require './buildings.rb'
+require './TownHall.rb'
+require './Stronghold.rb'
+require './Fortress.rb'
+require './Farm.rb'
+require './Barracks.rb'
+require './WatchTower.rb'
+require './GuardTower.rb'
+require './CannonTower.rb'
 
 BuildingData buildings[] = {
 	{ bt_TownHall, TownHall::create, "TownHall", bt_Any, 1200, 800 },

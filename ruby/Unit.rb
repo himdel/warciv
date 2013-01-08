@@ -1,10 +1,8 @@
 # not ruby yet!
 
-#include <stdbool.h>
-#include <set>
-#include "enums.hpp"
-#include "AttackMapItem.hpp"
-#include "Player.hpp"
+require './enums.rb'
+require './AttackMapItem.rb'
+require './Player.rb'
 
 class Unit : public AttackMapItem {
 protected:
@@ -35,11 +33,10 @@ public:
 	virtual std::string getDetail();
 };
 
-#include <sstream>
-#include "Unit.hpp"
-#include "Map.hpp"
-#include "buildings.hpp"
-#include "UI.hpp"
+require './Unit.rb'
+require './Map.rb'
+require './buildings.rb'
+require './UI.rb'
 
 
 bool

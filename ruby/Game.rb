@@ -1,10 +1,9 @@
 # not ruby yet!
 
-#include <vector>
-#include "Map.hpp"
-#include "MapItem.hpp"
-#include "Player.hpp"
-#include "UI.hpp"
+require './Map.rb'
+require './MapItem.rb'
+require './Player.rb'
+require './UI.rb'
 
 class Game {
 private:
@@ -28,13 +27,10 @@ public:
 	~Game();
 };
 
-#include <cstdlib>
-#include <sstream>
-#include <time.h>
-#include "Game.hpp"
-#include "Rock.hpp"
-#include "GoldMine.hpp"
-#include "Forest.hpp"
+require './Game.rb'
+require './Rock.rb'
+require './GoldMine.rb'
+require './Forest.rb'
 
 using namespace std;
 

@@ -1,6 +1,5 @@
 # not ruby yet!
-#include <iostream>
-#include "Game.hpp"
+require './Game.rb'
 
 using namespace std;
 

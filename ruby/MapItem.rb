@@ -1,7 +1,6 @@
 # not ruby yet!
 
-#include <ostream>
-#include "Map.hpp"
+require './Map.rb'
 
 class MapItem {
 protected:
@@ -27,9 +26,7 @@ public:
 
 std::ostream& operator<<(std::ostream &o, MapItem *m);
 
-#include <assert.h>
-#include <cmath>
-#include "MapItem.hpp"
+require './MapItem.rb'
 
 
 static int

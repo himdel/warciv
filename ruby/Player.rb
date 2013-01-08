@@ -1,12 +1,7 @@
 # not ruby yet!
 
-#include <vector>
-class Player;
-class Unit;
-class Building;
-class Game;
-#include "Unit.hpp"
-#include "Building.hpp"
+require './Unit.rb'
+require './Building.rb'
 
 using namespace std;
 
@@ -47,13 +42,12 @@ public:
 	bool cost(int gold, int wood);
 };
 
-#include <algorithm>
-#include "Player.hpp"
-#include "Game.hpp"
-#include "Peon.hpp"
-#include "TownHall.hpp"
-#include "Stronghold.hpp"
-#include "Fortress.hpp"
+require './Player.rb'
+require './Game.rb'
+require './Peon.rb'
+require './TownHall.rb'
+require './Stronghold.rb'
+require './Fortress.rb'
 
 
 Player::Player(string name, Game *game) {

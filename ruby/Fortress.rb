@@ -1,6 +1,6 @@
 # not ruby yet!
 
-#include "TownHall.hpp"
+require './TownHall.rb'
 
 class Fortress : public TownHall {
 public:

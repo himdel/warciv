@@ -1,6 +1,6 @@
 # not ruby yet!
 
-#include "WatchTower.hpp"
+require './WatchTower.rb'
 
 class CannonTower : public WatchTower {
 public:

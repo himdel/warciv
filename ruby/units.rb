@@ -1,7 +1,7 @@
 # not ruby yet!
 
-#include "enums.hpp"
-#include "Unit.hpp"
+require './enums.rb'
+require './Unit.rb'
 
 struct UnitData {
 	UnitType type;
@@ -15,10 +15,10 @@ struct UnitData {
 extern UnitData units[];
 extern unsigned units_count;
 
-#include "units.hpp"
-#include "Peon.hpp"
-#include "Grunt.hpp"
-#include "Axethrower.hpp"
+require './units.rb'
+require './Peon.rb'
+require './Grunt.rb'
+require './Axethrower.rb'
 
 UnitData units[] = {
 	{ ut_Peon, Peon::create, "Peon", bt_TownHall, 400, 0 },

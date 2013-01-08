@@ -1,9 +1,8 @@
 # not ruby yet!
 
-#include <stdbool.h>
-#include "enums.hpp"
-#include "AttackMapItem.hpp"
-#include "Player.hpp"
+require './enums.rb'
+require './AttackMapItem.rb'
+require './Player.rb'
 
 class Building : public AttackMapItem {
 protected:
@@ -29,12 +28,11 @@ public:
 	virtual BuildingType getType();
 };
 
-#include <sstream>
-#include "Building.hpp"
-#include "buildings.hpp"
-#include "units.hpp"
-#include "Rock.hpp"
-#include "UI.hpp"
+require './Building.rb'
+require './buildings.rb'
+require './units.rb'
+require './Rock.rb'
+require './UI.rb'
 
 using namespace std;
 

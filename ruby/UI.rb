@@ -1,8 +1,8 @@
 # not ruby yet!
 
-#include "Map.hpp"
-#include "MapItem.hpp"
-#include "Player.hpp"
+require './Map.rb'
+require './MapItem.rb'
+require './Player.rb'
 
 class UI {
 private:
@@ -19,14 +19,10 @@ public:
 	static void logAction(Building *b, string action, string desc, MapItem *tgt = NULL);
 };
 
-#include <cstdio>
-#include <ctype.h>
-#include <functional>
-#include <vector>
-#include "UI.hpp"
-#include "actions.hpp"
-#include "units.hpp"
-#include "buildings.hpp"
+require './UI.rb'
+require './actions.rb'
+require './units.rb'
+require './buildings.rb'
 
 template<typename T>
 static T choice(std::string title, const vector<T> options, bool back, std::function<void(T)> fun = [] (T d) { cout << d.name; } ) {

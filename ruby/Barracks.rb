@@ -1,6 +1,6 @@
 # not ruby yet!
 
-#include "Building.hpp"
+require './Building.rb'
 
 class Barracks : public Building {
 public:
