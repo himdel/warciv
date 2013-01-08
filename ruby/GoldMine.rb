@@ -3,7 +3,6 @@ require './Resource.rb'
 
 
 class GoldMine < Resource
-public:
 	GoldMine() : Resource("GoldMine") {}
 
 	int gather(int amount, Player p) {

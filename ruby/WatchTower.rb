@@ -3,7 +3,6 @@ require './Building.rb'
 
 
 class WatchTower < Building
-public:
 	WatchTower(string popis, Player owner) : Building(popis, owner) {}
 	WatchTower(Player owner) : Building("WatchTower", owner) {
 		@type = bt_WatchTower

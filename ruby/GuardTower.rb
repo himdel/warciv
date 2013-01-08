@@ -3,7 +3,6 @@ require './WatchTower.rb'
 
 
 class GuardTower < WatchTower
-public:
 	GuardTower(Player owner) : WatchTower("GuardTower", owner) {
 		@type = bt_GuardTower
 		@hitpoints = 130

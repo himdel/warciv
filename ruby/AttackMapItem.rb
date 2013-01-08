@@ -5,13 +5,7 @@ require './Unit.rb'
 
 
 class AttackMapItem < MapItem
-protected:
-	Player owner
-	int hitpoints
-	int attack_damage
-	int attack_range
 
-public:
 	AttackMapItem(string popis, Player p) : MapItem(popis), owner(p) {
 		@hitpoints = 0
 		@attack_damage = 0
@@ -26,7 +20,6 @@ public:
 end
 
 
-void
 damage(int hitpoints) {
 	@hitpoints -= min(@hitpoints, hitpoints)
 
@@ -35,7 +28,6 @@ damage(int hitpoints) {
 end
 
 
-bool
 attack() {
 	bool bb = false
 	@owner.getEnemies().each do |e|
@@ -52,7 +44,6 @@ attack() {
 	return bb
 end
 
-bool
 attack(int x, int y) {
 	MapItem i = @map.get(x, y)
 	if (!i)
@@ -66,7 +57,6 @@ attack(int x, int y) {
 end
 
 # do not use i afterwards
-bool
 attack(AttackMapItem i) {
 	if (i == self)
 		return false

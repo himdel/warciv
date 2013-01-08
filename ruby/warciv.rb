@@ -2,7 +2,6 @@ require './Game.rb'
 # not ruby yet!
 
 
-int
 main(int argc, char *argv) {
 	Game g = Game.new(10, 10, "Karel", "Spock", 1000)
 

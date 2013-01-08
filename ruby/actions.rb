@@ -1,14 +1,6 @@
 require './enums.rb'
 # not ruby yet!
 
-
-struct ActionData {
-	ActionType type
-	string name
-end
-
-
-
 ActionData actions[] = {
 	{ at_None, "(relax)" },
 	{ at_Move, "Move" },

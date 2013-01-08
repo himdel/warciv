@@ -3,7 +3,6 @@ require './Building.rb'
 
 
 class TownHall < Building
-public:
 	TownHall(string popis, Player owner) : Building(popis, owner) {}
 	TownHall(Player owner) : Building("TownHall", owner) {
 		@type = bt_TownHall

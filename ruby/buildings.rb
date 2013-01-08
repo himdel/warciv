@@ -11,16 +11,6 @@ require './enums.rb'
 # not ruby yet!
 
 
-struct BuildingData {
-	BuildingType type
-	Building (make)(Player owner)
-	string name
-	BuildingType base;	# base building, or bt_Any if buildable by peons
-	int gold
-	int wood
-end
-
-
 
 BuildingData buildings[] = {
 	{ bt_TownHall, TownHall::create, "TownHall", bt_Any, 1200, 800 },

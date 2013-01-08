@@ -9,14 +9,9 @@ require './UI.rb'
 
 
 class Game
-private:
 	Map<MapItem> map
 	vector<Player > players
-	UI ui
-	int win_score
-	int turn
 
-public:
 	Game(int w, int h, string p1, string p2, int win_score)
 	void genMap(double pRock, double pRes)
 
@@ -47,7 +42,6 @@ Game(int w, int h, string p1, string p2, int win_score) {
 	end
 end
 
-void
 genMap(double pRock, double pRes) {
 	if (pRock + pRes >= 1) {
 		cerr << "genMap: pRock + pRes >= 1" << endl
@@ -70,7 +64,6 @@ genMap(double pRock, double pRes) {
 		end
 end
 
-void
 play() {
 	while (self.winner().nil?) {
 		@turn++
@@ -102,9 +95,7 @@ winner() {
 	return best
 end
 
-string
 score() {
-	ostringstream out
 	@players.each do |p|
 		out << p.getName() << "\t\t" << p.getScore() << endl
 	end

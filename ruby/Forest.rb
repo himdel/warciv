@@ -3,7 +3,6 @@ require './Resource.rb'
 
 
 class Forest < Resource
-public:
 	Forest() : Resource("Forest") {}
 
 	int gather(int amount, Player p) {

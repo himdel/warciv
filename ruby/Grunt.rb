@@ -3,7 +3,6 @@ require './Unit.rb'
 
 
 class Grunt < Unit
-public:
 	Grunt(Player owner) : Unit("Grunt", owner) {
 		@hitpoints = 60
 		@attack_damage = 6 + 3 * (rand() % 2);	# 6 + 3

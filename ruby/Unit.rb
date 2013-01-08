@@ -8,13 +8,7 @@ require './enums.rb'
 
 
 class Unit < AttackMapItem
-protected:
-	ActionType pending
-	BuildingType pending_build
-	int pending_x
-	int pending_y
 
-public:
 	Unit(string popis, Player p) : AttackMapItem(popis, p) {
 		self.stop()
 	end
@@ -38,7 +32,6 @@ end
 
 
 
-bool
 move(int x, int y) {
 	if (x == @x && y == @y)
 		return true
@@ -71,20 +64,17 @@ move(int x, int y) {
 	return true
 end
 
-bool
 gather(int x, int y) {
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
 end
 
-bool
 build(int x, int y, BuildingType b) {
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
 end
 
 # do not use self afterwards
-void
 damage(int hitpoints) {
 	AttackMapItem::damage(hitpoints)
 
@@ -92,13 +82,11 @@ damage(int hitpoints) {
 		UI::logAction(self, "damage", "unit dead")
 		@owner.delUnit(self)
 	} else {
-		ostringstream os
 		os << "lost " << hitpoints << " hp, remaining " << @hitpoints
 		UI::logAction(self, "damage", os.str())
 	end
 end
 
-bool
 attack(int x, int y) {
 	# if not in range, attack anything or move
 	if (self.distance(x, y) > @attack_range) {
@@ -118,12 +106,10 @@ attack(int x, int y) {
 	return r
 end
 
-void
 stop() {
 	self.queueAction()
 end
 
-void
 queueAction(ActionType at, int x, int y, BuildingType bt) {
 	@pending = at
 	@pending_build = bt
@@ -131,13 +117,11 @@ queueAction(ActionType at, int x, int y, BuildingType bt) {
 	@pending_y = y
 end
 
-bool
 actionPending() {
 	return @pending != at_None
 end
 
 # nevolat pokud byl tah udelan rucne
-bool
 performAction() {
 	if (!self.actionPending())
 		return false
@@ -157,16 +141,12 @@ performAction() {
 	return false
 end
 
-string
 getPopis() {
-	ostringstream out
 	out << "_" << @owner.getName()[0] << @owner.getName()[1] << "_" << @popis << " (" << @hitpoints << ")"
 	return out.str()
 end
 
-string
 getDetail() {
-	ostringstream out
 	out << @popis << " (hp: " << @hitpoints
 	switch (@pending) {
 		case at_Move:

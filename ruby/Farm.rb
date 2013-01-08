@@ -3,7 +3,6 @@ require './Building.rb'
 
 
 class Farm < Building
-public:
 	Farm(Player owner) : Building("Farm", owner) {
 		@type = bt_Farm
 		@hitpoints = 400

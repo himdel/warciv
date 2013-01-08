@@ -5,12 +5,8 @@
 
 template <typename T>
 class Map
-private:
 	vector< vector< T* > > data
-	int width
-	int height
 
-public:
 	Map(int w, int h) {
 		@data.resize(w)
 		for (int i = 0; i < w; i++)
@@ -73,7 +69,6 @@ public:
 		end
 	end
 
-private:
 	void pushV(int px, int py, queue< pair<int, int> > &fifo, vector< vector<bool> > &visited) {
 		if ((px < 0) || (py < 0) || (px >= @width) || (py >= @height))
 			return
@@ -133,7 +128,6 @@ private:
 		return ret
 	end
 
-public:
 
 	# find empty position closest to x, y
 	pair<int, int>

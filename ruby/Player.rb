@@ -11,16 +11,9 @@ require './Unit.rb'
 
 
 class Player
-private:
-	string name
 	vector<Unit > units
 	vector<Building > buildings
-	int gold
-	int wood
-	int score
-	Game game
 
-public:
 	Player(string name, Game game)
 	int getScore()
 	int addScore(int s)
@@ -62,12 +55,10 @@ Player(string name, Game game) {
 	self.addUnit(peon)
 end
 
-int
 getScore() {
 	return @score
 end
 
-string
 getName() {
 	if (self.nil?)
 		return "(none)"
@@ -79,12 +70,10 @@ getUnits() {
 	return @units
 end
 
-void
 addUnit(Unit u) {
 	@units.push_back(u)
 end
 
-void
 delUnit(Unit u) {
 	@units.erase(find(@units.begin(), @units.end(), u))
 end
@@ -94,37 +83,30 @@ getBuildings() {
 	return @buildings
 end
 
-void
 addBuilding(Building b) {
 	@buildings.push_back(b)
 end
 
-void
 delBuilding(Building b) {
 	@buildings.erase(find(@buildings.begin(), @buildings.end(), b))
 end
 
-int
 getGold() {
 	return @gold
 end
 
-int
 getWood() {
 	return @wood
 end
 
-void
 addGold(int quantity) {
 	@gold += quantity
 end
 
-void
 addWood(int quantity) {
 	@wood += quantity
 end
 
-bool
 cost(int gold, int wood) {
 	if ((@gold < gold) || (@wood < wood))
 		return false
@@ -144,18 +126,15 @@ getEnemies() {
 	return enemies
 end
 
-bool
 isAlive() {
 	return @buildings.size() || @units.size()
 end
 
-int
 addScore(int s) {
 	@score += s
 	return @score
 end
 
-int
 getGatherSpeed() {
 	int gs = 10
 	for (Building b: @buildings) {

@@ -9,11 +9,7 @@ require './units.rb'
 
 
 class Building < AttackMapItem
-protected:
-	int feeds
-	BuildingType type
 
-public:
 	Building(string popis, Player p) : AttackMapItem(popis, p) {
 		@type = bt_Any
 		@feeds = 0
@@ -35,7 +31,6 @@ end
 
 
 
-bool
 upgrade(BuildingType b) {
 	Building building = nil
 
@@ -60,7 +55,6 @@ upgrade(BuildingType b) {
 	return true
 end
 
-static bool
 isa(BuildingType is, BuildingType base) {
 	while (is != base) {
 		if (is == bt_Any)
@@ -75,7 +69,6 @@ isa(BuildingType is, BuildingType base) {
 	return true
 end
 
-bool
 create(UnitType u) {
 	Unit unit = nil
 
@@ -97,7 +90,6 @@ create(UnitType u) {
 	return true
 end
 
-void
 damage(int hitpoints) {
 	AttackMapItem::damage(hitpoints)
 
@@ -107,28 +99,22 @@ damage(int hitpoints) {
 
 		(Rock.new()).place(@map, @x, @y)
 	} else {
-		ostringstream os
 		os << "lost " << hitpoints << " hp, remaining " << @hitpoints
 		UI::logAction(self, "damage", os.str())
 	end
 end
 
-BuildingType
 getType() {
 	return @type
 end
 
-string
 getPopis() {
-	ostringstream os
 	os << "_" << @owner.getName()[0] << @owner.getName()[1] << "_"
 	os << MapItem::getPopis() << "(" << @hitpoints << ")"
 	return os.str()
 end
 
-string
 getDetail() {
-	ostringstream os
 	os << @popis << " (hp: " << @hitpoints << ")"
 	return os.str()
 end

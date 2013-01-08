@@ -3,7 +3,6 @@ require './Unit.rb'
 
 
 class Axethrower < Unit
-public:
 	Axethrower(Player owner) : Unit("Axethrower", owner) {
 		@hitpoints = 40
 		@attack_damage = rand() % 7 + 3 + 6 * (rand() % 2);	# 3-9 + 6

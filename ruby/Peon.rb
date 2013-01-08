@@ -8,10 +8,7 @@ require './enums.rb'
 
 
 class Peon < Unit
-private:
-	bool cargo
 
-public:
 	Peon(Player owner) : Unit("Peon", owner) {
 		@hitpoints = 30
 		@cargo = false
@@ -31,7 +28,6 @@ end
 
 
 # we don't unqueue gather, it loops by defualt
-bool
 gather(int x, int y) {
 	# full, going to townhall
 	if (@cargo) {
@@ -64,14 +60,12 @@ gather(int x, int y) {
 
 	@owner.addScore( (cargo % gs) ? 150 : cargo )
 
-	ostringstream os
 	os << "gathered " << cargo
 	UI::logAction(self, "gather", os.str(), make_pair(x, y), spot)
 
 	return @cargo
 end
 
-bool
 build(int x, int y, BuildingType b) {
 	bool r = self.move(x, y)
 	if ((@x != x) || (@y != y))

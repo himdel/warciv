@@ -8,12 +8,10 @@ require './units.rb'
 
 
 class UI
-private:
 	Map<MapItem> map
 	void unit(Player p, Unit u)
 	void building(Player p, Building b)
 
-public:
 	UI(Map<MapItem> m) : map(m) {}
 	void playerTurn(int turn, Player p)
 	bool eof()
@@ -43,7 +41,6 @@ static T choice(string title, const vector<T> options, bool back, function<void(
 			throw EOF
 		if (cin.fail()) {
 			cin.clear()
-			string s
 			cin >> s
 			# ignored
 		end
@@ -54,7 +51,6 @@ static T choice(string title, const vector<T> options, bool back, function<void(
 	return options[i - 1]
 end
 
-void
 unit(Player p, Unit u) {
 	# doable actions
 	vector<ActionData> acts
@@ -112,13 +108,9 @@ unit(Player p, Unit u) {
 	printf("Queued: %s\n\n", u.getDetail().c_str())
 end
 
-void
 building(Player p, Building b) {
 	# doable actions
 	struct BuAcData {
-		string name
-		int gold
-		int wood
 		function<bool(void)> code
 	end
 	vector< BuAcData > acts
@@ -158,7 +150,6 @@ building(Player p, Building b) {
 	end
 end
 
-void
 playerTurn(int turn, Player p) {
 	printf("\n\nTah: %d\n", turn)
 
@@ -203,7 +194,6 @@ playerTurn(int turn, Player p) {
 		if (cin.eof())
 			throw EOF
 
-		char c
 		printf("Actions: [u]nit, [b]uilding, [t]urn, reshow [m]ap, [q]uit\n")
 		printf("> ")
 		cin >> c
@@ -261,12 +251,10 @@ playerTurn(int turn, Player p) {
 	end
 end
 
-bool
 eof() {
 	return cin.eof()
 end
 
- void
 logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tgt) {
 	printf("unit %s: %s", u.getPopis().c_str(), action.c_str())
 	if (pos.first >= 0 && pos.second >= 0)
@@ -278,7 +266,6 @@ logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tgt) {
 	printf("\n")
 end
 
- void
 logAction(Building b, string action, string desc, MapItem tgt) {
 	printf("building %s: %s", b.getPopis().c_str(), action.c_str())
 	if (tgt)

@@ -3,7 +3,6 @@ require './TownHall.rb'
 
 
 class Stronghold < TownHall
-public:
 	Stronghold(Player owner) : TownHall("Stronghold", owner) {
 		@type = bt_Stronghold
 		@hitpoints = 1400
