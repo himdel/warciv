@@ -1,5 +1,3 @@
-#ifndef __STRONGHOLD_HPP__
-#define __STRONGHOLD_HPP__
 
 #include "TownHall.hpp"
 
@@ -14,4 +12,3 @@ public:
 	static Building *create(Player *owner) { return new Stronghold(owner); }
 };
 
-#endif	// __STRONGHOLD_HPP__

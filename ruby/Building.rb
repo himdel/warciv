@@ -1,5 +1,3 @@
-#ifndef __BUILDING_HPP__
-#define __BUILDING_HPP__
 
 #include <stdbool.h>
 #include "enums.hpp"
@@ -30,7 +28,6 @@ public:
 	virtual BuildingType getType();
 };
 
-#endif	// __BUILDING_HPP__
 #include <sstream>
 #include "Building.hpp"
 #include "buildings.hpp"

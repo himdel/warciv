@@ -1,5 +1,3 @@
-#ifndef __FORTRESS_HPP__
-#define __FORTRESS_HPP__
 
 #include "TownHall.hpp"
 
@@ -14,4 +12,3 @@ public:
 	static Building *create(Player *owner) { return new Fortress(owner); }
 };
 
-#endif	// __FORTRESS_HPP__

@@ -1,5 +1,3 @@
-#ifndef __AXETHROWER_HPP__
-#define __AXETHROWER_HPP__
 
 #include "Unit.hpp"
 
@@ -19,4 +17,3 @@ public:
 	}
 };
 
-#endif	// __AXETHROWER_HPP__

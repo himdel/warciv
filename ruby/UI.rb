@@ -1,5 +1,3 @@
-#ifndef __UI_HPP__
-#define __UI_HPP__
 
 #include "Map.hpp"
 #include "MapItem.hpp"
@@ -20,7 +18,6 @@ public:
 	static void logAction(Building *b, string action, string desc, MapItem *tgt = NULL);
 };
 
-#endif	// __UI_HPP__
 #include <cstdio>
 #include <ctype.h>
 #include <functional>

@@ -1,5 +1,3 @@
-#ifndef __UNIT_HPP__
-#define __UNIT_HPP__
 
 #include <stdbool.h>
 #include <set>
@@ -36,7 +34,6 @@ public:
 	virtual std::string getDetail();
 };
 
-#endif	// __UNIT_HPP__
 #include <sstream>
 #include "Unit.hpp"
 #include "Map.hpp"

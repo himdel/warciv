@@ -1,5 +1,3 @@
-#ifndef __CANNONTOWER_HPP__
-#define __CANNONTOWER_HPP__
 
 #include "WatchTower.hpp"
 
@@ -16,4 +14,3 @@ public:
 	static Building *create(Player *owner) { return new CannonTower(owner); }
 };
 
-#endif	// __CANNONTOWER_HPP__

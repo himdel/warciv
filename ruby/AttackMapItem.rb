@@ -1,5 +1,3 @@
-#ifndef __ATTACKMAPITEM_HPP__
-#define __ATTACKMAPITEM_HPP__
 
 #include "MapItem.hpp"
 class Player;
@@ -25,7 +23,6 @@ public:
 	virtual bool attack(AttackMapItem *i);
 };
 
-#endif	// __ATTACKMAPITEM_HPP__
 #include "AttackMapItem.hpp"
 #include "Unit.hpp"
 #include "Building.hpp"

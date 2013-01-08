@@ -1,5 +1,3 @@
-#ifndef __PLAYER_HPP__
-#define __PLAYER_HPP__
 
 #include <vector>
 class Player;
@@ -48,7 +46,6 @@ public:
 	bool cost(int gold, int wood);
 };
 
-#endif	// __PLAYER_HPP__
 #include <algorithm>
 #include "Player.hpp"
 #include "Game.hpp"

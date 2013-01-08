@@ -1,5 +1,3 @@
-#ifndef __TOWNHALL_HPP__
-#define __TOWNHALL_HPP__
 
 #include "Building.hpp"
 
@@ -16,4 +14,3 @@ public:
 	static Building *create(Player *owner) { return new TownHall(owner); }
 };
 
-#endif	// __TOWNHALL_HPP__

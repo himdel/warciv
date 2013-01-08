@@ -1,5 +1,3 @@
-#ifndef __PEON_HPP__
-#define __PEON_HPP__
 
 #include "Unit.hpp"
 
@@ -24,7 +22,6 @@ public:
 	static Unit *create(Player *owner) { return new Peon(owner); }
 };
 
-#endif	// __PEON_HPP__
 #include <sstream>
 #include "Peon.hpp"
 #include "Resource.hpp"

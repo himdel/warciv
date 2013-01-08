@@ -1,5 +1,3 @@
-#ifndef __ENUMS_HPP__
-#define __ENUMS_HPP__
 
 enum BuildingType {
 	bt_Any = 0,
@@ -28,4 +26,3 @@ enum ActionType {
 	at_Build,
 };
 
-#endif	// __ENUMS_HPP__

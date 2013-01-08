@@ -1,5 +1,3 @@
-#ifndef __MAP_HPP__
-#define __MAP_HPP__
 
 #include <algorithm>
 #include <iostream>
@@ -217,4 +215,3 @@ public:
 	}
 };
 
-#endif	// __MAP_HPP__

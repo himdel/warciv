@@ -1,5 +1,3 @@
-#ifndef __GOLDMINE_HPP__
-#define __GOLDMINE_HPP__
 
 #include "Resource.hpp"
 
@@ -14,4 +12,3 @@ public:
 	}
 };
 
-#endif	// __GOLDMINE_HPP__

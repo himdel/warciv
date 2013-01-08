@@ -1,5 +1,3 @@
-#ifndef __UNITS_HPP__
-#define __UNITS_HPP__
 
 #include "enums.hpp"
 #include "Unit.hpp"
@@ -16,7 +14,6 @@ struct UnitData {
 extern UnitData units[];
 extern unsigned units_count;
 
-#endif	// __UNITS_HPP__
 #include "units.hpp"
 #include "Peon.hpp"
 #include "Grunt.hpp"

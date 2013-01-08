@@ -1,5 +1,3 @@
-#ifndef __GAME_HPP__
-#define __GAME_HPP__
 
 #include <vector>
 #include "Map.hpp"
@@ -29,7 +27,6 @@ public:
 	~Game();
 };
 
-#endif	// __GAME_HPP__
 #include <cstdlib>
 #include <sstream>
 #include <time.h>

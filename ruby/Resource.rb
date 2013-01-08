@@ -1,5 +1,3 @@
-#ifndef __RESOURCE_HPP__
-#define __RESOURCE_HPP__
 
 #include <cstdlib>
 #include "MapItem.hpp"
@@ -18,7 +16,6 @@ public:
 	std::string getPopis();	// popis(quantity)
 };
 
-#endif	// __RESOURCE_HPP__
 #include <sstream>
 #include "Resource.hpp"
 

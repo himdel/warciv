@@ -1,5 +1,3 @@
-#ifndef __BARRACKS_HPP__
-#define __BARRACKS_HPP__
 
 #include "Building.hpp"
 
@@ -14,4 +12,3 @@ public:
 	static Building *create(Player *owner) { return new Barracks(owner); }
 };
 
-#endif	// __BARRACKS_HPP__

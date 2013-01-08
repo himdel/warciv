@@ -1,5 +1,3 @@
-#ifndef __MAPITEM_HPP__
-#define __MAPITEM_HPP__
 
 #include <ostream>
 #include "Map.hpp"
@@ -28,7 +26,6 @@ public:
 
 std::ostream& operator<<(std::ostream &o, MapItem *m);
 
-#endif	// __MAPITEM_HPP__
 #include <assert.h>
 #include <cmath>
 #include "MapItem.hpp"

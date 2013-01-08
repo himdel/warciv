@@ -1,5 +1,3 @@
-#ifndef __FARM_HPP__
-#define __FARM_HPP__
 
 #include "Building.hpp"
 
@@ -15,4 +13,3 @@ public:
 	static Building *create(Player *owner) { return new Farm(owner); }
 };
 
-#endif	// __FARM_HPP__

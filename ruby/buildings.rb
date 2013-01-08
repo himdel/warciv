@@ -1,5 +1,3 @@
-#ifndef __BUILDINGS_HPP__
-#define __BUILDINGS_HPP__
 
 #include "enums.hpp"
 #include "Building.hpp"
@@ -16,7 +14,6 @@ struct BuildingData {
 extern BuildingData buildings[];
 extern unsigned buildings_count;
 
-#endif	// __BUILDINGS_HPP__
 #include "buildings.hpp"
 #include "TownHall.hpp"
 #include "Stronghold.hpp"

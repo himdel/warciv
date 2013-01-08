@@ -1,5 +1,3 @@
-#ifndef __FOREST_HPP__
-#define __FOREST_HPP__
 
 #include "Resource.hpp"
 
@@ -14,4 +12,3 @@ public:
 	}
 };
 
-#endif	// __FOREST_HPP__

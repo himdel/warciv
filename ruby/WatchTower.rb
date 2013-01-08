@@ -1,5 +1,3 @@
-#ifndef __WATCHTOWER_HPP__
-#define __WATCHTOWER_HPP__
 
 #include "Building.hpp"
 
@@ -19,4 +17,3 @@ public:
 	static Building *create(Player *owner) { return new WatchTower(owner); }
 };
 
-#endif	// __WATCHTOWER_HPP__
