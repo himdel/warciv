@@ -1,6 +1,6 @@
+require './Unit.rb'
 # not ruby yet!
 
-require './Unit.rb'
 
 class Axethrower < Unit
 public:

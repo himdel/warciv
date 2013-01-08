@@ -1,7 +1,15 @@
+require './Barracks.rb'
+require './Building.rb'
+require './CannonTower.rb'
+require './Farm.rb'
+require './Fortress.rb'
+require './GuardTower.rb'
+require './Stronghold.rb'
+require './TownHall.rb'
+require './WatchTower.rb'
+require './enums.rb'
 # not ruby yet!
 
-require './enums.rb'
-require './Building.rb'
 
 struct BuildingData {
 	BuildingType type
@@ -13,14 +21,6 @@ struct BuildingData {
 end
 
 
-require './TownHall.rb'
-require './Stronghold.rb'
-require './Fortress.rb'
-require './Farm.rb'
-require './Barracks.rb'
-require './WatchTower.rb'
-require './GuardTower.rb'
-require './CannonTower.rb'
 
 BuildingData buildings[] = {
 	{ bt_TownHall, TownHall::create, "TownHall", bt_Any, 1200, 800 },

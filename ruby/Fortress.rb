@@ -1,6 +1,6 @@
+require './TownHall.rb'
 # not ruby yet!
 
-require './TownHall.rb'
 
 class Fortress < TownHall
 public:

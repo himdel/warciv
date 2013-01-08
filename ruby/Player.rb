@@ -1,7 +1,12 @@
+require './Building.rb'
+require './Fortress.rb'
+require './Game.rb'
+require './Peon.rb'
+require './Stronghold.rb'
+require './TownHall.rb'
+require './Unit.rb'
 # not ruby yet!
 
-require './Unit.rb'
-require './Building.rb'
 
 
 
@@ -41,11 +46,6 @@ public:
 	bool cost(int gold, int wood)
 end
 
-require './Game.rb'
-require './Peon.rb'
-require './TownHall.rb'
-require './Stronghold.rb'
-require './Fortress.rb'
 
 
 Player::Player(string name, Game game) {

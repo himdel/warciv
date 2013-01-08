@@ -1,6 +1,8 @@
+require './Building.rb'
+require './MapItem.rb'
+require './Unit.rb'
 # not ruby yet!
 
-require './MapItem.rb'
 
 class AttackMapItem < MapItem
 protected:
@@ -23,8 +25,6 @@ public:
 	virtual bool attack(AttackMapItem i)
 end
 
-require './Unit.rb'
-require './Building.rb'
 
 void
 AttackMapItem::damage(int hitpoints) {

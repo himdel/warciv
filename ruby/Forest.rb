@@ -1,6 +1,6 @@
+require './Resource.rb'
 # not ruby yet!
 
-require './Resource.rb'
 
 class Forest < Resource
 public:

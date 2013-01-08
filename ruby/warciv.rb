@@ -1,5 +1,5 @@
-# not ruby yet!
 require './Game.rb'
+# not ruby yet!
 
 
 int

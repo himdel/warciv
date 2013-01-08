@@ -1,6 +1,6 @@
+require './WatchTower.rb'
 # not ruby yet!
 
-require './WatchTower.rb'
 
 class GuardTower < WatchTower
 public:

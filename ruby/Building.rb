@@ -1,8 +1,12 @@
-# not ruby yet!
-
-require './enums.rb'
 require './AttackMapItem.rb'
 require './Player.rb'
+require './Rock.rb'
+require './UI.rb'
+require './buildings.rb'
+require './enums.rb'
+require './units.rb'
+# not ruby yet!
+
 
 class Building < AttackMapItem
 protected:
@@ -28,10 +32,6 @@ public:
 	virtual BuildingType getType()
 end
 
-require './buildings.rb'
-require './units.rb'
-require './Rock.rb'
-require './UI.rb'
 
 
 

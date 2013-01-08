@@ -1,8 +1,11 @@
+require './AttackMapItem.rb'
+require './Map.rb'
+require './Player.rb'
+require './UI.rb'
+require './buildings.rb'
+require './enums.rb'
 # not ruby yet!
 
-require './enums.rb'
-require './AttackMapItem.rb'
-require './Player.rb'
 
 class Unit < AttackMapItem
 protected:
@@ -33,9 +36,6 @@ public:
 	virtual std::string getDetail()
 end
 
-require './Map.rb'
-require './buildings.rb'
-require './UI.rb'
 
 
 bool

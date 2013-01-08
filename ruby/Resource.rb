@@ -1,7 +1,7 @@
-# not ruby yet!
-
 require './MapItem.rb'
 require './Player.rb'
+# not ruby yet!
+
 
 
 class Resource < MapItem

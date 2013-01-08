@@ -1,6 +1,11 @@
+require './Resource.rb'
+require './TownHall.rb'
+require './UI.rb'
+require './Unit.rb'
+require './buildings.rb'
+require './enums.rb'
 # not ruby yet!
 
-require './Unit.rb'
 
 class Peon < Unit
 private:
@@ -23,11 +28,6 @@ public:
 	static Unit create(Player owner) { return Peon.new(owner); }
 end
 
-require './Resource.rb'
-require './enums.rb'
-require './buildings.rb'
-require './TownHall.rb'
-require './UI.rb'
 
 
 # we don't unqueue gather, it loops by defualt

@@ -1,8 +1,11 @@
-# not ruby yet!
-
 require './Map.rb'
 require './MapItem.rb'
 require './Player.rb'
+require './actions.rb'
+require './buildings.rb'
+require './units.rb'
+# not ruby yet!
+
 
 class UI
 private:
@@ -19,9 +22,6 @@ public:
 	static void logAction(Building b, string action, string desc, MapItem tgt = nil)
 end
 
-require './actions.rb'
-require './units.rb'
-require './buildings.rb'
 
 template<typename T>
 static T choice(std::string title, const vector<T> options, bool back, std::function<void(T)> fun = [] (T d) { cout << d.name; } ) {

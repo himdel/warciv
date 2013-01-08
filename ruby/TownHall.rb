@@ -1,6 +1,6 @@
+require './Building.rb'
 # not ruby yet!
 
-require './Building.rb'
 
 class TownHall < Building
 public:

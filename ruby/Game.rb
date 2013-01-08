@@ -1,9 +1,12 @@
-# not ruby yet!
-
+require './Forest.rb'
+require './GoldMine.rb'
 require './Map.rb'
 require './MapItem.rb'
 require './Player.rb'
+require './Rock.rb'
 require './UI.rb'
+# not ruby yet!
+
 
 class Game
 private:
@@ -27,9 +30,6 @@ public:
 	~Game()
 end
 
-require './Rock.rb'
-require './GoldMine.rb'
-require './Forest.rb'
 
 
 

@@ -1,6 +1,6 @@
+require './Map.rb'
 # not ruby yet!
 
-require './Map.rb'
 
 class MapItem
 protected:

@@ -1,6 +1,6 @@
+require './enums.rb'
 # not ruby yet!
 
-require './enums.rb'
 
 struct ActionData {
 	ActionType type

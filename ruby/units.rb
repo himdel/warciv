@@ -1,7 +1,10 @@
+require './Axethrower.rb'
+require './Grunt.rb'
+require './Peon.rb'
+require './Unit.rb'
+require './enums.rb'
 # not ruby yet!
 
-require './enums.rb'
-require './Unit.rb'
 
 struct UnitData {
 	UnitType type
@@ -13,9 +16,6 @@ struct UnitData {
 end
 
 
-require './Peon.rb'
-require './Grunt.rb'
-require './Axethrower.rb'
 
 UnitData units[] = {
 	{ ut_Peon, Peon::create, "Peon", bt_TownHall, 400, 0 },
