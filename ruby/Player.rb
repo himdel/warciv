@@ -137,7 +137,7 @@ end
 
 def getGatherSpeed()
 	int gs = 10
-	for (Building b: @buildings) {
+	@buildings.each do |b|
 		if (dynamic_cast<TownHall >(b))
 			gs = max(gs, 40)
 		if (dynamic_cast<Stronghold >(b))
