@@ -1,3 +1,4 @@
+# not ruby yet!
 
 #include "MapItem.hpp"
 class Player;

@@ -1,3 +1,4 @@
+# not ruby yet!
 
 #include <stdbool.h>
 #include "enums.hpp"

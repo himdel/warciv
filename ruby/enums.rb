@@ -1,3 +1,4 @@
+# not ruby yet!
 
 enum BuildingType {
 	bt_Any = 0,

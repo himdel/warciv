@@ -1,3 +1,4 @@
+# not ruby yet!
 
 #include <vector>
 class Player;

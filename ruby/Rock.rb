@@ -1,3 +1,4 @@
+# not ruby yet!
 
 class Rock : public MapItem {
 public:
