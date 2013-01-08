@@ -8,7 +8,7 @@ public:
 		@type = bt_Fortress
 		@hitpoints = 1600
 		owner.addScore(100)
-	}
+	end
 
 	static Building create(Player owner) { return Fortress.new(owner); }
 end

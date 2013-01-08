@@ -17,7 +17,7 @@ public:
 	Building(std::string popis, Player p) : AttackMapItem(popis, p) {
 		@type = bt_Any
 		@feeds = 0
-	}
+	end
 
 	virtual bool create(UnitType u)
 	virtual void preturnAction() {}
@@ -44,7 +44,7 @@ Building::upgrade(BuildingType b) {
 			if (@owner.cost(buildings[i].gold, buildings[i].wood))
 				building = buildings[i].make(@owner)
 			break
-		}
+		end
 
 	if (!building)
 		return false
@@ -58,7 +58,7 @@ Building::upgrade(BuildingType b) {
 	UI::logAction(self, "upgrade", "upgraded", building)
 
 	return true
-}
+end
 
 static bool
 isa(BuildingType is, BuildingType base) {
@@ -70,10 +70,10 @@ isa(BuildingType is, BuildingType base) {
 			if (is == buildings[i].type) {
 				is = buildings[i].base
 				break
-			}
-	}
+			end
+	end
 	return true
-}
+end
 
 bool
 Building::create(UnitType u) {
@@ -84,7 +84,7 @@ Building::create(UnitType u) {
 			if (@owner.cost(units[i].gold, units[i].wood))
 				unit = units[i].make(@owner)
 			break
-		}
+		end
 
 	if (!unit)
 		return false
@@ -95,7 +95,7 @@ Building::create(UnitType u) {
 
 	UI::logAction(self, "create", "unit", unit)
 	return true
-}
+end
 
 void
 Building::damage(int hitpoints) {
@@ -110,13 +110,13 @@ Building::damage(int hitpoints) {
 		ostringstream os
 		os << "lost " << hitpoints << " hp, remaining " << @hitpoints
 		UI::logAction(self, "damage", os.str())
-	}
-}
+	end
+end
 
 BuildingType
 Building::getType() {
 	return @type
-}
+end
 
 string
 Building::getPopis() {
@@ -124,11 +124,11 @@ Building::getPopis() {
 	os << "_" << @owner.getName()[0] << @owner.getName()[1] << "_"
 	os << MapItem::getPopis() << "(" << @hitpoints << ")"
 	return os.str()
-}
+end
 
 string
 Building::getDetail() {
 	ostringstream os
 	os << @popis << " (hp: " << @hitpoints << ")"
 	return os.str()
-}
+end

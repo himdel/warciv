@@ -11,7 +11,7 @@ public:
 		@attack_range = 2
 		@attack_damage = 1
 		owner.addScore(50)
-	}
+	end
 
 	void preturnAction() { self.attack(); }
 

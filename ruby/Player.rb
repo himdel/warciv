@@ -60,69 +60,69 @@ Player::Player(string name, Game game) {
 	pair<int, int> empty = map.closestEmpty(rand() % map.getWidth(), rand() % map.getHeight())
 	peon.place(map, empty.first, empty.second)
 	self.addUnit(peon)
-}
+end
 
 int
 Player::getScore() {
 	return @score
-}
+end
 
 string
 Player::getName() {
 	if (self.nil?)
 		return "(none)"
 	return @name
-}
+end
 
 const vector<Unit >
 Player::getUnits() {
 	return @units
-}
+end
 
 void
 Player::addUnit(Unit u) {
 	@units.push_back(u)
-}
+end
 
 void
 Player::delUnit(Unit u) {
 	@units.erase(std::find(@units.begin(), @units.end(), u))
-}
+end
 
 const vector<Building >
 Player::getBuildings() {
 	return @buildings
-}
+end
 
 void
 Player::addBuilding(Building b) {
 	@buildings.push_back(b)
-}
+end
 
 void
 Player::delBuilding(Building b) {
 	@buildings.erase(std::find(@buildings.begin(), @buildings.end(), b))
-}
+end
 
 int
 Player::getGold() {
 	return @gold
-}
+end
 
 int
 Player::getWood() {
 	return @wood
-}
+end
 
 void
 Player::addGold(int quantity) {
 	@gold += quantity
-}
+end
 
 void
 Player::addWood(int quantity) {
 	@wood += quantity
-}
+end
 
 bool
 Player::cost(int gold, int wood) {
@@ -132,27 +132,28 @@ Player::cost(int gold, int wood) {
 	@gold -= gold
 	@wood -= wood
 	return true
-}
+end
 
 const vector<Player >
 Player::getEnemies() {
 	vector<Player > enemies
-	for (Player p : @game.getPlayers())
+	@game.getPlayers().each do |p|
 		if (p != self)
 			enemies.push_back(p)
+	end
 	return enemies
-}
+end
 
 bool
 Player::isAlive() {
 	return @buildings.size() || @units.size()
-}
+end
 
 int
 Player::addScore(int s) {
 	@score += s
 	return @score
-}
+end
 
 int
 Player::getGatherSpeed() {
@@ -164,6 +165,6 @@ Player::getGatherSpeed() {
 			gs = max(gs, 50)
 		if (dynamic_cast<Fortress >(b))
 			gs = max(gs, 75)
-	}
+	end
 	return gs
-}
+end

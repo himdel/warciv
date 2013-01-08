@@ -16,14 +16,14 @@ public:
 		@hitpoints = 30
 		@cargo = false
 		owner.addScore(30)
-	}
+	end
 
 	bool gather(int x, int y)
 	bool build(int x, int y, BuildingType b)
 
 	const set<ActionType> availActions() {
 		return set<ActionType>({ at_None, at_Move, at_Build, at_Gather })
-	}
+	end
 
 	static Unit create(Player owner) { return Peon.new(owner); }
 end
@@ -43,10 +43,10 @@ Peon::gather(int x, int y) {
 			UI::logAction(self, "gather", "unload cargo", make_pair(x, y))
 			@cargo = false
 			return true
-		}
+		end
 
 		return self.move(path.front().first, path.front().second)
-	}
+	end
 
 	if (self.distance(x, y) > 1)
 		return self.move(x, y)
@@ -56,7 +56,7 @@ Peon::gather(int x, int y) {
 	if (!spot) {
 		UI::logAction(self, "gather", "no resources", make_pair(x, y))
 		return false
-	}
+	end
 
 	int gs = @owner.getGatherSpeed()
 	int cargo = spot.gather(gs, @owner)
@@ -69,7 +69,7 @@ Peon::gather(int x, int y) {
 	UI::logAction(self, "gather", os.str(), make_pair(x, y), spot)
 
 	return @cargo
-}
+end
 
 bool
 Peon::build(int x, int y, BuildingType b) {
@@ -82,7 +82,7 @@ Peon::build(int x, int y, BuildingType b) {
 	if ((mi.nil? == false) && (mi != self)) {
 		UI::logAction(self, "build", "not empty", make_pair(x, y), mi)
 		return false
-	}
+	end
 
 	# actual build
 	Building building = nil
@@ -94,17 +94,17 @@ Peon::build(int x, int y, BuildingType b) {
 				building = buildings[i].make(@owner)
 			found = true
 			break
-		}
+		end
 
 	if (!found) {
 		UI::logAction(self, "build", "can't build that here")
 		return false
-	}
+	end
 
 	if (!building) {
 		UI::logAction(self, "build", "not enough resources")
 		return false
-	}
+	end
 
 	building.place(@map, @x, @y)
 	@owner.addBuilding(building)
@@ -120,4 +120,4 @@ Peon::build(int x, int y, BuildingType b) {
 		@pending = at_None
 
 	return true
-}
+end

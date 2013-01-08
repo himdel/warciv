@@ -18,25 +18,25 @@ public:
 
 		@width = w
 		@height = h
-	}
+	end
 
 	T get(int x, int y) {
 		if ((x < 0) || (y < 0) || (x >= @width) || (y >= @height)) {
 			cerr << "Map::get out of bounds " << x << ", " << y << endl
 			return nil
-		}
+		end
 
 		return @data[x][y]
-	}
+	end
 
 	void put(int x, int y, T* elem) {
 		if ((x < 0) || (y < 0) || (x >= @width) || (y >= @height)) {
 			cerr << "Map::put out of bounds " << x << ", " << y << endl
 			return
-		}
+		end
 
 		@data[x][y] = elem
-	}
+	end
 
 	int getWidth() { return @width; }
 	int getHeight() { return @height; }
@@ -47,7 +47,7 @@ public:
 			for (int x = 0; x < @width; x++) {
 				T mi = @data[x][y]
 				maxw = std::max(maxw, mi ? (unsigned) mi.getPopis().length() : 1)
-			}
+			end
 		maxw++
 
 		printf("   / ")
@@ -60,18 +60,18 @@ public:
 			for (int x = 0; x < @width; x++) {
 				T mi = @data[x][y]
 				printf("%-s", maxw, mi ? mi.getPopis().c_str() : "-")
-			}
+			end
 			printf("\n")
-		}
-	}
+		end
+	end
 
 	~Map() {
 		for (int x = 0; x < @width; x++) {
 			for (int y = 0; y < @height; y++) {
 				@data[x][y] = nil
-			}
-		}
-	}
+			end
+		end
+	end
 
 private:
 	void pushV(int px, int py, queue< pair<int, int> > &fifo, vector< vector<bool> > &visited) {
@@ -82,7 +82,7 @@ private:
 		visited[px][py] = true
 
 		fifo.push(make_pair(px, py))
-	}
+	end
 
 	void pushD(int px, int py, queue< pair<int, int> > &fifo, vector< vector<int> > &dist, int d) {
 		if ((px < 0) || (py < 0) || (px >= @width) || (py >= @height))
@@ -92,7 +92,7 @@ private:
 		dist[px][py] = d
 
 		fifo.push(make_pair(px, py))
-	}
+	end
 
 	bool getD(pair<int, int> &pos, int px, int py, vector< vector<int> > dist, int d) {
 		if ((px < 0) || (py < 0) || (px >= @width) || (py >= @height))
@@ -107,7 +107,7 @@ private:
 		pos.first = px
 		pos.second = py
 		return true
-	}
+	end
 
 	list< pair<int, int> >
 	wayUp(pair<int, int> pos, vector< vector<int> > dist) {
@@ -128,10 +128,10 @@ private:
 			b |= self.getD(pos, px + 1, py - 1, dist, d)
 			if (!b)
 				return ret
-		}
+		end
 
 		return ret
-	}
+	end
 
 public:
 
@@ -162,10 +162,10 @@ public:
 			self.pushV(px + 1, py + 1, fifo, visited)
 			self.pushV(px + 1, py + 0, fifo, visited)
 			self.pushV(px + 1, py - 1, fifo, visited)
-		}
+		end
 
 		return make_pair(-1, -1)
-	}
+	end
 
 	# find position closest to x, y that fulfills condition f() without passing through something on the way
 	list< pair<int, int> >
@@ -200,10 +200,10 @@ public:
 			self.pushD(px + 1, py + 1, fifo, dist, d)
 			self.pushD(px + 1, py + 0, fifo, dist, d)
 			self.pushD(px + 1, py - 1, fifo, dist, d)
-		}
+		end
 
 		list< pair<int, int> > ret
 		return ret
-	}
+	end
 end
 

@@ -10,6 +10,6 @@ public:
 		amount = Resource::gather(amount)
 		p.addGold(amount)
 		return amount
-	}
+	end
 end
 

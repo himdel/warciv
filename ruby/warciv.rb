@@ -14,4 +14,4 @@ main(int argc, char *argv) {
 	cout << endl << "* Score *" << endl << g.score() << endl
 
 	return 0
-}
+end

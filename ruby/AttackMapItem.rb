@@ -16,7 +16,7 @@ public:
 		@hitpoints = 0
 		@attack_damage = 0
 		@attack_range = 0
-	}
+	end
 
 	virtual void damage(int hitpoints)
 
@@ -32,23 +32,25 @@ AttackMapItem::damage(int hitpoints) {
 
 	if (@hitpoints == 0)
 		self.remove()
-}
+end
 
 
 bool
 AttackMapItem::attack() {
 	bool bb = false
-	for (Player e : @owner.getEnemies()) {
-		for (Unit u : e.getUnits())
+	@owner.getEnemies().each do |e|
+		e.getUnits().each do |u|
 			if (self.distance(u) <= @attack_range)
 				bb |= AttackMapItem::attack(u)
+		end
 
-		for (Building b : e.getBuildings())
+		e.getBuildings().each do |b|
 			if (self.distance(b) <= @attack_range)
 				bb |= AttackMapItem::attack(b)
-	}
+		end
+	end
 	return bb
-}
+end
 
 bool
 AttackMapItem::attack(int x, int y) {
@@ -61,7 +63,7 @@ AttackMapItem::attack(int x, int y) {
 		return false
 
 	return self.attack(a)
-}
+end
 
 # do not use i afterwards
 bool
@@ -81,4 +83,4 @@ AttackMapItem::attack(AttackMapItem i) {
 
 	i.damage( rand() % ((int) round(@attack_damage * d)) )
 	return true
-}
+end

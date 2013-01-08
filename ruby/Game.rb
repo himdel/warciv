@@ -26,8 +26,6 @@ public:
 	const vector<Player > getPlayers()
 
 	Map<MapItem> getMap() { return @map; }
-
-	~Game()
 end
 
 
@@ -46,15 +44,15 @@ Game::Game(int w, int h, string p1, string p2, int win_score) {
 	@players = {
 		Player.new(p1, self),
 		Player.new(p2, self),
-	}
-}
+	end
+end
 
 void
 Game::genMap(double pRock, double pRes) {
 	if (pRock + pRes >= 1) {
 		cerr << "genMap: pRock + pRes >= 1" << endl
 		return
-	}
+	end
 
 	for (int x = 0; x < @map.getWidth(); x++)
 		for (int y = 0; y < @map.getHeight(); y++) {
@@ -69,52 +67,51 @@ Game::genMap(double pRock, double pRes) {
 
 			if (mi)
 				mi.place(@map, x, y)
-		}
-}
+		end
+end
 
 void
 Game::play() {
 	while (self.winner().nil?) {
 		@turn++
-		for (Player p : @players)
+		@players.each do |p|
 			@ui.playerTurn(turn, p)
+		end
 		if (@ui.eof())
 			break
-	}
-}
+	end
+end
 
 Player *
 Game::winner() {
 	Player best = nil
-	for (Player p : @players) {
+	@players.each do |p|
 		if (!best && (p.getScore() >= @win_score))
 			best = p
 		if (best && (p.getScore() >= best.getScore()))
 			best = p
 
 		bool survivor = true
-		for (Player e : p.getEnemies())
+		p.getEnemies().each do |e|
 			survivor &= !e.isAlive()
+		end
 
 		if (survivor && !best)
 			best = p
-	}
+	end
 	return best
-}
+end
 
 string
 Game::score() {
 	ostringstream out
-	for (Player p : @players)
+	@players.each do |p|
 		out << p.getName() << "\t\t" << p.getScore() << endl
+	end
 	return out.str()
-}
+end
 
 const vector<Player >
 Game::getPlayers() {
 	return @players
-}
-
-Game::~Game() {
-	for (Player p : @players)
-}
+end

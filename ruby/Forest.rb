@@ -10,6 +10,6 @@ public:
 		amount = Resource::gather(amount)
 		p.addWood(amount)
 		return amount
-	}
+	end
 end
 

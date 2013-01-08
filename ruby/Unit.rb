@@ -17,7 +17,7 @@ protected:
 public:
 	Unit(std::string popis, Player p) : AttackMapItem(popis, p) {
 		self.stop()
-	}
+	end
 
 	bool move(int x, int y)
 	virtual bool gather(int x, int y)
@@ -48,7 +48,7 @@ Unit::move(int x, int y) {
 	if (path.empty()) {
 		UI::logAction(self, "move", "target not found", make_pair(x, y))
 		return false
-	}
+	end
 
 	int px = path.front().first
 	int py = path.front().second
@@ -56,7 +56,7 @@ Unit::move(int x, int y) {
 	if (@map.get(px, py)) {
 		UI::logAction(self, "move", "position occupied", make_pair(px, py), @map.get(px, py))
 		return false
-	}
+	end
 
 	self.remove()
 	self.place(px, py)
@@ -65,23 +65,23 @@ Unit::move(int x, int y) {
 	if (px == @pending_x && py == @pending_y && @pending == at_Move) {
 		@pending = at_None
 		was_pending = true
-	}
+	end
 
 	UI::logAction(self, "move", was_pending ? "OK, unqueued" : "OK", make_pair(px, py))
 	return true
-}
+end
 
 bool
 Unit::gather(int x, int y) {
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
-}
+end
 
 bool
 Unit::build(int x, int y, BuildingType b) {
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
-}
+end
 
 # do not use self afterwards
 void
@@ -95,8 +95,8 @@ Unit::damage(int hitpoints) {
 		ostringstream os
 		os << "lost " << hitpoints << " hp, remaining " << @hitpoints
 		UI::logAction(self, "damage", os.str())
-	}
-}
+	end
+end
 
 bool
 Unit::attack(int x, int y) {
@@ -105,9 +105,9 @@ Unit::attack(int x, int y) {
 		if (@AttackMapItem::attack()) {
 			UI::logAction(self, "attack", "enemy around", make_pair(@x, @y))
 			return true
-		}
+		end
 		return self.move(x, y)
-	}
+	end
 
 	UI::logAction(self, "attack", "enemy at position", make_pair(x, y), @map.get(x, y))
 	bool r = AttackMapItem::attack(x, y)
@@ -116,12 +116,12 @@ Unit::attack(int x, int y) {
 		@pending = at_None
 
 	return r
-}
+end
 
 void
 Unit::stop() {
 	self.queueAction()
-}
+end
 
 void
 Unit::queueAction(ActionType at, int x, int y, BuildingType bt) {
@@ -129,12 +129,12 @@ Unit::queueAction(ActionType at, int x, int y, BuildingType bt) {
 	@pending_build = bt
 	@pending_x = x
 	@pending_y = y
-}
+end
 
 bool
 Unit::actionPending() {
 	return @pending != at_None
-}
+end
 
 # nevolat pokud byl tah udelan rucne
 bool
@@ -155,14 +155,14 @@ Unit::performAction() {
 		return self.build(@pending_x, @pending_y, @pending_build)
 
 	return false
-}
+end
 
 std::string
 Unit::getPopis() {
 	std::ostringstream out
 	out << "_" << @owner.getName()[0] << @owner.getName()[1] << "_" << @popis << " (" << @hitpoints << ")"
 	return out.str()
-}
+end
 
 std::string
 Unit::getDetail() {
@@ -183,8 +183,8 @@ Unit::getDetail() {
 			break
 		case at_None:
 			out << ", no action"
-	}
+	end
 	out << ", @[ " << @x << " " << @y << " ]"
 	out << ")"
 	return out.str()
-}
+end

@@ -31,7 +31,7 @@ static T choice(std::string title, const vector<T> options, bool back, std::func
 		printf("%d. ", i + 1)
 		fun(options[i])
 		printf("\n")
-	}
+	end
 	if (back)
 		printf("0. back\n")
 
@@ -46,13 +46,13 @@ static T choice(std::string title, const vector<T> options, bool back, std::func
 			string s
 			cin >> s
 			# ignored
-		}
+		end
 	} while (i < (back ? 0 : 1) || i > options.size())
 
 	if (i == 0)
 		throw 0
 	return options[i - 1]
-}
+end
 
 void
 UI::unit(Player p, Unit u) {
@@ -74,7 +74,7 @@ UI::unit(Player p, Unit u) {
 	if (acts.size() == 0) {
 		printf("(no available actions)\n")
 		return
-	}
+	end
 	ActionData a = choice("Actions:", acts, true)
 
 	int x, y
@@ -90,16 +90,16 @@ UI::unit(Player p, Unit u) {
 			printf("target> ")
 			cin >> x >> y
 			break
-	}
+	end
 
 	BuildingType bt = bt_Any
 	if (a.type == at_Build) {
 		std::function<void(BuildingData)> fun = [] (BuildingData d) {
 			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood)
-		}
+		end
 		BuildingData bd = choice("\nBuild what?", bld, false, fun)
 		bt = bd.type
-	}
+	end
 
 	printf("\naction: %s", a.name.c_str())
 	if (a.type != at_None)
@@ -110,7 +110,7 @@ UI::unit(Player p, Unit u) {
 
 	u.queueAction(a.type, x, y, bt)
 	printf("Queued: %s\n\n", u.getDetail().c_str())
-}
+end
 
 void
 UI::building(Player p, Building b) {
@@ -120,7 +120,7 @@ UI::building(Player p, Building b) {
 		int gold
 		int wood
 		std::function<bool(void)> code
-	}
+	end
 	vector< BuAcData > acts
 
 	for (unsigned bb = 0; bb < buildings_count; bb++)
@@ -142,11 +142,11 @@ UI::building(Player p, Building b) {
 		if (acts.size() == 0) {
 			printf("(no available actions)\n")
 			return
-		}
+		end
 
 		std::function< void(BuAcData) > fun = [] (BuAcData d) {
 			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood)
-		}
+		end
 		BuAcData c = choice("Actions:", acts, true, fun)
 		pair<int, int> pos = b.getPos()
 		bool r = c.code()
@@ -155,8 +155,8 @@ UI::building(Player p, Building b) {
 		# after upgrade
 		if (@map.get(pos.first, pos.second) != b)
 			return
-	}
-}
+	end
+end
 
 void
 UI::playerTurn(int turn, Player p) {
@@ -168,8 +168,9 @@ UI::playerTurn(int turn, Player p) {
 	@map.show()
 	printf("\n")
 
-	for (Building b : p.getBuildings())
+	p.getBuildings().each do |b|
 		b.preturnAction()
+	end
 
 	for (;;) {
 		printf("Gold: %d; Wood: %d\n\n", p.getGold(), p.getWood())
@@ -178,24 +179,26 @@ UI::playerTurn(int turn, Player p) {
 		if (buildings.size()) {
 			printf("Available buildings:\n")
 			int i = 0
-			for (Building b : buildings)
+			buildings.each do |b|
 				printf("%d. %s\n", ++i, b.getDetail().c_str())
+			end
 			printf("\n")
-		}
+		end
 
 		const vector<Unit > units = p.getUnits()
 		if (units.size()) {
 			printf("Available units:\n")
 			int i = 0
-			for (Unit u : units)
+			units.each do |u|
 				printf("%d. %s\n", ++i, u.getDetail().c_str())
+			end
 			printf("\n")
-		}
+		end
 
 		if (units.empty() && buildings.empty()) {
 			printf("(no actions available)\n")
 			return
-		}
+		end
 
 		if (cin.eof())
 			throw EOF
@@ -214,13 +217,13 @@ UI::playerTurn(int turn, Player p) {
 				if (u < 1 || u > units.size()) {
 					printf("unknown unit %d\n", u)
 					break
-				}
+				end
 				try {
 					self.unit(p, units[u - 1])
 				} catch (int e) {
 					if (e != 0)
 						throw e
-				}
+				end
 				break
 
 			case 'B':
@@ -228,18 +231,19 @@ UI::playerTurn(int turn, Player p) {
 				if (b < 1 || b > buildings.size()) {
 					printf("unknown building %d\n", b)
 					break
-				}
+				end
 				try {
 					self.building(p, buildings[b - 1])
 				} catch (int e) {
 					if (e != 0)
 						throw e
-				}
+				end
 				break
 
 			case 'T':
-				for (Unit u : units)
+				units.each do |u|
 					u.performAction()
+				end
 				return
 
 			case 'Q':
@@ -253,14 +257,14 @@ UI::playerTurn(int turn, Player p) {
 
 			default:
 				printf("unknown action %c\n", c)
-		}
-	}
-}
+		end
+	end
+end
 
 bool
 UI::eof() {
 	return cin.eof()
-}
+end
 
  void
 UI::logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tgt) {
@@ -272,7 +276,7 @@ UI::logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tg
 	if (desc != "")
 		printf(" %s", desc.c_str())
 	printf("\n")
-}
+end
 
  void
 UI::logAction(Building b, string action, string desc, MapItem tgt) {
@@ -282,4 +286,4 @@ UI::logAction(Building b, string action, string desc, MapItem tgt) {
 	if (desc != "")
 		printf(" %s", desc.c_str())
 	printf("\n")
-}
+end

@@ -8,7 +8,7 @@ public:
 		@type = bt_Stronghold
 		@hitpoints = 1400
 		owner.addScore(100)
-	}
+	end
 
 	static Building create(Player owner) { return Stronghold.new(owner); }
 end
