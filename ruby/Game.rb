@@ -26,7 +26,7 @@ end
 
 
 
-Game(int w, int h, string p1, string p2, int win_score) {
+def Game(int w, int h, string p1, string p2, int win_score)
 	srand(time(nil))
 	@win_score = win_score
 	@turn = 0
@@ -42,7 +42,7 @@ Game(int w, int h, string p1, string p2, int win_score) {
 	end
 end
 
-genMap(double pRock, double pRes) {
+def genMap(double pRock, double pRes)
 	if (pRock + pRes >= 1) {
 		cerr << "genMap: pRock + pRes >= 1" << endl
 		return
@@ -64,7 +64,7 @@ genMap(double pRock, double pRes) {
 		end
 end
 
-play() {
+def play()
 	while (self.winner().nil?) {
 		@turn++
 		@players.each do |p|
@@ -76,7 +76,7 @@ play() {
 end
 
 Player *
-winner() {
+def winner()
 	Player best = nil
 	@players.each do |p|
 		if (!best && (p.getScore() >= @win_score))
@@ -95,7 +95,7 @@ winner() {
 	return best
 end
 
-score() {
+def score()
 	@players.each do |p|
 		out << p.getName() << "\t\t" << p.getScore() << endl
 	end
@@ -103,6 +103,6 @@ score() {
 end
 
 const vector<Player >
-getPlayers() {
+def getPlayers()
 	return @players
 end

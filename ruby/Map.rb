@@ -7,7 +7,7 @@ template <typename T>
 class Map
 	vector< vector< T* > > data
 
-	Map(int w, int h) {
+	def Map(int w, int h)
 		@data.resize(w)
 		for (int i = 0; i < w; i++)
 			@data[i].resize(h, nil)
@@ -16,7 +16,7 @@ class Map
 		@height = h
 	end
 
-	T get(int x, int y) {
+	def get(int x, int y)
 		if ((x < 0) || (y < 0) || (x >= @width) || (y >= @height)) {
 			cerr << "Map::get out of bounds " << x << ", " << y << endl
 			return nil
@@ -25,7 +25,7 @@ class Map
 		return @data[x][y]
 	end
 
-	void put(int x, int y, T* elem) {
+	def put(int x, int y, T* elem)
 		if ((x < 0) || (y < 0) || (x >= @width) || (y >= @height)) {
 			cerr << "Map::put out of bounds " << x << ", " << y << endl
 			return
@@ -37,7 +37,7 @@ class Map
 	int getWidth() { return @width; }
 	int getHeight() { return @height; }
 
-	void show() {
+	def show()
 		unsigned maxw = 0
 		for (int y = 0; y < @height; y++)
 			for (int x = 0; x < @width; x++) {
@@ -69,7 +69,7 @@ class Map
 		end
 	end
 
-	void pushV(int px, int py, queue< pair<int, int> > &fifo, vector< vector<bool> > &visited) {
+	def pushV(int px, int py, queue< pair<int, int> > &fifo, vector< vector<bool> > &visited)
 		if ((px < 0) || (py < 0) || (px >= @width) || (py >= @height))
 			return
 		if (visited[px][py])
@@ -79,7 +79,7 @@ class Map
 		fifo.push(make_pair(px, py))
 	end
 
-	void pushD(int px, int py, queue< pair<int, int> > &fifo, vector< vector<int> > &dist, int d) {
+	def pushD(int px, int py, queue< pair<int, int> > &fifo, vector< vector<int> > &dist, int d)
 		if ((px < 0) || (py < 0) || (px >= @width) || (py >= @height))
 			return
 		if (dist[px][py] <= d)
@@ -89,7 +89,7 @@ class Map
 		fifo.push(make_pair(px, py))
 	end
 
-	bool getD(pair<int, int> &pos, int px, int py, vector< vector<int> > dist, int d) {
+	def getD(pair<int, int> &pos, int px, int py, vector< vector<int> > dist, int d)
 		if ((px < 0) || (py < 0) || (px >= @width) || (py >= @height))
 			return false
 
@@ -105,7 +105,7 @@ class Map
 	end
 
 	list< pair<int, int> >
-	wayUp(pair<int, int> pos, vector< vector<int> > dist) {
+	def wayUp(pair<int, int> pos, vector< vector<int> > dist)
 		list< pair<int, int> > ret
 		int d, px, py
 
@@ -131,7 +131,7 @@ class Map
 
 	# find empty position closest to x, y
 	pair<int, int>
-	closestEmpty(int x, int y) {
+	def closestEmpty(int x, int y)
 		vector< vector<bool> > visited
 		visited.resize(@width)
 		for (int i = 0; i < @width; i++)
@@ -163,7 +163,7 @@ class Map
 
 	# find position closest to x, y that fulfills condition f() without passing through something on the way
 	list< pair<int, int> >
-	closest(function< bool(T , int, int) > f, int x, int y) {
+	def closest(function< bool(T , int, int) > f, int x, int y)
 		vector< vector<int> > dist
 		dist.resize(@width)
 		for (int i = 0; i < @width; i++)

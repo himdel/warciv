@@ -2,7 +2,7 @@ require './Game.rb'
 # not ruby yet!
 
 
-main(int argc, char *argv) {
+def main(int argc, char *argv)
 	Game g = Game.new(10, 10, "Karel", "Spock", 1000)
 
 	cout << "3 .. 2 .. 1 .. Fight!" << endl

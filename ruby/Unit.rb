@@ -32,7 +32,7 @@ end
 
 
 
-move(int x, int y) {
+def move(int x, int y)
 	if (x == @x && y == @y)
 		return true
 
@@ -64,18 +64,18 @@ move(int x, int y) {
 	return true
 end
 
-gather(int x, int y) {
+def gather(int x, int y)
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
 end
 
-build(int x, int y, BuildingType b) {
+def build(int x, int y, BuildingType b)
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
 end
 
 # do not use self afterwards
-damage(int hitpoints) {
+def damage(int hitpoints)
 	AttackMapItem::damage(hitpoints)
 
 	if (@hitpoints == 0) {
@@ -87,7 +87,7 @@ damage(int hitpoints) {
 	end
 end
 
-attack(int x, int y) {
+def attack(int x, int y)
 	# if not in range, attack anything or move
 	if (self.distance(x, y) > @attack_range) {
 		if (@AttackMapItem::attack()) {
@@ -106,23 +106,23 @@ attack(int x, int y) {
 	return r
 end
 
-stop() {
+def stop()
 	self.queueAction()
 end
 
-queueAction(ActionType at, int x, int y, BuildingType bt) {
+def queueAction(ActionType at, int x, int y, BuildingType bt)
 	@pending = at
 	@pending_build = bt
 	@pending_x = x
 	@pending_y = y
 end
 
-actionPending() {
+def actionPending()
 	return @pending != at_None
 end
 
 # nevolat pokud byl tah udelan rucne
-performAction() {
+def performAction()
 	if (!self.actionPending())
 		return false
 
@@ -141,12 +141,12 @@ performAction() {
 	return false
 end
 
-getPopis() {
+def getPopis()
 	out << "_" << @owner.getName()[0] << @owner.getName()[1] << "_" << @popis << " (" << @hitpoints << ")"
 	return out.str()
 end
 
-getDetail() {
+def getDetail()
 	out << @popis << " (hp: " << @hitpoints
 	switch (@pending) {
 		case at_Move:

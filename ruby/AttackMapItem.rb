@@ -20,7 +20,7 @@ class AttackMapItem < MapItem
 end
 
 
-damage(int hitpoints) {
+def damage(int hitpoints)
 	@hitpoints -= min(@hitpoints, hitpoints)
 
 	if (@hitpoints == 0)
@@ -28,7 +28,7 @@ damage(int hitpoints) {
 end
 
 
-attack() {
+def attack()
 	bool bb = false
 	@owner.getEnemies().each do |e|
 		e.getUnits().each do |u|
@@ -44,7 +44,7 @@ attack() {
 	return bb
 end
 
-attack(int x, int y) {
+def attack(int x, int y)
 	MapItem i = @map.get(x, y)
 	if (!i)
 		return false
@@ -57,7 +57,7 @@ attack(int x, int y) {
 end
 
 # do not use i afterwards
-attack(AttackMapItem i) {
+def attack(AttackMapItem i)
 	if (i == self)
 		return false
 

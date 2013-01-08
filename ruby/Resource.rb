@@ -15,17 +15,17 @@ end
 
 
 
-avail() {
+def avail()
 	return @quantity
 end
 
-gather(int amount, Player p) {
+def gather(int amount, Player p)
 	int ret = min(@quantity, amount)
 	@quantity -= ret
 	return ret
 end
 
-getPopis() {
+def getPopis()
 	out << @popis << " (" << @quantity << ")"
 	return out.str()
 end

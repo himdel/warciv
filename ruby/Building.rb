@@ -31,7 +31,7 @@ end
 
 
 
-upgrade(BuildingType b) {
+def upgrade(BuildingType b)
 	Building building = nil
 
 	for (unsigned i = 0; i < buildings_count; i++)
@@ -55,7 +55,7 @@ upgrade(BuildingType b) {
 	return true
 end
 
-isa(BuildingType is, BuildingType base) {
+def isa(BuildingType is, BuildingType base)
 	while (is != base) {
 		if (is == bt_Any)
 			return false
@@ -69,7 +69,7 @@ isa(BuildingType is, BuildingType base) {
 	return true
 end
 
-create(UnitType u) {
+def create(UnitType u)
 	Unit unit = nil
 
 	for (unsigned i = 0; i < units_count; i++)
@@ -90,7 +90,7 @@ create(UnitType u) {
 	return true
 end
 
-damage(int hitpoints) {
+def damage(int hitpoints)
 	AttackMapItem::damage(hitpoints)
 
 	if (@hitpoints == 0) {
@@ -104,17 +104,17 @@ damage(int hitpoints) {
 	end
 end
 
-getType() {
+def getType()
 	return @type
 end
 
-getPopis() {
+def getPopis()
 	os << "_" << @owner.getName()[0] << @owner.getName()[1] << "_"
 	os << MapItem::getPopis() << "(" << @hitpoints << ")"
 	return os.str()
 end
 
-getDetail() {
+def getDetail()
 	os << @popis << " (hp: " << @hitpoints << ")"
 	return os.str()
 end

@@ -51,7 +51,7 @@ static T choice(string title, const vector<T> options, bool back, function<void(
 	return options[i - 1]
 end
 
-unit(Player p, Unit u) {
+def unit(Player p, Unit u)
 	# doable actions
 	vector<ActionData> acts
 	for (unsigned i = 0; i < actions_count; i++)
@@ -108,7 +108,7 @@ unit(Player p, Unit u) {
 	printf("Queued: %s\n\n", u.getDetail().c_str())
 end
 
-building(Player p, Building b) {
+def building(Player p, Building b)
 	# doable actions
 	struct BuAcData {
 		function<bool(void)> code
@@ -150,7 +150,7 @@ building(Player p, Building b) {
 	end
 end
 
-playerTurn(int turn, Player p) {
+def playerTurn(int turn, Player p)
 	printf("\n\nTah: %d\n", turn)
 
 	printf("Hrac: %s (score %d)\n", p.getName().c_str(), p.getScore())
@@ -251,11 +251,11 @@ playerTurn(int turn, Player p) {
 	end
 end
 
-eof() {
+def eof()
 	return cin.eof()
 end
 
-logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tgt) {
+def logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tgt)
 	printf("unit %s: %s", u.getPopis().c_str(), action.c_str())
 	if (pos.first >= 0 && pos.second >= 0)
 		printf("(%d, %d)", pos.first, pos.second)
@@ -266,7 +266,7 @@ logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tgt) {
 	printf("\n")
 end
 
-logAction(Building b, string action, string desc, MapItem tgt) {
+def logAction(Building b, string action, string desc, MapItem tgt)
 	printf("building %s: %s", b.getPopis().c_str(), action.c_str())
 	if (tgt)
 		printf(" = %s", tgt.getPopis().c_str())

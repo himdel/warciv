@@ -41,7 +41,7 @@ end
 
 
 
-Player(string name, Game game) {
+def Player(string name, Game game)
 	@name = name
 	@gold = 2400
 	@wood = 1200
@@ -55,59 +55,59 @@ Player(string name, Game game) {
 	self.addUnit(peon)
 end
 
-getScore() {
+def getScore()
 	return @score
 end
 
-getName() {
+def getName()
 	if (self.nil?)
 		return "(none)"
 	return @name
 end
 
 const vector<Unit >
-getUnits() {
+def getUnits()
 	return @units
 end
 
-addUnit(Unit u) {
+def addUnit(Unit u)
 	@units.push_back(u)
 end
 
-delUnit(Unit u) {
+def delUnit(Unit u)
 	@units.erase(find(@units.begin(), @units.end(), u))
 end
 
 const vector<Building >
-getBuildings() {
+def getBuildings()
 	return @buildings
 end
 
-addBuilding(Building b) {
+def addBuilding(Building b)
 	@buildings.push_back(b)
 end
 
-delBuilding(Building b) {
+def delBuilding(Building b)
 	@buildings.erase(find(@buildings.begin(), @buildings.end(), b))
 end
 
-getGold() {
+def getGold()
 	return @gold
 end
 
-getWood() {
+def getWood()
 	return @wood
 end
 
-addGold(int quantity) {
+def addGold(int quantity)
 	@gold += quantity
 end
 
-addWood(int quantity) {
+def addWood(int quantity)
 	@wood += quantity
 end
 
-cost(int gold, int wood) {
+def cost(int gold, int wood)
 	if ((@gold < gold) || (@wood < wood))
 		return false
 
@@ -117,7 +117,7 @@ cost(int gold, int wood) {
 end
 
 const vector<Player >
-getEnemies() {
+def getEnemies()
 	vector<Player > enemies
 	@game.getPlayers().each do |p|
 		if (p != self)
@@ -126,16 +126,16 @@ getEnemies() {
 	return enemies
 end
 
-isAlive() {
+def isAlive()
 	return @buildings.size() || @units.size()
 end
 
-addScore(int s) {
+def addScore(int s)
 	@score += s
 	return @score
 end
 
-getGatherSpeed() {
+def getGatherSpeed()
 	int gs = 10
 	for (Building b: @buildings) {
 		if (dynamic_cast<TownHall >(b))
