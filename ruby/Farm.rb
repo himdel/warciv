@@ -2,7 +2,7 @@
 
 require './Building.rb'
 
-class Farm : public Building {
+class Farm < Building
 public:
 	Farm(Player *owner) : Building("Farm", owner) {
 		this->type = bt_Farm;

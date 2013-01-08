@@ -2,7 +2,7 @@
 
 require './Unit.rb'
 
-class Axethrower : public Unit {
+class Axethrower < Unit
 public:
 	Axethrower(Player *owner) : Unit("Axethrower", owner) {
 		this->hitpoints = 40;

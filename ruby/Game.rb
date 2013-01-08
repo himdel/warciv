@@ -5,7 +5,7 @@ require './MapItem.rb'
 require './Player.rb'
 require './UI.rb'
 
-class Game {
+class Game
 private:
 	Map<MapItem> *map;
 	vector<Player *> players;

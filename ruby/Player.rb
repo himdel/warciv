@@ -6,7 +6,7 @@ require './Building.rb'
 using namespace std;
 
 
-class Player {
+class Player
 private:
 	string name;
 	vector<Unit *> units;

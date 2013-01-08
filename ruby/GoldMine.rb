@@ -2,7 +2,7 @@
 
 require './Resource.rb'
 
-class GoldMine : public Resource {
+class GoldMine < Resource
 public:
 	GoldMine() : Resource("GoldMine") {}
 

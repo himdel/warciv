@@ -2,7 +2,7 @@
 
 require './WatchTower.rb'
 
-class GuardTower : public WatchTower {
+class GuardTower < WatchTower
 public:
 	GuardTower(Player *owner) : WatchTower("GuardTower", owner) {
 		this->type = bt_GuardTower;

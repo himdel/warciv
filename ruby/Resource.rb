@@ -4,7 +4,7 @@ require './MapItem.rb'
 require './Player.rb'
 
 
-class Resource : public MapItem {
+class Resource < MapItem
 private:
 	int quantity;
 public:

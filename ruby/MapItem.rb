@@ -2,7 +2,7 @@
 
 require './Map.rb'
 
-class MapItem {
+class MapItem
 protected:
 	Map<MapItem> *map;
 	int x, y;

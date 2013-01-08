@@ -5,7 +5,7 @@ using namespace std;
 
 
 template <typename T>
-class Map {
+class Map
 private:
 	vector< vector< T* > > data;
 	int width;

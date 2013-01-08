@@ -2,7 +2,7 @@
 
 require './Unit.rb'
 
-class Peon : public Unit {
+class Peon < Unit
 private:
 	bool cargo;
 

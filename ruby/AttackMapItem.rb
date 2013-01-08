@@ -2,7 +2,7 @@
 
 require './MapItem.rb'
 
-class AttackMapItem : public MapItem {
+class AttackMapItem < MapItem
 protected:
 	Player *owner;
 	int hitpoints;

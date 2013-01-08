@@ -2,7 +2,7 @@
 
 require './Resource.rb'
 
-class Forest : public Resource {
+class Forest < Resource
 public:
 	Forest() : Resource("Forest") {}
 

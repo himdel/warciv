@@ -4,7 +4,7 @@ require './Map.rb'
 require './MapItem.rb'
 require './Player.rb'
 
-class UI {
+class UI
 private:
 	Map<MapItem> *map;
 	void unit(Player *p, Unit *u);

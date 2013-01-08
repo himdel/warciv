@@ -2,7 +2,7 @@
 
 require './TownHall.rb'
 
-class Fortress : public TownHall {
+class Fortress < TownHall
 public:
 	Fortress(Player *owner) : TownHall("Fortress", owner) {
 		this->type = bt_Fortress;

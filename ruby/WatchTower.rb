@@ -2,7 +2,7 @@
 
 require './Building.rb'
 
-class WatchTower : public Building {
+class WatchTower < Building
 public:
 	WatchTower(std::string popis, Player *owner) : Building(popis, owner) {}
 	WatchTower(Player *owner) : Building("WatchTower", owner) {

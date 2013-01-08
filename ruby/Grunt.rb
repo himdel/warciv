@@ -2,7 +2,7 @@
 
 require './Unit.rb'
 
-class Grunt : public Unit {
+class Grunt < Unit
 public:
 	Grunt(Player *owner) : Unit("Grunt", owner) {
 		this->hitpoints = 60;

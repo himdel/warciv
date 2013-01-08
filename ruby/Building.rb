@@ -4,7 +4,7 @@ require './enums.rb'
 require './AttackMapItem.rb'
 require './Player.rb'
 
-class Building : public AttackMapItem {
+class Building < AttackMapItem
 protected:
 	int feeds;
 	BuildingType type;

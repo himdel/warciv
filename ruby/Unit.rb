@@ -4,7 +4,7 @@ require './enums.rb'
 require './AttackMapItem.rb'
 require './Player.rb'
 
-class Unit : public AttackMapItem {
+class Unit < AttackMapItem
 protected:
 	ActionType pending;
 	BuildingType pending_build;
