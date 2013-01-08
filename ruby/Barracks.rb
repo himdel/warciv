@@ -3,12 +3,12 @@ require './Building.rb'
 
 
 class Barracks < Building
-	Barracks(Player owner) : Building("Barracks", owner) {
+	Barracks(owner) : Building("Barracks", owner) {
 		@type = bt_Barracks
 		@hitpoints = 800
 		owner.addScore(80)
 	end
 
-	static Building create(Player owner) { return Barracks.new(owner); }
+	static Building create(owner) { return Barracks.new(owner); }
 end
 

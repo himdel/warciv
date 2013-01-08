@@ -14,19 +14,19 @@ class Player
 	vector<Unit > units
 	vector<Building > buildings
 
-	Player(string name, Game game)
+	Player(name, game)
 	int getScore()
-	int addScore(int s)
+	int addScore(s)
 	string getName()
 	bool isAlive()
 
 	const vector<Unit > getUnits()
-	void addUnit(Unit u)
-	void delUnit(Unit u)
+	void addUnit(u)
+	void delUnit(u)
 
 	const vector<Building > getBuildings()
-	void addBuilding(Building b)
-	void delBuilding(Building b)
+	void addBuilding(b)
+	void delBuilding(b)
 
 	int getGatherSpeed()
 
@@ -34,14 +34,14 @@ class Player
 
 	int getGold()
 	int getWood()
-	void addGold(int quantity)
-	void addWood(int quantity)
-	bool cost(int gold, int wood)
+	void addGold(quantity)
+	void addWood(quantity)
+	bool cost(gold, wood)
 end
 
 
 
-def Player(string name, Game game)
+def Player(name, game)
 	@name = name
 	@gold = 2400
 	@wood = 1200
@@ -70,11 +70,11 @@ def getUnits()
 	return @units
 end
 
-def addUnit(Unit u)
+def addUnit(u)
 	@units.push_back(u)
 end
 
-def delUnit(Unit u)
+def delUnit(u)
 	@units.erase(find(@units.begin(), @units.end(), u))
 end
 
@@ -83,11 +83,11 @@ def getBuildings()
 	return @buildings
 end
 
-def addBuilding(Building b)
+def addBuilding(b)
 	@buildings.push_back(b)
 end
 
-def delBuilding(Building b)
+def delBuilding(b)
 	@buildings.erase(find(@buildings.begin(), @buildings.end(), b))
 end
 
@@ -99,15 +99,15 @@ def getWood()
 	return @wood
 end
 
-def addGold(int quantity)
+def addGold(quantity)
 	@gold += quantity
 end
 
-def addWood(int quantity)
+def addWood(quantity)
 	@wood += quantity
 end
 
-def cost(int gold, int wood)
+def cost(gold, wood)
 	if ((@gold < gold) || (@wood < wood))
 		return false
 
@@ -130,7 +130,7 @@ def isAlive()
 	return @buildings.size() || @units.size()
 end
 
-def addScore(int s)
+def addScore(s)
 	@score += s
 	return @score
 end

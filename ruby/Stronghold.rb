@@ -3,12 +3,12 @@ require './TownHall.rb'
 
 
 class Stronghold < TownHall
-	Stronghold(Player owner) : TownHall("Stronghold", owner) {
+	Stronghold(owner) : TownHall("Stronghold", owner) {
 		@type = bt_Stronghold
 		@hitpoints = 1400
 		owner.addScore(100)
 	end
 
-	static Building create(Player owner) { return Stronghold.new(owner); }
+	static Building create(owner) { return Stronghold.new(owner); }
 end
 

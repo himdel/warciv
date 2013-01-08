@@ -6,13 +6,13 @@ class MapItem
 	Map<MapItem> map
 	int x, y
 
-	MapItem(string popis)
+	MapItem(popis)
 	void place(Map<MapItem> map, int x, int y)
-	void place(int x, int y)
+	void place(x, y)
 	void remove()
 
-	int distance(int x, int y)
-	int distance(MapItem i)
+	int distance(x, y)
+	int distance(i)
 
 	virtual string getPopis()
 	virtual string getDetail()
@@ -25,14 +25,14 @@ ostream& operator<<(ostream &o, MapItem m)
 
 
 
-def distance(int x1, int y1, int x2, int y2)
+def distance(x1, y1, x2, y2)
 	int dx = fabs(x1 - x2)
 	int dy = fabs(y1 - y2)
 	return max(dx, dy)
 end
 
 
-def MapItem(string popis)
+def MapItem(popis)
 	@popis = popis
 	@map = nil
 end
@@ -42,7 +42,7 @@ def place(Map<MapItem> map, int x, int y)
 	self.place(x, y)
 end
 
-def place(int x, int y)
+def place(x, y)
 	@x = x
 	@y = y
 	@map.put(x, y, self)
@@ -62,11 +62,11 @@ def getDetail()
 	return self.getPopis()
 end
 
-def distance(int x, int y)
+def distance(x, y)
 	return ::distance(@x, @y, x, y)
 end
 
-def distance(MapItem i)
+def distance(i)
 	return ::distance(@x, @y, i.x, i.y)
 end
 

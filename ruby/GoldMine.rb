@@ -5,7 +5,7 @@ require './Resource.rb'
 class GoldMine < Resource
 	GoldMine() : Resource("GoldMine") {}
 
-	def gather(int amount, Player p)
+	def gather(amount, p)
 		amount = Resource::gather(amount)
 		p.addGold(amount)
 		return amount

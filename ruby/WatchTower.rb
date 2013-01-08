@@ -3,8 +3,8 @@ require './Building.rb'
 
 
 class WatchTower < Building
-	WatchTower(string popis, Player owner) : Building(popis, owner) {}
-	WatchTower(Player owner) : Building("WatchTower", owner) {
+	WatchTower(popis, owner) : Building(popis, owner) {}
+	WatchTower(owner) : Building("WatchTower", owner) {
 		@type = bt_WatchTower
 		@hitpoints = 100
 		@attack_range = 2
@@ -14,6 +14,6 @@ class WatchTower < Building
 
 	void preturnAction() { self.attack(); }
 
-	static Building create(Player owner) { return WatchTower.new(owner); }
+	static Building create(owner) { return WatchTower.new(owner); }
 end
 

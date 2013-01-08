@@ -9,30 +9,30 @@ require './enums.rb'
 
 class Peon < Unit
 
-	Peon(Player owner) : Unit("Peon", owner) {
+	Peon(owner) : Unit("Peon", owner) {
 		@hitpoints = 30
 		@cargo = false
 		owner.addScore(30)
 	end
 
-	bool gather(int x, int y)
-	bool build(int x, int y, BuildingType b)
+	bool gather(x, y)
+	bool build(x, y, b)
 
 	const set<ActionType> availActions() {
 		return set<ActionType>({ at_None, at_Move, at_Build, at_Gather })
 	end
 
-	static Unit create(Player owner) { return Peon.new(owner); }
+	static Unit create(owner) { return Peon.new(owner); }
 end
 
 
 
 # we don't unqueue gather, it loops by defualt
-def gather(int x, int y)
+def gather(x, y)
 	# full, going to townhall
 	if (@cargo) {
 		# find closest TownHall or descendant
-		auto f = [x, y] (MapItem mi, int px, int py) { return dynamic_cast<TownHall >(mi).nil? == false; }
+		auto f = [x, y] (mi, px, py) { return dynamic_cast<TownHall >(mi).nil? == false; }
 		list< pair<int, int> > path = @map.closest(f, @x, @y)
 
 		if (path.size() < 2) {
@@ -66,7 +66,7 @@ def gather(int x, int y)
 	return @cargo
 end
 
-def build(int x, int y, BuildingType b)
+def build(x, y, b)
 	bool r = self.move(x, y)
 	if ((@x != x) || (@y != y))
 		return r

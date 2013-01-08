@@ -5,7 +5,7 @@ require './Player.rb'
 
 
 class Resource < MapItem
-	Resource(string popis) : MapItem(popis) {
+	Resource(popis) : MapItem(popis) {
 		@quantity = rand() % 5000
 	end
 	int avail()
@@ -19,7 +19,7 @@ def avail()
 	return @quantity
 end
 
-def gather(int amount, Player p)
+def gather(amount, p)
 	int ret = min(@quantity, amount)
 	@quantity -= ret
 	return ret

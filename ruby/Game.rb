@@ -12,8 +12,8 @@ class Game
 	Map<MapItem> map
 	vector<Player > players
 
-	Game(int w, int h, string p1, string p2, int win_score)
-	void genMap(double pRock, double pRes)
+	Game(w, h, p1, p2, win_score)
+	void genMap(pRock, pRes)
 
 	void play()
 	Player winner()
@@ -26,7 +26,7 @@ end
 
 
 
-def Game(int w, int h, string p1, string p2, int win_score)
+def Game(w, h, p1, p2, win_score)
 	srand(time(nil))
 	@win_score = win_score
 	@turn = 0
@@ -42,7 +42,7 @@ def Game(int w, int h, string p1, string p2, int win_score)
 	end
 end
 
-def genMap(double pRock, double pRes)
+def genMap(pRock, pRes)
 	if (pRock + pRes >= 1) {
 		cerr << "genMap: pRock + pRes >= 1" << endl
 		return

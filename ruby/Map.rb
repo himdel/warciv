@@ -7,7 +7,7 @@ template <typename T>
 class Map
 	vector< vector< T* > > data
 
-	def Map(int w, int h)
+	def Map(w, h)
 		@data.resize(w)
 		for (int i = 0; i < w; i++)
 			@data[i].resize(h, nil)
@@ -16,7 +16,7 @@ class Map
 		@height = h
 	end
 
-	def get(int x, int y)
+	def get(x, y)
 		if ((x < 0) || (y < 0) || (x >= @width) || (y >= @height)) {
 			cerr << "Map::get out of bounds " << x << ", " << y << endl
 			return nil
@@ -131,7 +131,7 @@ class Map
 
 	# find empty position closest to x, y
 	pair<int, int>
-	def closestEmpty(int x, int y)
+	def closestEmpty(x, y)
 		vector< vector<bool> > visited
 		visited.resize(@width)
 		for (int i = 0; i < @width; i++)

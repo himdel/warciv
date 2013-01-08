@@ -3,14 +3,14 @@ require './Building.rb'
 
 
 class TownHall < Building
-	TownHall(string popis, Player owner) : Building(popis, owner) {}
-	TownHall(Player owner) : Building("TownHall", owner) {
+	TownHall(popis, owner) : Building(popis, owner) {}
+	TownHall(owner) : Building("TownHall", owner) {
 		@type = bt_TownHall
 		@hitpoints = 1200
 		owner.addScore(200)
 	end
 
 	 BuildingType getType() { return bt_TownHall; }
-	static Building create(Player owner) { return TownHall.new(owner); }
+	static Building create(owner) { return TownHall.new(owner); }
 end
 

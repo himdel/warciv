@@ -10,20 +10,20 @@ require './units.rb'
 
 class Building < AttackMapItem
 
-	Building(string popis, Player p) : AttackMapItem(popis, p) {
+	Building(popis, p) : AttackMapItem(popis, p) {
 		@type = bt_Any
 		@feeds = 0
 	end
 
-	virtual bool create(UnitType u)
+	virtual bool create(u)
 	virtual void preturnAction() {}
 
-	void damage(int hitpoints)
+	void damage(hitpoints)
 
 	virtual string getPopis()
 	virtual string getDetail()
 
-	virtual bool upgrade(BuildingType b)
+	virtual bool upgrade(b)
 
 	virtual BuildingType getType()
 end
@@ -31,7 +31,7 @@ end
 
 
 
-def upgrade(BuildingType b)
+def upgrade(b)
 	Building building = nil
 
 	for (unsigned i = 0; i < buildings_count; i++)
@@ -55,7 +55,7 @@ def upgrade(BuildingType b)
 	return true
 end
 
-def isa(BuildingType is, BuildingType base)
+def isa(is, base)
 	while (is != base) {
 		if (is == bt_Any)
 			return false
@@ -69,7 +69,7 @@ def isa(BuildingType is, BuildingType base)
 	return true
 end
 
-def create(UnitType u)
+def create(u)
 	Unit unit = nil
 
 	for (unsigned i = 0; i < units_count; i++)
@@ -90,7 +90,7 @@ def create(UnitType u)
 	return true
 end
 
-def damage(int hitpoints)
+def damage(hitpoints)
 	AttackMapItem::damage(hitpoints)
 
 	if (@hitpoints == 0) {

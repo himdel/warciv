@@ -5,7 +5,7 @@ require './Resource.rb'
 class Forest < Resource
 	Forest() : Resource("Forest") {}
 
-	def gather(int amount, Player p)
+	def gather(amount, p)
 		amount = Resource::gather(amount)
 		p.addWood(amount)
 		return amount

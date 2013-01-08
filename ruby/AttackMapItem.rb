@@ -6,21 +6,21 @@ require './Unit.rb'
 
 class AttackMapItem < MapItem
 
-	AttackMapItem(string popis, Player p) : MapItem(popis), owner(p) {
+	AttackMapItem(popis, p) : MapItem(popis), owner(p) {
 		@hitpoints = 0
 		@attack_damage = 0
 		@attack_range = 0
 	end
 
-	virtual void damage(int hitpoints)
+	virtual void damage(hitpoints)
 
 	virtual bool attack()
-	virtual bool attack(int x, int y)
-	virtual bool attack(AttackMapItem i)
+	virtual bool attack(x, y)
+	virtual bool attack(i)
 end
 
 
-def damage(int hitpoints)
+def damage(hitpoints)
 	@hitpoints -= min(@hitpoints, hitpoints)
 
 	if (@hitpoints == 0)
@@ -44,7 +44,7 @@ def attack()
 	return bb
 end
 
-def attack(int x, int y)
+def attack(x, y)
 	MapItem i = @map.get(x, y)
 	if (!i)
 		return false
@@ -57,7 +57,7 @@ def attack(int x, int y)
 end
 
 # do not use i afterwards
-def attack(AttackMapItem i)
+def attack(i)
 	if (i == self)
 		return false
 

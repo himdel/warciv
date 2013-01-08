@@ -9,11 +9,11 @@ require './units.rb'
 
 class UI
 	Map<MapItem> map
-	void unit(Player p, Unit u)
-	void building(Player p, Building b)
+	void unit(p, u)
+	void building(p, b)
 
 	UI(Map<MapItem> m) : map(m) {}
-	void playerTurn(int turn, Player p)
+	void playerTurn(turn, p)
 	bool eof()
 
 	static void logAction(Unit u, string action, string desc, pair<int, int> pos = { -1, -1 }, MapItem tgt = nil)
@@ -22,7 +22,7 @@ end
 
 
 template<typename T>
-static T choice(string title, const vector<T> options, bool back, function<void(T)> fun = [] (T d) { cout << d.name; } ) {
+static T choice(string title, const vector<T> options, bool back, function<void(T)> fun = [] (d) { cout << d.name; } ) {
 	printf("%s\n", title.c_str())
 
 	for (unsigned i = 0; i < options.size(); i++) {
@@ -51,7 +51,7 @@ static T choice(string title, const vector<T> options, bool back, function<void(
 	return options[i - 1]
 end
 
-def unit(Player p, Unit u)
+def unit(p, u)
 	# doable actions
 	vector<ActionData> acts
 	for (unsigned i = 0; i < actions_count; i++)
@@ -90,7 +90,7 @@ def unit(Player p, Unit u)
 
 	BuildingType bt = bt_Any
 	if (a.type == at_Build) {
-		function<void(BuildingData)> fun = [] (BuildingData d) {
+		function<void(BuildingData)> fun = [] (d) {
 			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood)
 		end
 		BuildingData bd = choice("\nBuild what?", bld, false, fun)
@@ -108,7 +108,7 @@ def unit(Player p, Unit u)
 	printf("Queued: %s\n\n", u.getDetail().c_str())
 end
 
-def building(Player p, Building b)
+def building(p, b)
 	# doable actions
 	struct BuAcData {
 		function<bool(void)> code
@@ -136,7 +136,7 @@ def building(Player p, Building b)
 			return
 		end
 
-		function< void(BuAcData) > fun = [] (BuAcData d) {
+		function< void(BuAcData) > fun = [] (d) {
 			printf("%s (gold %d, wood %d)", d.name.c_str(), d.gold, d.wood)
 		end
 		BuAcData c = choice("Actions:", acts, true, fun)
@@ -150,7 +150,7 @@ def building(Player p, Building b)
 	end
 end
 
-def playerTurn(int turn, Player p)
+def playerTurn(turn, p)
 	printf("\n\nTah: %d\n", turn)
 
 	printf("Hrac: %s (score %d)\n", p.getName().c_str(), p.getScore())
@@ -210,7 +210,7 @@ def playerTurn(int turn, Player p)
 				end
 				try {
 					self.unit(p, units[u - 1])
-				} catch (int e) {
+				} catch (e) {
 					if (e != 0)
 						throw e
 				end
@@ -224,7 +224,7 @@ def playerTurn(int turn, Player p)
 				end
 				try {
 					self.building(p, buildings[b - 1])
-				} catch (int e) {
+				} catch (e) {
 					if (e != 0)
 						throw e
 				end
@@ -266,7 +266,7 @@ def logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tg
 	printf("\n")
 end
 
-def logAction(Building b, string action, string desc, MapItem tgt)
+def logAction(b, action, desc, tgt)
 	printf("building %s: %s", b.getPopis().c_str(), action.c_str())
 	if (tgt)
 		printf(" = %s", tgt.getPopis().c_str())

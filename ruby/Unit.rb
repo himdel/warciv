@@ -9,15 +9,15 @@ require './enums.rb'
 
 class Unit < AttackMapItem
 
-	Unit(string popis, Player p) : AttackMapItem(popis, p) {
+	Unit(popis, p) : AttackMapItem(popis, p) {
 		self.stop()
 	end
 
-	bool move(int x, int y)
-	virtual bool gather(int x, int y)
-	virtual bool build(int x, int y, BuildingType b)
-	void damage(int hitpoints)
-	bool attack(int x, int y)
+	bool move(x, y)
+	virtual bool gather(x, y)
+	virtual bool build(x, y, b)
+	void damage(hitpoints)
+	bool attack(x, y)
 	void stop()
 
 	void queueAction(ActionType at = at_None, int x = -1, int y = -1, BuildingType bt = bt_Any)
@@ -32,11 +32,11 @@ end
 
 
 
-def move(int x, int y)
+def move(x, y)
 	if (x == @x && y == @y)
 		return true
 
-	auto f = [x, y] (MapItem mi, int px, int py) { return (x == px) && (y == py); }
+	auto f = [x, y] (mi, px, py) { return (x == px) && (y == py); }
 	list< pair<int, int> > path = @map.closest(f, @x, @y)
 	if (path.empty()) {
 		UI::logAction(self, "move", "target not found", make_pair(x, y))
@@ -64,18 +64,18 @@ def move(int x, int y)
 	return true
 end
 
-def gather(int x, int y)
+def gather(x, y)
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
 end
 
-def build(int x, int y, BuildingType b)
+def build(x, y, b)
 	UI::logAction(self, "gather", "not supported", make_pair(x, y))
 	return false;	# done, overidden in Peon
 end
 
 # do not use self afterwards
-def damage(int hitpoints)
+def damage(hitpoints)
 	AttackMapItem::damage(hitpoints)
 
 	if (@hitpoints == 0) {
@@ -87,7 +87,7 @@ def damage(int hitpoints)
 	end
 end
 
-def attack(int x, int y)
+def attack(x, y)
 	# if not in range, attack anything or move
 	if (self.distance(x, y) > @attack_range) {
 		if (@AttackMapItem::attack()) {
@@ -110,7 +110,7 @@ def stop()
 	self.queueAction()
 end
 
-def queueAction(ActionType at, int x, int y, BuildingType bt)
+def queueAction(at, x, y, bt)
 	@pending = at
 	@pending_build = bt
 	@pending_x = x
