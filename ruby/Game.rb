@@ -7,9 +7,9 @@ require './UI.rb'
 
 class Game
 private:
-	Map<MapItem> *map
-	vector<Player *> players
-	UI *ui
+	Map<MapItem> map
+	vector<Player > players
+	UI ui
 	int win_score
 	int turn
 
@@ -18,11 +18,11 @@ public:
 	void genMap(double pRock, double pRes)
 
 	void play()
-	Player *winner()
+	Player winner()
 	string score()
-	const vector<Player *> getPlayers()
+	const vector<Player > getPlayers()
 
-	Map<MapItem> *getMap() { return @map; }
+	Map<MapItem> getMap() { return @map; }
 
 	~Game()
 end
@@ -35,18 +35,18 @@ require './Forest.rb'
 
 
 Game::Game(int w, int h, string p1, string p2, int win_score) {
-	srand(time(NULL))
+	srand(time(nil))
 	@win_score = win_score
 	@turn = 0
 
-	@map = new Map<MapItem>(w, h)
-	@ui = new UI(@map)
+	@map = Map<MapItem>.new(w, h)
+	@ui = UI.new(@map)
 
 	self.genMap(0.1, 0.2)
 
 	@players = {
-		new Player(p1, self),
-		new Player(p2, self),
+		Player.new(p1, self),
+		Player.new(p2, self),
 	}
 }
 
@@ -59,14 +59,14 @@ Game::genMap(double pRock, double pRes) {
 
 	for (int x = 0; x < @map.getWidth(); x++)
 		for (int y = 0; y < @map.getHeight(); y++) {
-			MapItem *mi = NULL
+			MapItem mi = nil
 			int r = rand() % 100000
 
 			if (r < pRock * 100000)
-				mi = new Rock()
+				mi = Rock.new()
 
 			if ((r >= pRock * 100000) && (r < ((pRock + pRes) * 100000)))
-				mi = (r % 2) ? (MapItem *) new Forest() : (MapItem *) new GoldMine()
+				mi = (r % 2) ? (MapItem ) Forest.new() : (MapItem ) GoldMine.new()
 
 			if (mi)
 				mi.place(@map, x, y)
@@ -75,9 +75,9 @@ Game::genMap(double pRock, double pRes) {
 
 void
 Game::play() {
-	while (self.winner() == NULL) {
+	while (self.winner().nil?) {
 		@turn++
-		for (Player *p : @players)
+		for (Player p : @players)
 			@ui.playerTurn(turn, p)
 		if (@ui.eof())
 			break
@@ -86,15 +86,15 @@ Game::play() {
 
 Player *
 Game::winner() {
-	Player *best = NULL
-	for (Player *p : @players) {
+	Player best = nil
+	for (Player p : @players) {
 		if (!best && (p.getScore() >= @win_score))
 			best = p
 		if (best && (p.getScore() >= best.getScore()))
 			best = p
 
 		bool survivor = true
-		for (Player *e : p.getEnemies())
+		for (Player e : p.getEnemies())
 			survivor &= !e.isAlive()
 
 		if (survivor && !best)
@@ -106,19 +106,16 @@ Game::winner() {
 string
 Game::score() {
 	ostringstream out
-	for (Player *p : @players)
+	for (Player p : @players)
 		out << p.getName() << "\t\t" << p.getScore() << endl
 	return out.str()
 }
 
-const vector<Player *>
+const vector<Player >
 Game::getPlayers() {
 	return @players
 }
 
 Game::~Game() {
-	delete @ui
-	for (Player *p : @players)
-		delete p
-	delete @map
+	for (Player p : @players)
 }

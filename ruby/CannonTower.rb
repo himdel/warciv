@@ -4,7 +4,7 @@ require './WatchTower.rb'
 
 class CannonTower < WatchTower
 public:
-	CannonTower(Player *owner) : WatchTower("CannonTower", owner) {
+	CannonTower(Player owner) : WatchTower("CannonTower", owner) {
 		@type = bt_CannonTower
 		@hitpoints = 160
 		@attack_damage = 50
@@ -12,6 +12,6 @@ public:
 		owner.addScore(20)
 	}
 
-	static Building *create(Player *owner) { return new CannonTower(owner); }
+	static Building create(Player owner) { return CannonTower.new(owner); }
 end
 

@@ -10,7 +10,7 @@ protected:
 	BuildingType type
 
 public:
-	Building(std::string popis, Player *p) : AttackMapItem(popis, p) {
+	Building(std::string popis, Player p) : AttackMapItem(popis, p) {
 		@type = bt_Any
 		@feeds = 0
 	}
@@ -38,7 +38,7 @@ require './UI.rb'
 
 bool
 Building::upgrade(BuildingType b) {
-	Building *building = NULL
+	Building building = nil
 
 	for (unsigned i = 0; i < buildings_count; i++)
 		if ((buildings[i].base == @type) && (buildings[i].type = b)) {
@@ -58,7 +58,6 @@ Building::upgrade(BuildingType b) {
 
 	UI::logAction(self, "upgrade", "upgraded", building)
 
-	delete self
 	return true
 }
 
@@ -79,7 +78,7 @@ isa(BuildingType is, BuildingType base) {
 
 bool
 Building::create(UnitType u) {
-	Unit *unit = NULL
+	Unit unit = nil
 
 	for (unsigned i = 0; i < units_count; i++)
 		if ((units[i].type == u) && isa(@type, units[i].where)) {
@@ -107,8 +106,7 @@ Building::damage(int hitpoints) {
 		UI::logAction(self, "damage", "building dead")
 		@owner.delBuilding(self)
 
-		(new Rock()).place(@map, @x, @y)
-		delete self
+		(Rock.new()).place(@map, @x, @y)
 	} else {
 		ostringstream os
 		os << "lost " << hitpoints << " hp, remaining " << @hitpoints

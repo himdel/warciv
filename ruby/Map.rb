@@ -14,16 +14,16 @@ public:
 	Map(int w, int h) {
 		@data.resize(w)
 		for (int i = 0; i < w; i++)
-			@data[i].resize(h, NULL)
+			@data[i].resize(h, nil)
 
 		@width = w
 		@height = h
 	}
 
-	T *get(int x, int y) {
+	T get(int x, int y) {
 		if ((x < 0) || (y < 0) || (x >= @width) || (y >= @height)) {
 			cerr << "Map::get out of bounds " << x << ", " << y << endl
-			return NULL
+			return nil
 		}
 
 		return @data[x][y]
@@ -45,21 +45,21 @@ public:
 		unsigned maxw = 0
 		for (int y = 0; y < @height; y++)
 			for (int x = 0; x < @width; x++) {
-				T *mi = @data[x][y]
+				T mi = @data[x][y]
 				maxw = std::max(maxw, mi ? (unsigned) mi.getPopis().length() : 1)
 			}
 		maxw++
 
 		printf("   / ")
 		for (int x = 0; x < @width; x++)
-			printf("%-*d", maxw, x)
+			printf("%-d", maxw, x)
 		printf("\n")
 
 		for (int y = 0; y < @height; y++) {
 			printf("%-3d| ", y)
 			for (int x = 0; x < @width; x++) {
-				T *mi = @data[x][y]
-				printf("%-*s", maxw, mi ? mi.getPopis().c_str() : "-")
+				T mi = @data[x][y]
+				printf("%-s", maxw, mi ? mi.getPopis().c_str() : "-")
 			}
 			printf("\n")
 		}
@@ -68,8 +68,7 @@ public:
 	~Map() {
 		for (int x = 0; x < @width; x++) {
 			for (int y = 0; y < @height; y++) {
-				delete @data[x][y]
-				@data[x][y] = NULL
+				@data[x][y] = nil
 			}
 		}
 	}
@@ -102,7 +101,7 @@ private:
 		if (dist[px][py] != d - 1)
 			return false
 
-		if (self.get(px, py) != NULL)
+		if (self.get(px, py).nil? == false)
 			return false
 
 		pos.first = px
@@ -152,7 +151,7 @@ public:
 			int px = coords.first
 			int py = coords.second
 
-			if (self.get(px, py) == NULL)
+			if (self.get(px, py).nil?)
 				return coords
 
 			self.pushV(px - 0, py - 1, fifo, visited)
@@ -170,7 +169,7 @@ public:
 
 	# find position closest to x, y that fulfills condition f() without passing through something on the way
 	list< pair<int, int> >
-	closest(function< bool(T *, int, int) > f, int x, int y) {
+	closest(function< bool(T , int, int) > f, int x, int y) {
 		vector< vector<int> > dist
 		dist.resize(@width)
 		for (int i = 0; i < @width; i++)
@@ -189,7 +188,7 @@ public:
 			if (f(item, px, py) == true)
 				return self.wayUp(coords, dist)
 
-			if ((item != NULL) && ((px != x) || (py != y)))
+			if ((item.nil? == false) && ((px != x) || (py != y)))
 				continue
 
 			d++

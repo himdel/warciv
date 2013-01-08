@@ -12,7 +12,7 @@ public:
 		@quantity = rand() % 5000
 	}
 	int avail()
-	virtual int gather(int amount, Player *p = NULL)
+	virtual int gather(int amount, Player p = nil)
 	std::string getPopis();	# popis(quantity)
 end
 
@@ -25,7 +25,7 @@ Resource::avail() {
 }
 
 int
-Resource::gather(int amount, Player *p) {
+Resource::gather(int amount, Player p) {
 	int ret = std::min(@quantity, amount)
 	@quantity -= ret
 	return ret

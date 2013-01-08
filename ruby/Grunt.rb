@@ -4,7 +4,7 @@ require './Unit.rb'
 
 class Grunt < Unit
 public:
-	Grunt(Player *owner) : Unit("Grunt", owner) {
+	Grunt(Player owner) : Unit("Grunt", owner) {
 		@hitpoints = 60
 		@attack_damage = 6 + 3 * (rand() % 2);	# 6 + 3
 		@attack_range = 1
@@ -15,6 +15,6 @@ public:
 		return set<ActionType>({ at_None, at_Move, at_Attack })
 	}
 
-	static Unit *create(Player *owner) { return new Grunt(owner); }
+	static Unit create(Player owner) { return Grunt.new(owner); }
 end
 

@@ -4,13 +4,13 @@ require './MapItem.rb'
 
 class AttackMapItem < MapItem
 protected:
-	Player *owner
+	Player owner
 	int hitpoints
 	int attack_damage
 	int attack_range
 
 public:
-	AttackMapItem(std::string popis, Player *p) : MapItem(popis), owner(p) {
+	AttackMapItem(std::string popis, Player p) : MapItem(popis), owner(p) {
 		@hitpoints = 0
 		@attack_damage = 0
 		@attack_range = 0
@@ -20,7 +20,7 @@ public:
 
 	virtual bool attack()
 	virtual bool attack(int x, int y)
-	virtual bool attack(AttackMapItem *i)
+	virtual bool attack(AttackMapItem i)
 end
 
 require './AttackMapItem.rb'
@@ -39,12 +39,12 @@ AttackMapItem::damage(int hitpoints) {
 bool
 AttackMapItem::attack() {
 	bool bb = false
-	for (Player *e : @owner.getEnemies()) {
-		for (Unit *u : e.getUnits())
+	for (Player e : @owner.getEnemies()) {
+		for (Unit u : e.getUnits())
 			if (self.distance(u) <= @attack_range)
 				bb |= AttackMapItem::attack(u)
 
-		for (Building *b : e.getBuildings())
+		for (Building b : e.getBuildings())
 			if (self.distance(b) <= @attack_range)
 				bb |= AttackMapItem::attack(b)
 	}
@@ -53,11 +53,11 @@ AttackMapItem::attack() {
 
 bool
 AttackMapItem::attack(int x, int y) {
-	MapItem *i = @map.get(x, y)
+	MapItem i = @map.get(x, y)
 	if (!i)
 		return false
 
-	AttackMapItem *a = dynamic_cast<AttackMapItem *>(i)
+	AttackMapItem a = dynamic_cast<AttackMapItem >(i)
 	if (!a)
 		return false
 
@@ -66,7 +66,7 @@ AttackMapItem::attack(int x, int y) {
 
 # do not use i afterwards
 bool
-AttackMapItem::attack(AttackMapItem *i) {
+AttackMapItem::attack(AttackMapItem i) {
 	if (i == self)
 		return false
 

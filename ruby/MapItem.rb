@@ -4,18 +4,18 @@ require './Map.rb'
 
 class MapItem
 protected:
-	Map<MapItem> *map
+	Map<MapItem> map
 	int x, y
 	std::string popis
 
 public:
 	MapItem(std::string popis)
-	void place(Map<MapItem> *map, int x, int y)
+	void place(Map<MapItem> map, int x, int y)
 	void place(int x, int y)
 	void remove()
 
 	int distance(int x, int y)
-	int distance(MapItem *i)
+	int distance(MapItem i)
 
 	virtual std::string getPopis()
 	virtual std::string getDetail()
@@ -24,7 +24,7 @@ public:
 	pair<int, int> getPos() { return make_pair(@x, @y); }
 end
 
-std::ostream& operator<<(std::ostream &o, MapItem *m)
+std::ostream& operator<<(std::ostream &o, MapItem m)
 
 require './MapItem.rb'
 
@@ -39,11 +39,11 @@ distance(int x1, int y1, int x2, int y2) {
 
 MapItem::MapItem(std::string popis) {
 	@popis = popis
-	@map = NULL
+	@map = nil
 }
 
 void
-MapItem::place(Map<MapItem> *map, int x, int y) {
+MapItem::place(Map<MapItem> map, int x, int y) {
 	@map = map
 	self.place(x, y)
 }
@@ -59,7 +59,7 @@ void
 MapItem::remove() {
 	assert(@map)
 	assert(@map.get(x, y) == self)
-	@map.put(x, y, NULL)
+	@map.put(x, y, nil)
 }
 
 std::string
@@ -78,11 +78,11 @@ MapItem::distance(int x, int y) {
 }
 
 int
-MapItem::distance(MapItem *i) {
+MapItem::distance(MapItem i) {
 	return ::distance(@x, @y, i.x, i.y)
 }
 
 std::ostream&
-operator<<(std::ostream &o, MapItem *m) {
+operator<<(std::ostream &o, MapItem m) {
 	return o << (m ? m.getPopis() : "(road)")
 }

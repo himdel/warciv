@@ -12,7 +12,7 @@ protected:
 	int pending_y
 
 public:
-	Unit(std::string popis, Player *p) : AttackMapItem(popis, p) {
+	Unit(std::string popis, Player p) : AttackMapItem(popis, p) {
 		self.stop()
 	}
 
@@ -44,7 +44,7 @@ Unit::move(int x, int y) {
 	if (x == @x && y == @y)
 		return true
 
-	auto f = [x, y] (MapItem *mi, int px, int py) { return (x == px) && (y == py); }
+	auto f = [x, y] (MapItem mi, int px, int py) { return (x == px) && (y == py); }
 	list< pair<int, int> > path = @map.closest(f, @x, @y)
 	if (path.empty()) {
 		UI::logAction(self, "move", "target not found", make_pair(x, y))
@@ -92,7 +92,6 @@ Unit::damage(int hitpoints) {
 	if (@hitpoints == 0) {
 		UI::logAction(self, "damage", "unit dead")
 		@owner.delUnit(self)
-		delete self
 	} else {
 		ostringstream os
 		os << "lost " << hitpoints << " hp, remaining " << @hitpoints

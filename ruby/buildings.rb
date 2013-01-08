@@ -5,7 +5,7 @@ require './Building.rb'
 
 struct BuildingData {
 	BuildingType type
-	Building *(*make)(Player *owner)
+	Building (make)(Player owner)
 	std::string name
 	BuildingType base;	# base building, or bt_Any if buildable by peons
 	int gold

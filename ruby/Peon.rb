@@ -7,7 +7,7 @@ private:
 	bool cargo
 
 public:
-	Peon(Player *owner) : Unit("Peon", owner) {
+	Peon(Player owner) : Unit("Peon", owner) {
 		@hitpoints = 30
 		@cargo = false
 		owner.addScore(30)
@@ -20,7 +20,7 @@ public:
 		return set<ActionType>({ at_None, at_Move, at_Build, at_Gather })
 	}
 
-	static Unit *create(Player *owner) { return new Peon(owner); }
+	static Unit create(Player owner) { return Peon.new(owner); }
 end
 
 require './Peon.rb'
@@ -37,7 +37,7 @@ Peon::gather(int x, int y) {
 	# full, going to townhall
 	if (@cargo) {
 		# find closest TownHall or descendant
-		auto f = [x, y] (MapItem *mi, int px, int py) { return dynamic_cast<TownHall *>(mi) != NULL; }
+		auto f = [x, y] (MapItem mi, int px, int py) { return dynamic_cast<TownHall >(mi).nil? == false; }
 		list< pair<int, int> > path = @map.closest(f, @x, @y)
 
 		if (path.size() < 2) {
@@ -53,7 +53,7 @@ Peon::gather(int x, int y) {
 		return self.move(x, y)
 
 	# by the spot
-	Resource *spot = dynamic_cast<Resource *>( @map.get(x, y) )
+	Resource spot = dynamic_cast<Resource >( @map.get(x, y) )
 	if (!spot) {
 		UI::logAction(self, "gather", "no resources", make_pair(x, y))
 		return false
@@ -79,14 +79,14 @@ Peon::build(int x, int y, BuildingType b) {
 		return r
 
 	# on the spot
-	MapItem *mi = @map.get(x, y)
-	if ((mi != NULL) && (mi != self)) {
+	MapItem mi = @map.get(x, y)
+	if ((mi.nil? == false) && (mi != self)) {
 		UI::logAction(self, "build", "not empty", make_pair(x, y), mi)
 		return false
 	}
 
 	# actual build
-	Building *building = NULL
+	Building building = nil
 	bool found = false
 
 	for (unsigned i = 0; i < buildings_count; i++)

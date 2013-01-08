@@ -6,17 +6,17 @@ require './Player.rb'
 
 class UI
 private:
-	Map<MapItem> *map
-	void unit(Player *p, Unit *u)
-	void building(Player *p, Building *b)
+	Map<MapItem> map
+	void unit(Player p, Unit u)
+	void building(Player p, Building b)
 
 public:
-	UI(Map<MapItem> *m) : map(m) {}
-	void playerTurn(int turn, Player *p)
+	UI(Map<MapItem> m) : map(m) {}
+	void playerTurn(int turn, Player p)
 	bool eof()
 
-	static void logAction(Unit *u, string action, string desc, pair<int, int> pos = { -1, -1 }, MapItem *tgt = NULL)
-	static void logAction(Building *b, string action, string desc, MapItem *tgt = NULL)
+	static void logAction(Unit u, string action, string desc, pair<int, int> pos = { -1, -1 }, MapItem tgt = nil)
+	static void logAction(Building b, string action, string desc, MapItem tgt = nil)
 end
 
 require './UI.rb'
@@ -56,7 +56,7 @@ static T choice(std::string title, const vector<T> options, bool back, std::func
 }
 
 void
-UI::unit(Player *p, Unit *u) {
+UI::unit(Player p, Unit u) {
 	# doable actions
 	vector<ActionData> acts
 	for (unsigned i = 0; i < actions_count; i++)
@@ -114,7 +114,7 @@ UI::unit(Player *p, Unit *u) {
 }
 
 void
-UI::building(Player *p, Building *b) {
+UI::building(Player p, Building b) {
 	# doable actions
 	struct BuAcData {
 		string name
@@ -160,7 +160,7 @@ UI::building(Player *p, Building *b) {
 }
 
 void
-UI::playerTurn(int turn, Player *p) {
+UI::playerTurn(int turn, Player p) {
 	printf("\n\nTah: %d\n", turn)
 
 	printf("Hrac: %s (score %d)\n", p.getName().c_str(), p.getScore())
@@ -169,26 +169,26 @@ UI::playerTurn(int turn, Player *p) {
 	@map.show()
 	printf("\n")
 
-	for (Building *b : p.getBuildings())
+	for (Building b : p.getBuildings())
 		b.preturnAction()
 
 	for (;;) {
 		printf("Gold: %d; Wood: %d\n\n", p.getGold(), p.getWood())
 
-		const vector<Building *> buildings = p.getBuildings()
+		const vector<Building > buildings = p.getBuildings()
 		if (buildings.size()) {
 			printf("Available buildings:\n")
 			int i = 0
-			for (Building *b : buildings)
+			for (Building b : buildings)
 				printf("%d. %s\n", ++i, b.getDetail().c_str())
 			printf("\n")
 		}
 
-		const vector<Unit *> units = p.getUnits()
+		const vector<Unit > units = p.getUnits()
 		if (units.size()) {
 			printf("Available units:\n")
 			int i = 0
-			for (Unit *u : units)
+			for (Unit u : units)
 				printf("%d. %s\n", ++i, u.getDetail().c_str())
 			printf("\n")
 		}
@@ -239,7 +239,7 @@ UI::playerTurn(int turn, Player *p) {
 				break
 
 			case 'T':
-				for (Unit *u : units)
+				for (Unit u : units)
 					u.performAction()
 				return
 
@@ -264,7 +264,7 @@ UI::eof() {
 }
 
  void
-UI::logAction(Unit *u, string action, string desc, pair<int, int> pos, MapItem *tgt) {
+UI::logAction(Unit u, string action, string desc, pair<int, int> pos, MapItem tgt) {
 	printf("unit %s: %s", u.getPopis().c_str(), action.c_str())
 	if (pos.first >= 0 && pos.second >= 0)
 		printf("(%d, %d)", pos.first, pos.second)
@@ -276,7 +276,7 @@ UI::logAction(Unit *u, string action, string desc, pair<int, int> pos, MapItem *
 }
 
  void
-UI::logAction(Building *b, string action, string desc, MapItem *tgt) {
+UI::logAction(Building b, string action, string desc, MapItem tgt) {
 	printf("building %s: %s", b.getPopis().c_str(), action.c_str())
 	if (tgt)
 		printf(" = %s", tgt.getPopis().c_str())

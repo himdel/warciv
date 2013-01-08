@@ -3,8 +3,8 @@ require './Game.rb'
 
 
 int
-main(int argc, char **argv) {
-	Game *g = new Game(10, 10, "Karel", "Spock", 1000)
+main(int argc, char *argv) {
+	Game g = Game.new(10, 10, "Karel", "Spock", 1000)
 
 	cout << "3 .. 2 .. 1 .. Fight!" << endl
 	try {
@@ -14,9 +14,8 @@ main(int argc, char **argv) {
 
 	cout << "Game over" << endl
 	cout << "Winner: " << g.winner().getName() << endl
-	cout << endl << "** Score **" << endl << g.score() << endl
+	cout << endl << "* Score *" << endl << g.score() << endl
 
-	delete g
 	return 0
 }
 

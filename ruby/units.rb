@@ -5,7 +5,7 @@ require './Unit.rb'
 
 struct UnitData {
 	UnitType type
-	Unit *(*make)(Player *)
+	Unit (make)(Player )
 	std::string name
 	BuildingType where
 	int gold

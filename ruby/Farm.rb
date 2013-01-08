@@ -4,13 +4,13 @@ require './Building.rb'
 
 class Farm < Building
 public:
-	Farm(Player *owner) : Building("Farm", owner) {
+	Farm(Player owner) : Building("Farm", owner) {
 		@type = bt_Farm
 		@hitpoints = 400
 		@feeds = 4
 		owner.addScore(100);	# feeds nedodelano, zvyseno score
 	}
 
-	static Building *create(Player *owner) { return new Farm(owner); }
+	static Building create(Player owner) { return Farm.new(owner); }
 end
 

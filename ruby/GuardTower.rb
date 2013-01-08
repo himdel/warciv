@@ -4,7 +4,7 @@ require './WatchTower.rb'
 
 class GuardTower < WatchTower
 public:
-	GuardTower(Player *owner) : WatchTower("GuardTower", owner) {
+	GuardTower(Player owner) : WatchTower("GuardTower", owner) {
 		@type = bt_GuardTower
 		@hitpoints = 130
 		@attack_range = 4
@@ -12,6 +12,6 @@ public:
 		owner.addScore(20)
 	}
 
-	static Building *create(Player *owner) { return new GuardTower(owner); }
+	static Building create(Player owner) { return GuardTower.new(owner); }
 end
 
