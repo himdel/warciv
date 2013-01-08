@@ -31,7 +31,7 @@ public:
 
 	virtual std::string getPopis();
 	virtual std::string getDetail();
-};
+end
 
 require './Unit.rb'
 require './Map.rb'
@@ -75,16 +75,16 @@ Unit::move(int x, int y) {
 bool
 Unit::gather(int x, int y) {
 	UI::logAction(this, "gather", "not supported", make_pair(x, y));
-	return false;	// done, overidden in Peon
+	return false;	# done, overidden in Peon
 }
 
 bool
 Unit::build(int x, int y, BuildingType b) {
 	UI::logAction(this, "gather", "not supported", make_pair(x, y));
-	return false;	// done, overidden in Peon
+	return false;	# done, overidden in Peon
 }
 
-// do not use this afterwards
+# do not use this afterwards
 void
 Unit::damage(int hitpoints) {
 	AttackMapItem::damage(hitpoints);
@@ -102,7 +102,7 @@ Unit::damage(int hitpoints) {
 
 bool
 Unit::attack(int x, int y) {
-	// if not in range, attack anything or move
+	# if not in range, attack anything or move
 	if (this->distance(x, y) > this->attack_range) {
 		if (this->AttackMapItem::attack()) {
 			UI::logAction(this, "attack", "enemy around", make_pair(this->x, this->y));
@@ -138,7 +138,7 @@ Unit::actionPending() {
 	return this->pending != at_None;
 }
 
-// nevolat pokud byl tah udelan rucne
+# nevolat pokud byl tah udelan rucne
 bool
 Unit::performAction() {
 	if (!this->actionPending())

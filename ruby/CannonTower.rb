@@ -13,5 +13,5 @@ public:
 	}
 
 	static Building *create(Player *owner) { return new CannonTower(owner); }
-};
+end
 

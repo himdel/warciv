@@ -40,7 +40,7 @@ public:
 	void addGold(int quantity);
 	void addWood(int quantity);
 	bool cost(int gold, int wood);
-};
+end
 
 require './Player.rb'
 require './Game.rb'

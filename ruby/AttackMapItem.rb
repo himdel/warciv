@@ -21,7 +21,7 @@ public:
 	virtual bool attack();
 	virtual bool attack(int x, int y);
 	virtual bool attack(AttackMapItem *i);
-};
+end
 
 require './AttackMapItem.rb'
 require './Unit.rb'
@@ -64,7 +64,7 @@ AttackMapItem::attack(int x, int y) {
 	return this->attack(a);
 }
 
-// do not use i afterwards
+# do not use i afterwards
 bool
 AttackMapItem::attack(AttackMapItem *i) {
 	if (i == this)

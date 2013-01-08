@@ -25,7 +25,7 @@ public:
 	Map<MapItem> *getMap() { return this->map; }
 
 	~Game();
-};
+end
 
 require './Game.rb'
 require './Rock.rb'

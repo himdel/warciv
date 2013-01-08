@@ -26,7 +26,7 @@ public:
 	virtual bool upgrade(BuildingType b);
 
 	virtual BuildingType getType();
-};
+end
 
 require './Building.rb'
 require './buildings.rb'

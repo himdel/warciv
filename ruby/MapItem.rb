@@ -22,7 +22,7 @@ public:
 	virtual ~MapItem(){}
 
 	pair<int, int> getPos() { return make_pair(this->x, this->y); }
-};
+end
 
 std::ostream& operator<<(std::ostream &o, MapItem *m);
 

@@ -11,5 +11,5 @@ public:
 		p->addGold(amount);
 		return amount;
 	}
-};
+end
 

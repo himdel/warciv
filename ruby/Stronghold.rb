@@ -11,5 +11,5 @@ public:
 	}
 
 	static Building *create(Player *owner) { return new Stronghold(owner); }
-};
+end
 

@@ -11,7 +11,7 @@ public:
 		owner->addScore(200);
 	}
 
-	/*final*/ BuildingType getType() { return bt_TownHall; }
+	 BuildingType getType() { return bt_TownHall; }
 	static Building *create(Player *owner) { return new TownHall(owner); }
-};
+end
 

@@ -137,7 +137,7 @@ private:
 
 public:
 
-	// find empty position closest to x, y
+	# find empty position closest to x, y
 	pair<int, int>
 	closestEmpty(int x, int y) {
 		vector< vector<bool> > visited;
@@ -169,7 +169,7 @@ public:
 		return make_pair(-1, -1);
 	}
 
-	// find position closest to x, y that fulfills condition f() without passing through something on the way
+	# find position closest to x, y that fulfills condition f() without passing through something on the way
 	list< pair<int, int> >
 	closest(function< bool(T *, int, int) > f, int x, int y) {
 		vector< vector<int> > dist;
@@ -207,5 +207,5 @@ public:
 		list< pair<int, int> > ret;
 		return ret;
 	}
-};
+end
 

@@ -11,5 +11,5 @@ public:
 		p->addWood(amount);
 		return amount;
 	}
-};
+end
 

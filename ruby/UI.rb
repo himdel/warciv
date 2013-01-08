@@ -17,7 +17,7 @@ public:
 
 	static void logAction(Unit *u, string action, string desc, pair<int, int> pos = { -1, -1 }, MapItem *tgt = NULL);
 	static void logAction(Building *b, string action, string desc, MapItem *tgt = NULL);
-};
+end
 
 require './UI.rb'
 require './actions.rb'
@@ -46,7 +46,7 @@ static T choice(std::string title, const vector<T> options, bool back, std::func
 			cin.clear();
 			string s;
 			cin >> s;
-			// ignored
+			# ignored
 		}
 	} while (i < (back ? 0 : 1) || i > options.size());
 
@@ -57,19 +57,19 @@ static T choice(std::string title, const vector<T> options, bool back, std::func
 
 void
 UI::unit(Player *p, Unit *u) {
-	// doable actions
+	# doable actions
 	vector<ActionData> acts;
 	for (unsigned i = 0; i < actions_count; i++)
 		if (u->availActions().count( actions[i].type ))
 			acts.push_back( actions[i] );
 
-	// buildable buildings
+	# buildable buildings
 	vector<BuildingData> bld;
 	for (unsigned i = 0; i < buildings_count; i++)
 		if (buildings[i].base == bt_Any)
 			bld.push_back( buildings[i] );
 
-	// no unit loop
+	# no unit loop
 	printf("Selected unit: %s\n", u->getDetail().c_str());
 
 	if (acts.size() == 0) {
@@ -115,7 +115,7 @@ UI::unit(Player *p, Unit *u) {
 
 void
 UI::building(Player *p, Building *b) {
-	// doable actions
+	# doable actions
 	struct BuAcData {
 		string name;
 		int gold;
@@ -136,7 +136,7 @@ UI::building(Player *p, Building *b) {
 				return b->create( units[uu].type );
 			}});
 
-	// the loop
+	# the loop
 	for (;;) {
 		printf("Selected building: %s\n", b->getDetail().c_str());
 
@@ -153,7 +153,7 @@ UI::building(Player *p, Building *b) {
 		bool r = c.code();
 		printf("%s: %s\n", r ? "OK": "didn't finish", c.name.c_str());
 
-		// after upgrade
+		# after upgrade
 		if (this->map->get(pos.first, pos.second) != b)
 			return;
 	}
@@ -263,7 +263,7 @@ UI::eof() {
 	return cin.eof();
 }
 
-/*static*/ void
+ void
 UI::logAction(Unit *u, string action, string desc, pair<int, int> pos, MapItem *tgt) {
 	printf("unit %s: %s", u->getPopis().c_str(), action.c_str());
 	if (pos.first >= 0 && pos.second >= 0)
@@ -275,7 +275,7 @@ UI::logAction(Unit *u, string action, string desc, pair<int, int> pos, MapItem *
 	printf("\n");
 }
 
-/*static*/ void
+ void
 UI::logAction(Building *b, string action, string desc, MapItem *tgt) {
 	printf("building %s: %s", b->getPopis().c_str(), action.c_str());
 	if (tgt)

@@ -10,14 +10,14 @@ enum BuildingType {
 	bt_WatchTower,
 	bt_GuardTower,
 	bt_CannonTower,
-};
+end
 
 enum UnitType {
 	ut_Any = 0,
 	ut_Peon,
 	ut_Grunt,
 	ut_Axethrower,
-};
+end
 
 enum ActionType {
 	at_None = 0,
@@ -25,5 +25,5 @@ enum ActionType {
 	at_Attack,
 	at_Gather,
 	at_Build,
-};
+end
 

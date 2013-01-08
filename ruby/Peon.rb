@@ -21,7 +21,7 @@ public:
 	}
 
 	static Unit *create(Player *owner) { return new Peon(owner); }
-};
+end
 
 require './Peon.rb'
 require './Resource.rb'
@@ -31,12 +31,12 @@ require './TownHall.rb'
 require './UI.rb'
 
 
-// we don't unqueue gather, it loops by defualt
+# we don't unqueue gather, it loops by defualt
 bool
 Peon::gather(int x, int y) {
-	// full, going to townhall
+	# full, going to townhall
 	if (this->cargo) {
-		// find closest TownHall or descendant
+		# find closest TownHall or descendant
 		auto f = [x, y] (MapItem *mi, int px, int py) { return dynamic_cast<TownHall *>(mi) != NULL; };
 		list< pair<int, int> > path = this->map->closest(f, this->x, this->y);
 
@@ -52,7 +52,7 @@ Peon::gather(int x, int y) {
 	if (this->distance(x, y) > 1)
 		return this->move(x, y);
 
-	// by the spot
+	# by the spot
 	Resource *spot = dynamic_cast<Resource *>( this->map->get(x, y) );
 	if (!spot) {
 		UI::logAction(this, "gather", "no resources", make_pair(x, y));
@@ -78,14 +78,14 @@ Peon::build(int x, int y, BuildingType b) {
 	if ((this->x != x) || (this->y != y))
 		return r;
 
-	// on the spot
+	# on the spot
 	MapItem *mi = this->map->get(x, y);
 	if ((mi != NULL) && (mi != this)) {
 		UI::logAction(this, "build", "not empty", make_pair(x, y), mi);
 		return false;
 	}
 
-	// actual build
+	# actual build
 	Building *building = NULL;
 	bool found = false;
 
@@ -110,7 +110,7 @@ Peon::build(int x, int y, BuildingType b) {
 	building->place(this->map, this->x, this->y);
 	this->owner->addBuilding(building);
 
-	// move unit to closest empty spot
+	# move unit to closest empty spot
 	pair<int, int> empty = this->map->closestEmpty(this->x, this->y);
 	this->place(empty.first, empty.second);
 

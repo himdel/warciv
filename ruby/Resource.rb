@@ -13,8 +13,8 @@ public:
 	}
 	int avail();
 	virtual int gather(int amount, Player *p = NULL);
-	std::string getPopis();	// popis(quantity)
-};
+	std::string getPopis();	# popis(quantity)
+end
 
 require './Resource.rb'
 

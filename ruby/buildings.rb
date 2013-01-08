@@ -7,10 +7,10 @@ struct BuildingData {
 	BuildingType type;
 	Building *(*make)(Player *owner);
 	std::string name;
-	BuildingType base;	// base building, or bt_Any if buildable by peons
+	BuildingType base;	# base building, or bt_Any if buildable by peons
 	int gold;
 	int wood;
-};
+end
 
 extern BuildingData buildings[];
 extern unsigned buildings_count;
@@ -34,6 +34,6 @@ BuildingData buildings[] = {
 	{ bt_WatchTower, WatchTower::create, "WatchTower", bt_Any, 550, 150 },
 	{ bt_GuardTower, GuardTower::create, "GuardTower", bt_WatchTower, 550, 150 },
 	{ bt_CannonTower, CannonTower::create, "CannonTower", bt_GuardTower, 550, 150 },
-};
+end
 
 unsigned buildings_count = sizeof(buildings) / sizeof(BuildingData);
